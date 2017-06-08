@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="castlefloors" tilewidth="32" tileheight="32" tilecount="100" columns="10">
+  <image source="tuiles/castlefloors.png" trans="ff00ff" width="320" height="320"/>
+ </tileset>
+ <tileset firstgid="101" name="country" tilewidth="32" tileheight="32" tilecount="20" columns="5">
+  <image source="tuiles/country.png" trans="ff00ff" width="160" height="128"/>
+ </tileset>
+ <tileset firstgid="121" name="chests" tilewidth="32" tileheight="32" tilecount="6" columns="2">
+  <image source="tuiles/chests.png" trans="ff00ff" width="64" height="96"/>
+ </tileset>
+ <tileset firstgid="127" name="castlefloors_outside" tilewidth="32" tileheight="32" tilecount="20" columns="4">
+  <image source="tuiles/castlefloors_outside.png" trans="ff00ff" width="128" height="160"/>
+ </tileset>
+ <tileset firstgid="147" name="house" tilewidth="32" tileheight="32" tilecount="63" columns="9">
+  <image source="tuiles/house.png" trans="ff00ff" width="288" height="224"/>
+ </tileset>
+ <tileset firstgid="210" name="castle_lightsources" tilewidth="32" tileheight="32" tilecount="20" columns="5">
+  <image source="tuiles/castle_lightsources.png" trans="ff00ff" width="160" height="128"/>
+ </tileset>
+ <layer name="logic" width="30" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC/NkYGDwHCBMbzBq7+Czl5Baapo1GOylJhi1d9ReYtWO5qNRewfK3sFS7w8EBgDt291PYAkAAA==
+  </data>
+ </layer>
+ <layer name="background" width="30" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC5NhYGCQGcWjeBSP4lE8ikfxKB7FVMMAYSFmYWAJAAA=
+  </data>
+ </layer>
+ <layer name="Calque 2" width="30" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2tgYGBoGCBMbzBq7+Czl5Baapo1GOylJhi1d9ReYtVS06zBYC81QCoQpw2AvVlAnD0A9uYDccEA2FsFxfS2FwYayMDUMgsA4d9My2AJAAA=
+  </data>
+ </layer>
+ <layer name="Calque 3" width="30" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYODAVSC+RoE8ueAWEN+mQJ5ccB+IH1AgPwpGATYwmo9Ikx8Fo4AeAABnZTHDYAkAAA==
+  </data>
+ </layer>
+</map>

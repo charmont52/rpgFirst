@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="4">
+ <tileset firstgid="1" name="barrel" tilewidth="32" tileheight="32" tilecount="8" columns="4">
+  <image source="tuiles/barrel.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="9" name="grass" tilewidth="32" tileheight="32" tilecount="18" columns="3">
+  <image source="tuiles/grass.png" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="27" name="water" tilewidth="32" tileheight="32" tilecount="18" columns="3">
+  <image source="tuiles/water.png" width="96" height="192"/>
+ </tileset>
+ <layer name="Calque de Tile 1" width="20" height="20" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC4VU7Q7CMAisU6ePUBqN82vq+7+gLKHJeTnmj4vSlgMOWC2lmKM6Wvx2u4JtcZ+h+5vgacTH988A++P7ltiN4jTgwzMrv3UtZxvH4Ng6dhTfyI99kbtj7xgdB8eRtEN/5sp0ZD/WEmvL9FE5Kw2riMc9VzWgTlfHjXAX/V6rD+1H9PHkOMf/WbzLcuKYne/imIiP5/zf/BnwIWbhx5pjnhj35XgTPuEzCD/m47nlfPH9KHLE2lkD5jKKxbbKbwHuWhZ/LRf267vGu28Ca3uU9Rv51Hcu2yfeFTWb6vuVaa92VPU504p3Rs2H0iU773df4+ml10AGAAA=
+  </data>
+ </layer>
+ <objectgroup name="teleportation">
+  <object id="1" x="416" y="32" width="64" height="64">
+   <properties>
+    <property name="start" value="a"/>
+   </properties>
+  </object>
+  <object id="2" type="teleport" x="320.573" y="481.583" width="64" height="64" rotation="91.0352">
+   <properties>
+    <property name="finish" value="z"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

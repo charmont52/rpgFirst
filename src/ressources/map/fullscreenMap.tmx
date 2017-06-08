@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="34" tilewidth="32" tileheight="32" nextobjectid="14">
+ <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32" tilecount="18" columns="3">
+  <image source="tuiles/grass.png" trans="ff00ff" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="19" name="treetop" tilewidth="32" tileheight="32" tilecount="42" columns="6">
+  <image source="tuiles/treetop.png" trans="ff00ff" width="192" height="224"/>
+ </tileset>
+ <tileset firstgid="61" name="trunk" tilewidth="32" tileheight="32" tilecount="18" columns="6">
+  <image source="tuiles/trunk.png" trans="ff00ff" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="79" name="buckets" tilewidth="32" tileheight="32" tilecount="6" columns="3">
+  <image source="tuiles/buckets.png" trans="ff00ff" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="85" name="watergrass" tilewidth="32" tileheight="32" tilecount="18" columns="3">
+  <image source="tuiles/watergrass.png" trans="ff00ff" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="103" name="rock" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+  <image source="tuiles/rock.png" trans="ff00ff" width="64" height="32"/>
+ </tileset>
+ <tileset firstgid="105" name="barrel" tilewidth="32" tileheight="32" tilecount="8" columns="4">
+  <image source="tuiles/barrel.png" trans="ff00ff" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="113" name="mountains" tilewidth="32" tileheight="32" tilecount="108" columns="12">
+  <image source="tuiles/mountains.png" trans="ff00ff" width="384" height="288"/>
+ </tileset>
+ <tileset firstgid="221" name="lava" tilewidth="32" tileheight="32" tilecount="18" columns="3">
+  <image source="tuiles/lava.png" trans="ff00ff" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="239" name="castle_outside" tilewidth="32" tileheight="32" tilecount="187" columns="17">
+  <image source="tuiles/castle_outside.png" trans="ff00ff" width="544" height="352"/>
+ </tileset>
+ <tileset firstgid="426" name="bridges" tilewidth="32" tileheight="32" tilecount="42" columns="6">
+  <image source="tuiles/bridges.png" trans="ff00ff" width="192" height="224"/>
+ </tileset>
+ <tileset firstgid="468" name="terrain" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
+  <image source="tuiles/terrain.png" trans="ff00ff" width="1024" height="1024"/>
+ </tileset>
+ <layer name="logic" width="60" height="34">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2XQQ7AIAgE+f9b9Q/e22prFYRlJzExHoSBBGMRkZJsZYG+2NAXm1O+vZmpPUPpawN97+eaca2J5ruaUyTfpxyjwPcXG/pi49V39p9eJ+/1xjWvXXnS1weRfT3V02t/tTjh+zVe7exXY7O/uIx8Eevw5ovmjOg04q/vrnlpDfuLTVbfTKsB4xCee+AfAAA=
+  </data>
+ </layer>
+ <objectgroup name="door" width="60" height="34">
+  <object id="13" name="shop" type="changeMap" x="1248" y="575" width="64" height="96">
+   <properties>
+    <property name="destMap" value="shop.tmx"/>
+    <property name="destX" value="270"/>
+    <property name="destY" value="330"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="background" width="60" height="34">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3ZQQqAMAwEwIAfMD7Xr/SzClLIQQ/ahCbrHgJrEeyQtBebiLSf1WpKz9pAc/fadfteln1GehW4109e22u7lmHPkV7b6/6sDt/N7L3rdZb9R3oRzvVbb/U7fMRb8R776q062yPeirPt5a0y2x7eSple7EwvdqYXO2f37stV9NJLL730Ymd6sTO92Jle7Dz7v/OMOgD3Am5N4B8AAA==
+  </data>
+ </layer>
+ <layer name="subground" width="60" height="34">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2XWU7DMBRFnxvYB+MygDKPLRWVQExlKjO0/QK+gW9gCeyiX0hIbIRxH1wrQTERtI4TN85wpaM6imPnxM3wLojoMiVcgWtKT24p801yMt9kJyrfdbDhocnc9qameaPyrYAqWAYrYB88wXeLbLYlxiiBRZ/zRu27CtbI9eW/ByTnWwZLPueN0pevY9VBxVclUfuKzqb6noBTcAaGwDAY8TnGDtj18MLc9p7P8WSj4lsDddAA42ACTIZ8XroS9P88C+bAfDinoz3Z90ayk/nGM4fgSKKf6b4FvKOKrH0/GVce030r/Jtawlc2un3zYBSM+TyuxmzqoMHc7aDR7TsFpsGMxjn8RLfvAiiAItn3WJ7U1jusdPr+Fde71KZvM/d3O0g67SuudzngWB+4Bp8evsAreHN491wn05/PrWJZRF0eui2+g4g55Kzfx7TyPSa79jM1sr6Pwhq38j0nu/YzNf1wGfAwCHpAr0MfeJb0/S+qNb4JUfGNW40vRsU3bjW+mDg/n1Xy43uTErjvHbhPCQ/gG4hB3I3gHwAA
+  </data>
+ </layer>
+ <layer name="subground2" width="60" height="34">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3XzQ4BMRSG4SmXgAUWWFDiJ8HGnbpXIXyJ2cxEJVPGaeN9kjeZLjo5TVctCgAA8O+uXesJwnqqrwYf/OOe8PnqhmqkxtaD/MhETdXMeA4AsHJRO1ftZj1Ui7zOt1QrV/1O3VwtlG+4z5fnDK1TtVYbtW247+Sehdap2quDOpbr2PvOVex956p+3++cO6+/AcT7xhs/J7zxAQBteABqNdHd4B8AAA==
+  </data>
+ </layer>
+</map>

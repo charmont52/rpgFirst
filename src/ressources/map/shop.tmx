@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="12" tilewidth="32" tileheight="32" nextobjectid="2">
+ <tileset firstgid="1" name="castlefloors" tilewidth="32" tileheight="32" tilecount="100" columns="10">
+  <image source="tuiles/castlefloors.png" trans="ff00ff" width="320" height="320"/>
+ </tileset>
+ <tileset firstgid="101" name="inside" tilewidth="32" tileheight="32" tilecount="100" columns="10">
+  <image source="tuiles/inside.png" trans="ff00ff" width="320" height="320"/>
+ </tileset>
+ <tileset firstgid="201" name="chests" tilewidth="32" tileheight="32" tilecount="6" columns="2">
+  <image source="tuiles/chests.png" trans="ff00ff" width="64" height="96"/>
+ </tileset>
+ <tileset firstgid="207" name="castle_lightsources" tilewidth="32" tileheight="32" tilecount="20" columns="5">
+  <image source="tuiles/castle_lightsources.png" trans="ff00ff" width="160" height="128"/>
+ </tileset>
+ <tileset firstgid="227" name="hyptosis_til-art-batch-2" tilewidth="32" tileheight="32" tilecount="900" columns="30">
+  <image source="tuiles/hyptosis_til-art-batch-2.png" trans="ff00ff" width="960" height="960"/>
+ </tileset>
+ <layer name="logic" width="16" height="12">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACytgYGAooBNGB7jEiQWj+kf1E5Pm8MkDAJT/p1oAAwAA
+  </data>
+ </layer>
+ <layer name="background" width="16" height="12">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC/vNzMDwh0z8F4glWRgYZBjIw9Iso/pH9VOm3xyILcjElkAMAPfvkFEAAwAA
+  </data>
+ </layer>
+ <layer name="Calque 2" width="16" height="12">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgYGAwZ2RgsABiGBBlYWAQA2JxFlQ2LhAK1BsGxFZQbAxUawLEpiyo7FEwCkgBF4E4D0qTA64BcQWUxgUAXyMlVQADAAA=
+  </data>
+ </layer>
+ <objectgroup name="door" width="16" height="12">
+  <object id="1" name="world" type="changeMap" x="256" y="335" width="32" height="48">
+   <properties>
+    <property name="destMap" value="fullscreenMap.tmx"/>
+    <property name="destX" value="1280"/>
+    <property name="destY" value="680"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="Calque 4" width="16" height="12">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYOQCABX0oPUAAwAA
+  </data>
+ </layer>
+</map>
