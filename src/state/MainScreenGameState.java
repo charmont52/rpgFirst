@@ -18,7 +18,7 @@ public class MainScreenGameState extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.game = game;
-        this.background = new Image("src/ressources/background/snow.png");
+        this.background = new Image("src/ressources/background/background14.png");
         this.music = new Music("src/ressources/sound/OveMelaaDarkBlue.ogg");
 
         InputProvider provider = new InputProvider(container.getInput());

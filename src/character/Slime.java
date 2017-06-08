@@ -10,6 +10,10 @@ public class Slime extends Bot{
 
     public Slime(Map map, float x, float y, String sprite, Behaviour behaviour) {
         super(map,x,y,"src/ressources/sprites/slime.png",behaviour);
+        this.paramXAnimation = 16;
+        this.paramYAnimation = 30;
+        this.paramXLife = 16;
+        this.paramYLife = 38;
     }
 
     @Override
@@ -24,16 +28,6 @@ public class Slime extends Bot{
         this.animationsWalk[5] = loadAnimation(spriteSheet, 1, 2, 1);
         this.animationsWalk[6] = loadAnimation(spriteSheet, 1, 2, 2);
         this.animationsWalk[7] = loadAnimation(spriteSheet, 1, 2, 3);
-    }
-
-    @Override
-    public void render(Graphics g) throws SlickException {
-        if (this.nameMap.equals(Map.getInstance().getNameMap())) {
-            botController.move();
-            g.setColor(new Color(0, 0, 0, .5f));
-            g.fillOval(x - 16, y - 8, 32, 16);
-            g.drawAnimation(animationsWalk[direction + (moving ? 4 : 0)], x - 16, y - 30);
-        }
     }
 
     @Override

@@ -25,6 +25,8 @@ public class MainScreenController implements InputProviderListener {
             case START:
                 game.enterState(MapGameState.ID);
                 break;
+            case OPTIONS:
+                break;
             case CREDITS:
                 break;
             case EXIT:

@@ -15,6 +15,7 @@ public class MainScreenHud implements ComponentListener {
 
     private MainScreenController controller;
     private MouseOverArea startButton;
+    private MouseOverArea optionsButton;
     private MouseOverArea creditsButton;
     private MouseOverArea exitButton;
 
@@ -26,10 +27,10 @@ public class MainScreenHud implements ComponentListener {
         Image buttonImage = new Image("src/ressources/hud/button.png");
         int centreX = container.getWidth()/2 - buttonImage.getWidth()/2;
         int centreY = container.getHeight()/2 - buttonImage.getHeight()/2;
-        startButton = new MouseOverArea(container, buttonImage, centreX, centreY - 100, this);
-
-        creditsButton = new MouseOverArea(container, buttonImage, centreX, centreY, this);
-        exitButton = new MouseOverArea(container, buttonImage, centreX, centreY + 100, this);
+        startButton = new MouseOverArea(container, buttonImage, centreX, centreY - 150, this);
+        optionsButton = new MouseOverArea(container, buttonImage, centreX, centreY - 50, this);
+        creditsButton = new MouseOverArea(container, buttonImage, centreX, centreY + 50, this);
+        exitButton = new MouseOverArea(container, buttonImage, centreX, centreY + 150, this);
 
     }
 
@@ -37,6 +38,8 @@ public class MainScreenHud implements ComponentListener {
         g.setColor(Color.black);
         startButton.render(container, g);
         g.drawString("Jouer",startButton.getX() + startButton.getWidth()/2 - g.getFont().getWidth("Jouer")/2,startButton.getY() + startButton.getHeight()/2 - g.getFont().getHeight("Jouer")/2);
+        optionsButton.render(container, g);
+        g.drawString("Options",optionsButton.getX() + optionsButton.getWidth()/2 - g.getFont().getWidth("Options")/2,optionsButton.getY() + optionsButton.getHeight()/2 - g.getFont().getHeight("Options")/2);
         creditsButton.render(container, g);
         g.drawString("Crédits",creditsButton.getX() + creditsButton.getWidth()/2 - g.getFont().getWidth("Crédits")/2,creditsButton.getY() + creditsButton.getHeight()/2 - g.getFont().getHeight("Crédits")/2);
         exitButton.render(container, g);
@@ -47,6 +50,8 @@ public class MainScreenHud implements ComponentListener {
     public void componentActivated(AbstractComponent source) {
         if (source == startButton) {
             controller.controlPressed(MainScreenCommand.START);
+        } else if (source == optionsButton) {
+            controller.controlPressed(MainScreenCommand.OPTIONS);
         } else if (source == creditsButton) {
             controller.controlPressed(MainScreenCommand.CREDITS);
         } else if (source == exitButton) {
