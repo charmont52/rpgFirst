@@ -1,13 +1,13 @@
 package state;
 
-import controller.MainScreenController;
+import controller.StartPageController;
 import hud.MainScreenHud;
 import org.newdawn.slick.*;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class MainScreenGameState extends BasicGameState {
+public class StartPageState extends BasicGameState {
 
     public static final int ID = 1;
     private Image background;
@@ -22,7 +22,7 @@ public class MainScreenGameState extends BasicGameState {
         this.music = new Music("src/ressources/sound/OveMelaaDarkBlue.ogg");
 
         InputProvider provider = new InputProvider(container.getInput());
-        MainScreenController controller = new MainScreenController(game, container);
+        StartPageController controller = new StartPageController(game, container);
         provider.addListener(controller);
         this.hud = new MainScreenHud(controller);
         this.hud.init(container,game);
@@ -48,15 +48,21 @@ public class MainScreenGameState extends BasicGameState {
         return ID;
     }
 
+    public void startMusic() {
+
+    }
+
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-        music.loop(1,0);
-        music.fade(1500,0.8f,false);
+        if (HistoryState.getInstance().getLastState() != 3) {
+            music.loop(1, 0);
+            music.fade(1500, 0.8f, false);
+        }
+        HistoryState.getInstance().addState(ID);
     }
 
     @Override
     public void leave(GameContainer container, StateBasedGame game) throws SlickException {
-        music.stop();
     }
 
 

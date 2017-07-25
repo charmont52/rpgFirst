@@ -51,7 +51,6 @@ public class CharacterList {
         while (iterator.hasNext()) {
             Character character = iterator.next();
             character.update(delta);
-            //System.out.println(character.toString());
             if (character.getCurrentLife() <= 0)
                 iterator.remove();
         }

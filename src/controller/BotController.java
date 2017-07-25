@@ -2,6 +2,7 @@ package controller;
 
 import character.Bot;
 import character.Player;
+import map.Direction;
 
 public class BotController {
 
@@ -17,13 +18,13 @@ public class BotController {
         switch (bot.getBehaviour()) {
             case RANDOM:
                 if (random < 1) {
-                    bot.setDirection(0);
+                    bot.setDirection(Direction.NORTH);
                 } else if (random < 2) {
-                    bot.setDirection(1);
+                    bot.setDirection(Direction.WEST);
                 } else if (random < 3) {
-                    bot.setDirection(2);
+                    bot.setDirection(Direction.SOUTH);
                 } else if (random < 4) {
-                    bot.setDirection(3);
+                    bot.setDirection(Direction.EAST);
                 }
                 break;
             case AGRESSIVE:
@@ -34,14 +35,14 @@ public class BotController {
                     bot.setMoving(true);
                     if (random < 2) {
                         if (xPlayer < bot.getX())
-                            bot.setDirection(1);
+                            bot.setDirection(Direction.WEST);
                         if (xPlayer > bot.getX())
-                            bot.setDirection(3);
+                            bot.setDirection(Direction.EAST);
                     } else {
                         if (yPlayer < bot.getY())
-                            bot.setDirection(0);
+                            bot.setDirection(Direction.NORTH);
                         if (yPlayer > bot.getY())
-                            bot.setDirection(2);
+                            bot.setDirection(Direction.SOUTH);
                     }
                 }
                 break;

@@ -1,6 +1,8 @@
 package character;
 
 import controller.BotController;
+import graphics.LifeBar;
+import map.Direction;
 import map.Map;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -21,6 +23,14 @@ public class Bot extends Character {
         this.behaviour = behaviour;
     }
 
+    public int getParamXLife() {
+        return this.paramXLife;
+    }
+
+    public int getParamYLife() {
+        return this.paramYLife;
+    }
+
     public Behaviour getBehaviour() {
         return this.behaviour;
     }
@@ -31,9 +41,9 @@ public class Bot extends Character {
             botController.move();
             g.setColor(new Color(0, 0, 0, .5f));
             g.fillOval(getX() - 16, getY() - 8, 32, 16);
-            g.drawAnimation(animationsWalk[getDirection() + (isMoving() ? 4 : 0)], getX() - paramXAnimation, getY() - paramYAnimation);
+            g.drawAnimation(animationsWalk[Direction.getDirectionNumber(direction) + (isMoving() ? 4 : 0)], getX() - paramXAnimation, getY() - paramYAnimation);
             if (this.isLifeVisible()) {
-                g.drawImage(new Image("src/ressources/hud/barreDeVieBot.png"),getX() - paramXLife,getY() - paramYLife);
+                LifeBar.drawLifeBar(g, this);
             }
         }
     }

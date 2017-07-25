@@ -1,6 +1,7 @@
 package character;
 
 import hud.Hud;
+import map.Direction;
 import map.Map;
 import org.newdawn.slick.*;
 
@@ -56,12 +57,12 @@ public class Player extends Character {
             g.setColor(new Color(0, 0, 0, .5f));
             g.fillOval(x - 16, y - 8, 32, 16);
             if (!atkable)
-                g.drawAnimation(animationsWalk[direction + (moving ? 4 : 0)], x - 32, y - 60);
+                g.drawAnimation(animationsWalk[Direction.getDirectionNumber(direction) + (moving ? 4 : 0)], x - 32, y - 60);
             else {
-                g.drawAnimation(animationsAtk[direction], x - 32, y - 60);
-                if (animationsAtk[direction].getFrame() == animationsAtk[direction].getFrameCount()-1) {
+                g.drawAnimation(animationsAtk[Direction.getDirectionNumber(direction)], x - 32, y - 60);
+                if (animationsAtk[Direction.getDirectionNumber(direction)].getFrame() == animationsAtk[Direction.getDirectionNumber(direction)].getFrameCount()-1) {
                     this.atkable = false;
-                    animationsAtk[direction].restart();
+                    animationsAtk[Direction.getDirectionNumber(direction)].restart();
                 }
             }
         }

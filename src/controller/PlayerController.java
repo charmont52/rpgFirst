@@ -1,6 +1,7 @@
 package controller;
 
 import character.Player;
+import map.Direction;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 
@@ -40,25 +41,25 @@ public class PlayerController implements KeyListener {
                 break;
             case Input.KEY_Z:
                 if (!player.isAtkable()) {
-                    this.player.setDirection(0);
+                    this.player.setDirection(Direction.NORTH);
                     this.player.setMoving(true);
                 }
                 break;
             case Input.KEY_Q:
                 if (!player.isAtkable()) {
-                    this.player.setDirection(1);
+                    this.player.setDirection(Direction.WEST);
                     this.player.setMoving(true);
                 }
                 break;
             case Input.KEY_S:
                 if (!player.isAtkable()) {
-                    this.player.setDirection(2);
+                    this.player.setDirection(Direction.SOUTH);
                     this.player.setMoving(true);
                 }
                 break;
             case Input.KEY_D:
                 if (!player.isAtkable()) {
-                    this.player.setDirection(3);
+                    this.player.setDirection(Direction.EAST);
                     this.player.setMoving(true);
                 }
                 break;
@@ -77,19 +78,19 @@ public class PlayerController implements KeyListener {
                 this.player.setSpeed(0.2f);
                 break;
             case Input.KEY_Z:
-                if (player.getDirection() == 0)
+                if (player.getDirection() == Direction.NORTH)
                     player.setMoving(false);
                 break;
             case Input.KEY_Q:
-                if (player.getDirection() == 1)
+                if (player.getDirection() == Direction.WEST)
                     player.setMoving(false);
                 break;
             case Input.KEY_S:
-                if (player.getDirection() == 2)
+                if (player.getDirection() == Direction.SOUTH)
                     player.setMoving(false);
                 break;
             case Input.KEY_D:
-                if (player.getDirection() == 3)
+                if (player.getDirection() == Direction.EAST)
                     player.setMoving(false);
                 break;
         }

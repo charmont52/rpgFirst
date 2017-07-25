@@ -2,7 +2,7 @@ package state;
 
 import camera.Camera;
 import character.*;
-import controller.MapGameController;
+import controller.GameController;
 import controller.PlayerController;
 import controller.TriggerController;
 import hud.MapGameHud;
@@ -12,10 +12,9 @@ import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class MapGameState extends BasicGameState {
+public class GameState extends BasicGameState {
 
     public static final int ID = 2;
-
     private GameContainer container;
     private Map map = Map.getInstance();
     private Player player = Player.getInstance();
@@ -24,7 +23,6 @@ public class MapGameState extends BasicGameState {
     private TriggerController triggers = new TriggerController(map, player);
     private Music music;
     private MapGameHud hud;
-
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
@@ -39,12 +37,13 @@ public class MapGameState extends BasicGameState {
         this.characterList.init();
         PlayerController playerController = new PlayerController(this.player);
         container.getInput().addKeyListener(playerController);
-        music = new Music("src/ressources/sound/OveMelaaApproachingTheGreenGrass.ogg");
+        //music = new Music("src/ressources/sound/OveMelaaApproachingTheGreenGrass.ogg");
+        music = new Music("src/ressources/sound/upside_down.ogg");
 
         InputProvider provider = new InputProvider(container.getInput());
-        MapGameController mapGameController = new MapGameController(game, container);
-        provider.addListener(mapGameController);
-        this.hud = new MapGameHud(mapGameController);
+        GameController gameController = new GameController(game, container);
+        provider.addListener(gameController);
+        this.hud = new MapGameHud(gameController);
         this.hud.init(container,game);
 
     }
@@ -68,11 +67,6 @@ public class MapGameState extends BasicGameState {
 
     @Override
     public void keyReleased(int key, char c) {
-        switch (key) {
-            case Input.KEY_ESCAPE:
-                this.container.exit();
-                break;
-        }
     }
 
     @Override
@@ -82,6 +76,7 @@ public class MapGameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+        HistoryState.getInstance().addState(ID);
         music.loop(1,0);
         music.fade(1500,1,false);
     }

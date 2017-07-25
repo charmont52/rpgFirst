@@ -1,5 +1,6 @@
 package character;
 
+import map.Direction;
 import map.Map;
 import org.newdawn.slick.*;
 
@@ -9,7 +10,7 @@ public class Character {
 
     protected float x = 500, y = 500;
     protected Animation[] animationsWalk = new Animation[8];
-    protected int direction = 2;
+    protected Direction direction = Direction.SOUTH;
     protected boolean moving = false;
     protected Map map;
     private boolean onStair;
@@ -18,8 +19,8 @@ public class Character {
     protected String nameMap;
     protected boolean atkable = false;
     protected boolean infligeableDamage = false;
-    protected int lifeMax = 1;
-    protected int currentLife = 1;
+    protected int lifeMax = 4;
+    protected int currentLife = 4;
     protected boolean lifeVisible = true;
 
     public Character(Map map, float x, float y, String sprite) {
@@ -49,11 +50,11 @@ public class Character {
         this.y = y;
     }
 
-    public int getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 
-    public void setDirection(int direction) {
+    public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
@@ -161,7 +162,7 @@ public class Character {
         if (this.nameMap.equals(Map.getInstance().getNameMap())) {
             g.setColor(new Color(0, 0, 0, .5f));
             g.fillOval(x - 16, y - 8, 32, 16);
-            g.drawAnimation(animationsWalk[direction + (moving ? 4 : 0)], x - 32, y - 60);
+            g.drawAnimation(animationsWalk[Direction.getDirectionNumber(direction) + (moving ? 4 : 0)], x - 32, y - 60);
         }
     }
 
@@ -192,19 +193,19 @@ public class Character {
                 if (!c.equals(this) && Math.sqrt(Math.pow(c.getX() - this.getX(), 2) + Math.pow(c.getY() - this.getY(), 2)) < 60) {
                     boolean correctDirection = false;
                     switch (getDirection()) {
-                        case 0:
+                        case NORTH:
                             if (Math.abs(c.getX() - this.getX()) < this.getY() - c.getY())
                                 correctDirection = true;
                             break;
-                        case 1:
+                        case WEST:
                             if (this.getX() - c.getX() > Math.abs(this.getY() - c.getY()))
                                 correctDirection = true;
                             break;
-                        case 2:
+                        case SOUTH:
                             if (-Math.abs(c.getX() - this.getX()) > this.getY() - c.getY())
                                 correctDirection = true;
                             break;
-                        case 3:
+                        case EAST:
                             if (this.getX() - c.getX() < -Math.abs(this.getY() - c.getY()))
                                 correctDirection = true;
                             break;
@@ -221,10 +222,10 @@ public class Character {
     private float getFuturX(int delta) {
         float futurX = this.x;
         switch (this.direction) {
-            case 1:
+            case WEST:
                 futurX = this.x - speed * delta;
                 break;
-            case 3:
+            case EAST:
                 futurX = this.x + speed * delta;
                 break;
         }
@@ -234,10 +235,10 @@ public class Character {
     private float getFuturY(int delta) {
         float futurY = this.y;
         switch (this.direction) {
-            case 0:
+            case NORTH:
                 futurY = this.y - speed * delta;
                 break;
-            case 2:
+            case SOUTH:
                 futurY = this.y + speed * delta;
                 break;
         }

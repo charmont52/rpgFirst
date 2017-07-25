@@ -5,16 +5,15 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.state.StateBasedGame;
-import state.MainScreenGameState;
-import state.MapGameState;
+import state.StartPageState;
 
-public class MapGameController implements InputProviderListener {
+public class GameController implements InputProviderListener {
 
     private StateBasedGame game;
     private GameContainer container;
     private MapGameCommand mode = MapGameCommand.NONE;
 
-    public MapGameController(StateBasedGame game, GameContainer container) {
+    public GameController(StateBasedGame game, GameContainer container) {
         this.game = game;
         this.container = container;
     }
@@ -24,7 +23,7 @@ public class MapGameController implements InputProviderListener {
         this.mode = (MapGameCommand) command;
         switch (mode) {
             case MAINSCREEN:
-                game.enterState(MainScreenGameState.ID);
+                game.enterState(StartPageState.ID);
                 break;
             case INVENTORY:
                 break;

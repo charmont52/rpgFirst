@@ -1,7 +1,7 @@
 package hud;
 
 import command.MainScreenCommand;
-import controller.MainScreenController;
+import controller.StartPageController;
 import org.newdawn.slick.*;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -13,13 +13,13 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class MainScreenHud implements ComponentListener {
 
-    private MainScreenController controller;
+    private StartPageController controller;
     private MouseOverArea startButton;
     private MouseOverArea optionsButton;
     private MouseOverArea creditsButton;
     private MouseOverArea exitButton;
 
-    public MainScreenHud(MainScreenController controller) {
+    public MainScreenHud(StartPageController controller) {
         this.controller = controller;
     }
 
