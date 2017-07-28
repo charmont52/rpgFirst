@@ -1,6 +1,6 @@
 package hud;
 
-import command.MapGameCommand;
+import command.GameCommand;
 import controller.OptionsController;
 import org.newdawn.slick.*;
 import org.newdawn.slick.gui.AbstractComponent;
@@ -34,7 +34,7 @@ public class OptionsHud implements ComponentListener {
     @Override
     public void componentActivated(AbstractComponent source) {
         if (source == mainScreenButton) {
-            controller.controlPressed(MapGameCommand.MAINSCREEN);
+            controller.controlPressed(GameCommand.STARTPAGE);
         }
     }
 

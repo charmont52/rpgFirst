@@ -7,6 +7,7 @@ import controller.PlayerController;
 import controller.TriggerController;
 import hud.MapGameHud;
 import map.Map;
+import org.lwjgl.opencl.CL;
 import org.newdawn.slick.*;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.state.BasicGameState;
@@ -14,7 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class GameState extends BasicGameState {
 
-    public static final int ID = 2;
+    public static final int ID = StateID.getStateIDNumber(StateID.GAME);
     private GameContainer container;
     private Map map = Map.getInstance();
     private Player player = Player.getInstance();
@@ -53,13 +54,15 @@ public class GameState extends BasicGameState {
         this.camera.place(container,g);
         this.map.renderBackground();
         this.characterList.render(g);
-        this.map.renderForeground();
+        this.map.renderForeground(g);
         this.player.renderHudList(g);
         this.hud.render(container, game, g);
+        //g.drawString(Clock.getInstance().toString(),100,100);
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+        Clock.addTime(delta);
         this.triggers.update();
         this.characterList.update(delta);
         this.camera.update(container);

@@ -9,7 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class StartPageState extends BasicGameState {
 
-    public static final int ID = 1;
+    public static final int ID = StateID.getStateIDNumber(StateID.STARTPAGE);
     private Image background;
     private StateBasedGame game;
     private Music music;

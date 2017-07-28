@@ -6,7 +6,7 @@ import org.newdawn.slick.SlickException;
 
 public class Hud {
 
-    protected String nomHud;
+    protected String name;
     protected Image image;
     protected int positionX;
     protected int positionY;
@@ -20,16 +20,16 @@ public class Hud {
         this.visible = visible;
     }
 
-    public String getNomHud() {
-        return nomHud;
+    public String getName() {
+        return name;
     }
 
     public Image getImage() {
         return image;
     }
 
-    public Hud(String nomHud, Image image, int positionX, int positionY) throws SlickException {
-        this.nomHud = nomHud;
+    public Hud(String name, Image image, int positionX, int positionY) throws SlickException {
+        this.name = name;
         this.image = image;
         this.positionX = positionX;
         this.positionY = positionY;
@@ -38,7 +38,7 @@ public class Hud {
 
     public void render(Graphics g) {
         g.resetTransform();
-        if (isVisible())
+        if (this.visible)
             g.drawImage(this.image, positionX, positionY);
     }
 

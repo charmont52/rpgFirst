@@ -2,16 +2,18 @@ package map;
 
 import character.Player;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.particles.effects.FireEmitter;
 import org.newdawn.slick.tiled.TiledMap;
+import state.Clock;
 
 import java.util.Objects;
 
 public class Map {
 
     private TiledMap tiledMap;
-
     private String nameMap;
 
     private Map() {}
@@ -53,8 +55,20 @@ public class Map {
         this.tiledMap.render(0, 0, 2);
     }
 
-    public void renderForeground() {
+    public void renderForeground(Graphics g) throws SlickException {
         this.tiledMap.render(0, 0, 3);
+        if (Clock.isNight()) {
+            Color blueNight = new Color(10,10,25,220);
+            g.setColor(blueNight);
+            g.fillRect(Player.getInstance().getX()-700,Player.getInstance().getY()-500,1400,1000);
+            /*g.setDrawMode(g.MODE_ADD);
+            g.setColor(new Color(50,50,50));
+            g.fillOval(Player.getInstance().getX()-16,Player.getInstance().getY()-32,50,50);
+            g.setDrawMode(g.MODE_NORMAL);*/
+            //Color reset = new Color(255,255,255,150);
+            //g.setColor(reset);
+            //g.fillOval(Player.getInstance().getX(),Player.getInstance().getY(),100,100);
+        }
     }
 
     public boolean isCollision(float x, float y) {
@@ -63,10 +77,6 @@ public class Map {
         int logicLayer = this.tiledMap.getLayerIndex("logic");
         Image tile = this.tiledMap.getTileImage((int) x / tileW, (int) y / tileH, logicLayer);
         boolean collision = tile != null;
-        /*if (collision) {
-            Color color = tile.getColor((int) x % tileW, (int) y % tileH);
-            collision = color.getAlpha() > 0;
-        }*/
         return collision;
     }
 

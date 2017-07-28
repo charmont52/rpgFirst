@@ -1,6 +1,6 @@
 package hud;
 
-import command.MapGameCommand;
+import command.GameCommand;
 import controller.GameController;
 import org.newdawn.slick.*;
 import org.newdawn.slick.gui.AbstractComponent;
@@ -41,9 +41,9 @@ public class MapGameHud implements ComponentListener {
     public void componentActivated(AbstractComponent source) {
         //click.play();
         if (source == mainScreenButton) {
-            controller.controlPressed(MapGameCommand.MAINSCREEN);
+            controller.controlPressed(GameCommand.STARTPAGE);
         } else if (source == inventoryButton) {
-            controller.controlPressed(MapGameCommand.INVENTORY);
+            controller.controlPressed(GameCommand.INVENTORY);
         }
     }
 

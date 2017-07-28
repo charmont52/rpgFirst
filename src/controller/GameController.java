@@ -1,6 +1,6 @@
 package controller;
 
-import command.MapGameCommand;
+import command.GameCommand;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProviderListener;
@@ -11,7 +11,7 @@ public class GameController implements InputProviderListener {
 
     private StateBasedGame game;
     private GameContainer container;
-    private MapGameCommand mode = MapGameCommand.NONE;
+    private GameCommand mode = GameCommand.NONE;
 
     public GameController(StateBasedGame game, GameContainer container) {
         this.game = game;
@@ -20,9 +20,9 @@ public class GameController implements InputProviderListener {
 
     @Override
     public void controlPressed(Command command) {
-        this.mode = (MapGameCommand) command;
+        this.mode = (GameCommand) command;
         switch (mode) {
-            case MAINSCREEN:
+            case STARTPAGE:
                 game.enterState(StartPageState.ID);
                 break;
             case INVENTORY:

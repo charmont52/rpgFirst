@@ -12,7 +12,7 @@ public class StartPageController implements InputProviderListener {
 
     private StateBasedGame game;
     private GameContainer container;
-    private MainScreenCommand mode = MainScreenCommand.NONE;
+    private StartPageCommand mode = StartPageCommand.NONE;
 
     public StartPageController(StateBasedGame game, GameContainer container) {
         this.game = game;
@@ -21,9 +21,9 @@ public class StartPageController implements InputProviderListener {
 
     @Override
     public void controlPressed(Command command) {
-        this.mode = (MainScreenCommand) command;
+        this.mode = (StartPageCommand) command;
         switch (mode) {
-            case START:
+            case STARTGAME:
                 game.enterState(GameState.ID);
                 break;
             case OPTIONS:

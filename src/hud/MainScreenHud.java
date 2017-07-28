@@ -1,6 +1,6 @@
 package hud;
 
-import command.MainScreenCommand;
+import command.StartPageCommand;
 import controller.StartPageController;
 import org.newdawn.slick.*;
 import org.newdawn.slick.Color;
@@ -49,13 +49,13 @@ public class MainScreenHud implements ComponentListener {
     @Override
     public void componentActivated(AbstractComponent source) {
         if (source == startButton) {
-            controller.controlPressed(MainScreenCommand.START);
+            controller.controlPressed(StartPageCommand.STARTGAME);
         } else if (source == optionsButton) {
-            controller.controlPressed(MainScreenCommand.OPTIONS);
+            controller.controlPressed(StartPageCommand.OPTIONS);
         } else if (source == creditsButton) {
-            controller.controlPressed(MainScreenCommand.CREDITS);
+            controller.controlPressed(StartPageCommand.CREDITS);
         } else if (source == exitButton) {
-            controller.controlPressed(MainScreenCommand.EXIT);
+            controller.controlPressed(StartPageCommand.EXIT);
         }
     }
 
