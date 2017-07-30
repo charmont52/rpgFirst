@@ -5,9 +5,8 @@ import character.*;
 import controller.GameController;
 import controller.PlayerController;
 import controller.TriggerController;
-import hud.MapGameHud;
+import hud.GameHud;
 import map.Map;
-import org.lwjgl.opencl.CL;
 import org.newdawn.slick.*;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.state.BasicGameState;
@@ -23,7 +22,7 @@ public class GameState extends BasicGameState {
     private Camera camera = new Camera(player);
     private TriggerController triggers = new TriggerController(map, player);
     private Music music;
-    private MapGameHud hud;
+    private GameHud hud;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
@@ -39,12 +38,12 @@ public class GameState extends BasicGameState {
         PlayerController playerController = new PlayerController(this.player);
         container.getInput().addKeyListener(playerController);
         //music = new Music("src/ressources/sound/OveMelaaApproachingTheGreenGrass.ogg");
-        music = new Music("src/ressources/sound/upside_down.ogg");
+        music = new Music("src/ressources/sound/littleTown.ogg");
 
         InputProvider provider = new InputProvider(container.getInput());
         GameController gameController = new GameController(game, container);
         provider.addListener(gameController);
-        this.hud = new MapGameHud(gameController);
+        this.hud = new GameHud(gameController);
         this.hud.init(container,game);
 
     }
@@ -79,14 +78,18 @@ public class GameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-        HistoryState.getInstance().addState(ID);
-        music.loop(1,0);
-        music.fade(1500,1,false);
+        /*if (HistoryState.contains(StateID.GAME)) {
+            music.resume();
+        } else {*/
+            music.loop(1,0);
+            music.fade(1500,1,false);
+        //}
+        HistoryState.addState(StateID.GAME);
     }
 
     @Override
     public void leave(GameContainer container, StateBasedGame game) throws SlickException {
-        music.stop();
+        //music.pause();
     }
 
 }

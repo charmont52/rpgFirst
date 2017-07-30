@@ -3,6 +3,7 @@ package character;
 import map.Direction;
 import map.Map;
 import org.newdawn.slick.*;
+import sound.SoundEffect;
 
 import java.util.Iterator;
 
@@ -21,6 +22,8 @@ public class Character {
     protected boolean infligeableDamage = false;
     protected int lifeMax = 4;
     protected int currentLife = 4;
+    protected int manaMax = 4;
+    protected int currentMana = 3;
     protected boolean lifeVisible = true;
 
     public Character(Map map, float x, float y, String sprite) {
@@ -119,14 +122,34 @@ public class Character {
     }
 
     public void setCurrentLife(int currentLife) {
-        if (currentLife > this.getLifeMax())
-            this.currentLife = this.getCurrentLife();
-        else
+        if (currentLife > this.getLifeMax()) {
+            this.currentLife = this.getLifeMax();
+        } else {
             this.currentLife = currentLife;
+        }
     }
 
     public int getCurrentLife() {
         return this.currentLife;
+    }
+
+    public void setCurrentMana(int currentMana) {
+        if (currentMana > this.manaMax) {
+            this.currentMana = this.manaMax;
+        } else {
+            this.currentMana = currentMana;
+        }
+    }
+    public int getCurrentMana() {
+        return this.currentMana;
+    }
+
+    public void setManaMax(int manaMax) {
+        this.manaMax = manaMax;
+    }
+
+    public int getManaMax() {
+        return this.manaMax;
     }
 
     public void setLifeVisible(boolean lifeVisible) {
@@ -187,6 +210,7 @@ public class Character {
             }
         }
         if (this.isInfligeableDamage()) {
+            SoundEffect.dagger();
             Iterator<Character> iterator = CharacterList.getInstance().iterator();
             while (iterator.hasNext()) {
                 Character c = iterator.next();

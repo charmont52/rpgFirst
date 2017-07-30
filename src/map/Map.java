@@ -60,7 +60,7 @@ public class Map {
         if (Clock.isNight()) {
             Color blueNight = new Color(10,10,25,220);
             g.setColor(blueNight);
-            g.fillRect(Player.getInstance().getX()-700,Player.getInstance().getY()-500,1400,1000);
+            g.fillRect(Player.getInstance().getX()-900,Player.getInstance().getY()-700,1800,1400);
             /*g.setDrawMode(g.MODE_ADD);
             g.setColor(new Color(50,50,50));
             g.fillOval(Player.getInstance().getX()-16,Player.getInstance().getY()-32,50,50);

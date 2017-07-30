@@ -21,7 +21,7 @@ public class Camera {
     }
 
     public void update(GameContainer container) {
-        if (!container.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+        //if (!container.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
             int w = container.getWidth() / 4;
             if (this.player.getX() > this.xCamera + w && this.xCamera + 2*w < this.player.getMap().getWidth()*this.player.getMap().getTileWidth()) {
                 this.xCamera = this.player.getX() - w;
@@ -29,12 +29,13 @@ public class Camera {
                 this.xCamera = this.player.getX() + w;
             }
             int h = container.getHeight() / 4;
-            if (this.player.getY() > this.yCamera + h && this.yCamera + 2*h < this.player.getMap().getHeight()*this.player.getMap().getTileHeight()) {
-                this.yCamera = this.player.getY() - h;
+            int heightMenu = 35;
+            if (this.player.getY() > this.yCamera + h - heightMenu && this.yCamera + 2*(h - heightMenu) < this.player.getMap().getHeight()*this.player.getMap().getTileHeight()) {
+                this.yCamera = this.player.getY() - (h - heightMenu);
             } else if (this.player.getY() < this.yCamera - h && this.yCamera - 2*h > 0) {
                 this.yCamera = this.player.getY() + h;
             }
-        }
+        //}
     }
 
 }

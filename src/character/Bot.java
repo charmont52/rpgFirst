@@ -1,12 +1,11 @@
 package character;
 
 import controller.BotController;
-import graphics.LifeBar;
+import graphics.Bar;
 import map.Direction;
 import map.Map;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Bot extends Character {
@@ -43,7 +42,7 @@ public class Bot extends Character {
             g.fillOval(getX() - 16, getY() - 8, 32, 16);
             g.drawAnimation(animationsWalk[Direction.getDirectionNumber(direction) + (isMoving() ? 4 : 0)], getX() - paramXAnimation, getY() - paramYAnimation);
             if (this.isLifeVisible()) {
-                LifeBar.drawLifeBar(g, this);
+                Bar.drawLifeBar(g, this);
             }
         }
     }

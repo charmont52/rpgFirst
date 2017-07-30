@@ -49,12 +49,12 @@ public class OptionsState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-        HistoryState.getInstance().addState(ID);
+        HistoryState.addState(StateID.OPTIONS);
     }
 
     @Override
     public void leave(GameContainer container, StateBasedGame game) throws SlickException {
-        //music.stop();
+
     }
 
 }

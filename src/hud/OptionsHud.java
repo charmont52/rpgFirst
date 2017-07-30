@@ -7,6 +7,7 @@ import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.MouseOverArea;
 import org.newdawn.slick.state.StateBasedGame;
+import sound.SoundEffect;
 
 public class OptionsHud implements ComponentListener {
 
@@ -33,6 +34,7 @@ public class OptionsHud implements ComponentListener {
 
     @Override
     public void componentActivated(AbstractComponent source) {
+        SoundEffect.click();
         if (source == mainScreenButton) {
             controller.controlPressed(GameCommand.STARTPAGE);
         }
