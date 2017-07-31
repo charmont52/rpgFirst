@@ -27,27 +27,25 @@ public class Bar {
     }
 
     public static void drawLifeBarPlayer(GameContainer container, Graphics g) throws SlickException {
-        float x = 10;
-        float y = container.getHeight() - 60;
-        float width = 100;
-        g.setColor(new Color(20, 10, 0));
-        g.fillRect(x, y, width, 20);
-        g.setColor(Color.lightGray);
-        g.fillRect(x + 1, y + 1, width - 2, 18);
-        g.setColor(new Color(240, 0, 0, 200));
-        g.fillRect(x + 2, y + 2, (width - 4) * Player.getInstance().getCurrentLife() / Player.getInstance().getLifeMax(), 16);
+        drawBarPlayer(container, g, new Color(240, 0, 0, 200), container.getHeight() - 60, Player.getInstance().getCurrentLife(), Player.getInstance().getLifeMax());
     }
 
     public static void drawManaBarPlayer(GameContainer container, Graphics g) throws SlickException {
-        float x = 10;
-        float y = container.getHeight() - 30;
-        float width = 100;
+        drawBarPlayer(container, g, new Color(0, 0, 240, 200), container.getHeight() - 30, Player.getInstance().getCurrentMana(), Player.getInstance().getManaMax());
+    }
+
+    private static void drawBarPlayer(GameContainer container, Graphics g, Color color, int yPosition, int current, int max) {
+        int x = 10;
+        int y = yPosition;
+        int width = 100;
+        int height = 20;
         g.setColor(new Color(20, 10, 0));
-        g.fillRect(x, y, width, 20);
+        g.fillRect(x, y, width, height);
         g.setColor(Color.lightGray);
-        g.fillRect(x + 1, y + 1, width - 2, 18);
-        g.setColor(new Color(0, 0, 240, 200));
-        g.fillRect(x + 2, y + 2, (width - 4) * Player.getInstance().getCurrentMana() / Player.getInstance().getManaMax(), 16);
+        g.fillRect(x + 1, y + 1, width - 2, height - 2);
+        g.setColor(color);
+        g.fillRect(x + 2, y + 2, (width - 4) * current / max, height - 4);
+        Text.drawCenterString(current + "/" + max,g,x,y,width,height);
     }
 
 }

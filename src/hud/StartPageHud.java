@@ -2,6 +2,7 @@ package hud;
 
 import command.StartPageCommand;
 import controller.StartPageController;
+import graphics.Text;
 import org.newdawn.slick.*;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -35,15 +36,14 @@ public class StartPageHud implements ComponentListener {
     }
 
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        g.setColor(Color.black);
         startButton.render(container, g);
-        g.drawString("Jouer",startButton.getX() + startButton.getWidth()/2 - g.getFont().getWidth("Jouer")/2,startButton.getY() + startButton.getHeight()/2 - g.getFont().getHeight("Jouer")/2);
+        Text.drawCenterString(startButton,"Jouer",g);
         optionsButton.render(container, g);
-        g.drawString("Options",optionsButton.getX() + optionsButton.getWidth()/2 - g.getFont().getWidth("Options")/2,optionsButton.getY() + optionsButton.getHeight()/2 - g.getFont().getHeight("Options")/2);
+        Text.drawCenterString(optionsButton,"Options",g);
         creditsButton.render(container, g);
-        g.drawString("Crédits",creditsButton.getX() + creditsButton.getWidth()/2 - g.getFont().getWidth("Crédits")/2,creditsButton.getY() + creditsButton.getHeight()/2 - g.getFont().getHeight("Crédits")/2);
+        Text.drawCenterString(creditsButton,"Crédits",g);
         exitButton.render(container, g);
-        g.drawString("Quitter",exitButton.getX() + exitButton.getWidth()/2 - g.getFont().getWidth("Quitter")/2,exitButton.getY() + exitButton.getHeight()/2 - g.getFont().getHeight("Quitter")/2);
+        Text.drawCenterString(exitButton,"Quitter",g);
     }
 
     @Override

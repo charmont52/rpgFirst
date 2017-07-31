@@ -12,6 +12,7 @@ public class Character {
     protected float x = 500, y = 500;
     protected Animation[] animationsWalk = new Animation[8];
     protected Direction direction = Direction.SOUTH;
+    protected Direction lastDirection = Direction.SOUTH;
     protected boolean moving = false;
     protected Map map;
     private boolean onStair;
@@ -112,11 +113,11 @@ public class Character {
     public boolean isInfligeableDamage() {
         return infligeableDamage;
     }
-    
+
     public void setLifeMax(int lifeMax) {
         this.lifeMax = lifeMax;
     }
-    
+
     public int getLifeMax() {
         return this.lifeMax;
     }
@@ -140,6 +141,7 @@ public class Character {
             this.currentMana = currentMana;
         }
     }
+
     public int getCurrentMana() {
         return this.currentMana;
     }
@@ -181,11 +183,14 @@ public class Character {
         return animation;
     }
 
-    public void render(Graphics g) throws SlickException {
+    public void render(Graphics g, boolean pause) throws SlickException {
         if (this.nameMap.equals(Map.getInstance().getNameMap())) {
             g.setColor(new Color(0, 0, 0, .5f));
             g.fillOval(x - 16, y - 8, 32, 16);
-            g.drawAnimation(animationsWalk[Direction.getDirectionNumber(direction) + (moving ? 4 : 0)], x - 32, y - 60);
+            if (!pause) {
+                g.drawAnimation(animationsWalk[Direction.getDirectionNumber(direction) + (moving ? 4 : 0)], x - 32, y - 60);
+            }
+            lastDirection = direction;
         }
     }
 
@@ -235,7 +240,7 @@ public class Character {
                             break;
                     }
                     if (correctDirection)
-                        c.setCurrentLife(c.getCurrentLife()-1);
+                        c.setCurrentLife(c.getCurrentLife() - 1);
                 }
             }
             this.setInfligeableDamage(false);

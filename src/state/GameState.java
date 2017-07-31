@@ -23,48 +23,58 @@ public class GameState extends BasicGameState {
     private TriggerController triggers = new TriggerController(map, player);
     private Music music;
     private GameHud hud;
+    private boolean pause;
+
+    public boolean getPause() {
+        return pause;
+    }
+
+    public void setPause(boolean value) {
+        pause = value;
+    }
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.map.init();
-        for (int j = 0; j<10; j++) {
-            Bot bot = new Bot(map,(float) Math.random()*1920,(float) Math.random()*1080,"src/ressources/sprites/sprite1.png", Behaviour.AGRESSIVE);
+        for (int j = 0; j < 10; j++) {
+            Bot bot = new Bot(map, (float) Math.random() * 1920, (float) Math.random() * 1080, "src/ressources/sprites/sprite1.png", Behaviour.AGRESSIVE);
             characterList.add(bot);
-            Slime slime = new Slime(map,(float) Math.random()*1920,(float) Math.random()*1080,"", Behaviour.AGRESSIVE);
+            Slime slime = new Slime(map, (float) Math.random() * 1920, (float) Math.random() * 1080, "", Behaviour.AGRESSIVE);
             characterList.add(slime);
         }
         this.container = container;
         this.characterList.init();
         PlayerController playerController = new PlayerController(this.player);
         container.getInput().addKeyListener(playerController);
-        //music = new Music("src/ressources/sound/OveMelaaApproachingTheGreenGrass.ogg");
-        music = new Music("src/ressources/sound/littleTown.ogg");
+        music = new Music("src/ressources/sound/OveMelaaApproachingTheGreenGrass.ogg");
+        //music = new Music("src/ressources/sound/littleTown.ogg");
 
         InputProvider provider = new InputProvider(container.getInput());
-        GameController gameController = new GameController(game, container);
+        GameController gameController = new GameController(game, container, this);
         provider.addListener(gameController);
         this.hud = new GameHud(gameController);
-        this.hud.init(container,game);
+        this.hud.init(container, game);
 
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        this.camera.place(container,g);
+        this.camera.place(container, g);
         this.map.renderBackground();
-        this.characterList.render(g);
+        this.characterList.render(g, pause);
         this.map.renderForeground(g);
         this.player.renderHudList(g);
         this.hud.render(container, game, g);
-        //g.drawString(Clock.getInstance().toString(),100,100);
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        Clock.addTime(delta);
-        this.triggers.update();
-        this.characterList.update(delta);
-        this.camera.update(container);
+        if (!pause) {
+            Clock.addTime(delta);
+            this.triggers.update();
+            this.characterList.update(delta);
+            this.camera.update(container);
+        }
     }
 
     @Override
@@ -78,18 +88,13 @@ public class GameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-        /*if (HistoryState.contains(StateID.GAME)) {
-            music.resume();
-        } else {*/
-            music.loop(1,0);
-            music.fade(1500,1,false);
-        //}
+        music.loop(1, 0);
+        music.fade(1500, 1, false);
         HistoryState.addState(StateID.GAME);
     }
 
     @Override
     public void leave(GameContainer container, StateBasedGame game) throws SlickException {
-        //music.pause();
     }
 
 }

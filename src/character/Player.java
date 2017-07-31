@@ -53,19 +53,25 @@ public class Player extends Character {
     }
 
     @Override
-    public void render(Graphics g) throws SlickException {
+    public void render(Graphics g, boolean pause) throws SlickException {
         if (this.nameMap.equals(Map.getInstance().getNameMap())) {
             g.setColor(new Color(0, 0, 0, .5f));
             g.fillOval(x - 16, y - 8, 32, 16);
-            if (!atkable)
+            if (pause) {
+                this.setMoving(false);
+                this.setDirection(lastDirection);
+                this.setAtkable(false);
+            }
+            if (!atkable) {
                 g.drawAnimation(animationsWalk[Direction.getDirectionNumber(direction) + (moving ? 4 : 0)], x - 32, y - 60);
-            else {
+            } else {
                 g.drawAnimation(animationsAtk[Direction.getDirectionNumber(direction)], x - 32, y - 60);
                 if (animationsAtk[Direction.getDirectionNumber(direction)].getFrame() == animationsAtk[Direction.getDirectionNumber(direction)].getFrameCount()-1) {
                     this.atkable = false;
                     animationsAtk[Direction.getDirectionNumber(direction)].restart();
                 }
             }
+            this.lastDirection = direction;
         }
     }
 

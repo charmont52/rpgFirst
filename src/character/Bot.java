@@ -18,7 +18,7 @@ public class Bot extends Character {
     protected int paramYLife = 56;
 
     public Bot(Map map, float x, float y, String sprite, Behaviour behaviour) {
-        super(map,x,y,sprite);
+        super(map, x, y, sprite);
         this.behaviour = behaviour;
     }
 
@@ -35,15 +35,21 @@ public class Bot extends Character {
     }
 
     @Override
-    public void render(Graphics g) throws SlickException {
+    public void render(Graphics g, boolean pause) throws SlickException {
         if (this.getNameMap().equals(Map.getInstance().getNameMap())) {
-            botController.move();
+            if (pause) {
+                this.setMoving(false);
+                this.setDirection(lastDirection);
+            } else {
+                botController.move();
+            }
             g.setColor(new Color(0, 0, 0, .5f));
             g.fillOval(getX() - 16, getY() - 8, 32, 16);
             g.drawAnimation(animationsWalk[Direction.getDirectionNumber(direction) + (isMoving() ? 4 : 0)], getX() - paramXAnimation, getY() - paramYAnimation);
             if (this.isLifeVisible()) {
                 Bar.drawLifeBar(g, this);
             }
+            this.lastDirection = direction;
         }
     }
 

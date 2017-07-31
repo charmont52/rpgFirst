@@ -28,8 +28,9 @@ public class CharacterList {
     }
 
     public void add(Character character) {
-        if (!character.getMap().isCollision(character.getX(),character.getY()))
+        if (!character.getMap().isCollision(character.getX(), character.getY())) {
             characterList.add(character);
+        }
     }
 
     public void init() throws SlickException {
@@ -39,10 +40,10 @@ public class CharacterList {
         }
     }
 
-    public void render(Graphics g) throws SlickException {
+    public void render(Graphics g, boolean pause) throws SlickException {
         Iterator<Character> iterator = characterList.iterator();
         while (iterator.hasNext()) {
-            iterator.next().render(g);
+            iterator.next().render(g, pause);
         }
     }
 
@@ -51,8 +52,9 @@ public class CharacterList {
         while (iterator.hasNext()) {
             Character character = iterator.next();
             character.update(delta);
-            if (character.getCurrentLife() <= 0)
+            if (character.getCurrentLife() <= 0) {
                 iterator.remove();
+            }
         }
     }
 
