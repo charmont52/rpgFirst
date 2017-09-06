@@ -28,11 +28,7 @@ public class Clock {
     }
 
     static public boolean isNight() {
-        if (getInstance().time/getInstance().hour % 8 > 4) {
-            return true;
-        } else {
-            return false;
-        }
+        return (instance.time/instance.hour % 8 > 4);
     }
 
     @Override

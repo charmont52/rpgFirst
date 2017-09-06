@@ -2,6 +2,7 @@ package sound;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
+import state.Options;
 
 public class SoundEffect {
 
@@ -26,15 +27,15 @@ public class SoundEffect {
     }
 
     public static void click() {
-        instance.click.play(1,0.4f);
+        instance.click.play(1,0.4f * Options.getSoundLevel());
     }
 
     public static void levelUp() {
-        instance.levelUp.play(1,0.6f);
+        instance.levelUp.play(1,0.6f * Options.getSoundLevel());
     }
 
     public static void dagger() {
-        instance.dagger.play(1,0.8f);
+        instance.dagger.play(1,0.8f * Options.getSoundLevel());
     }
 
 }

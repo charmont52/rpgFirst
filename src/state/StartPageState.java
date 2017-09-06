@@ -51,8 +51,8 @@ public class StartPageState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
         if (HistoryState.getLastState() != StateID.OPTIONS) {
-            music.loop(1, 0);
-            music.fade(1500, 0.8f, false);
+            music.loop(1*Options.getSoundLevel(), 0);
+            music.fade(1500, 0.8f*Options.getSoundLevel(), false);
         }
         HistoryState.addState(StateID.STARTPAGE);
     }

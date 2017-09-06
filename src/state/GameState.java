@@ -7,6 +7,7 @@ import controller.PlayerController;
 import controller.TriggerController;
 import hud.GameHud;
 import map.Map;
+import night.Night;
 import org.newdawn.slick.*;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.state.BasicGameState;
@@ -64,7 +65,8 @@ public class GameState extends BasicGameState {
         this.characterList.render(g, pause);
         this.map.renderForeground(g);
         this.player.renderHudList(g);
-        this.hud.render(container, game, g);
+        this.hud.render(container, g);
+        Night.render(container, g, this.camera.getX(), this.camera.getY());
     }
 
     @Override
@@ -88,8 +90,8 @@ public class GameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-        music.loop(1, 0);
-        music.fade(1500, 1, false);
+        music.loop(1*Options.getSoundLevel(), 0);
+        music.fade(1500, 1*Options.getSoundLevel(), false);
         HistoryState.addState(StateID.GAME);
     }
 

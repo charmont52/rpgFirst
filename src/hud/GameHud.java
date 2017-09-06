@@ -32,7 +32,7 @@ public class GameHud implements ComponentListener {
         statsPlayerDisplay = false;
     }
 
-    public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+    public void render(GameContainer container, Graphics g) throws SlickException {
         Image backgroundUI = new Image("src/ressources/hud/background.png");
         g.fillRect(0, container.getHeight() - 70, container.getWidth(), 70, backgroundUI, 0, 0);
         g.setColor(Color.black);

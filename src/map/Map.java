@@ -1,6 +1,7 @@
 package map;
 
 import character.Player;
+import night.Night;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -57,18 +58,7 @@ public class Map {
 
     public void renderForeground(Graphics g) throws SlickException {
         this.tiledMap.render(0, 0, 3);
-        if (Clock.isNight()) {
-            Color blueNight = new Color(10,10,25,220);
-            g.setColor(blueNight);
-            g.fillRect(Player.getInstance().getX()-900,Player.getInstance().getY()-700,1800,1400);
-            /*g.setDrawMode(g.MODE_ADD);
-            g.setColor(new Color(50,50,50));
-            g.fillOval(Player.getInstance().getX()-16,Player.getInstance().getY()-32,50,50);
-            g.setDrawMode(g.MODE_NORMAL);*/
-            //Color reset = new Color(255,255,255,150);
-            //g.setColor(reset);
-            //g.fillOval(Player.getInstance().getX(),Player.getInstance().getY(),100,100);
-        }
+        //Night.drawNight(g);
     }
 
     public boolean isCollision(float x, float y) {
@@ -76,8 +66,7 @@ public class Map {
         int tileH = this.tiledMap.getTileHeight();
         int logicLayer = this.tiledMap.getLayerIndex("logic");
         Image tile = this.tiledMap.getTileImage((int) x / tileW, (int) y / tileH, logicLayer);
-        boolean collision = tile != null;
-        return collision;
+        return tile != null;
     }
 
     public int getObjectCount() {
@@ -110,7 +99,7 @@ public class Map {
 
     @Override
     public boolean equals(Object object) {
-        return (this.nameMap == ((Map) object).getNameMap());
+        return this.nameMap.equals(((Map) object).getNameMap());
     }
 
 }

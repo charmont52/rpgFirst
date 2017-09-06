@@ -3,6 +3,8 @@ package character;
 import hud.Hud;
 import map.Direction;
 import map.Map;
+import night.Light;
+import night.LightList;
 import org.newdawn.slick.*;
 
 import java.util.Iterator;
@@ -17,6 +19,7 @@ public class Player extends Character {
     private Player(Map map, float x, float y, String sprite, String spriteAtk) {
         super(map,x,y,sprite);
         this.spriteAtk = spriteAtk;
+        LightList.add(new Light(0,0));
     }
 
     private final static Player instance = new Player(Map.getInstance(), 500,500,"src/ressources/sprites/character.png", "src/ressources/sprites/attaque.png");
