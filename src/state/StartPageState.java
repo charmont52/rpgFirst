@@ -25,7 +25,7 @@ public class StartPageState extends BasicGameState {
         StartPageController controller = new StartPageController(game, container);
         provider.addListener(controller);
         this.hud = new StartPageHud(controller);
-        this.hud.init(container,game);
+        this.hud.init(container, game);
     }
 
     @Override
@@ -51,8 +51,8 @@ public class StartPageState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
         if (HistoryState.getLastState() != StateID.OPTIONS) {
-            music.loop(1*Options.getSoundLevel(), 0);
-            music.fade(1500, 0.8f*Options.getSoundLevel(), false);
+            music.loop(1 * Options.getSoundLevel(), 0);
+            music.fade(1500, 0.8f * Options.getSoundLevel(), false);
         }
         HistoryState.addState(StateID.STARTPAGE);
     }
@@ -60,7 +60,6 @@ public class StartPageState extends BasicGameState {
     @Override
     public void leave(GameContainer container, StateBasedGame game) throws SlickException {
     }
-
 
 
 }

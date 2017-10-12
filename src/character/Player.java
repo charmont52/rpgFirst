@@ -29,7 +29,7 @@ public class Player extends Character {
     }
 
     @Override
-    public void init() throws SlickException {
+    public synchronized void init() throws SlickException {
         super.init();
 
         SpriteSheet spriteSheet = new SpriteSheet(this.spriteAtk, 64, 64);

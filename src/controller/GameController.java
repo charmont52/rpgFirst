@@ -29,13 +29,13 @@ public class GameController implements InputProviderListener {
                 game.enterState(StartPageState.ID);
                 break;
             case INVENTORY:
-                gameState.setPause(!gameState.getPause());
+                gameState.setPause(!gameState.isPause());
                 break;
             case STATSPLAYER:
-                gameState.setPause(!gameState.getPause());
+                gameState.setPause(!gameState.isPause());
                 break;
             case PAUSE:
-                gameState.setPause(!gameState.getPause());
+                gameState.setPause(!gameState.isPause());
                 break;
         }
     }

@@ -25,13 +25,13 @@ public class OptionsState extends BasicGameState {
         OptionsController controller = new OptionsController(game, container);
         provider.addListener(controller);
         this.hud = new OptionsHud(controller);
-        this.hud.init(container,game);
+        this.hud.init(container, game);
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         background.draw(0, 0, container.getWidth(), container.getHeight());
-        this.hud.render(container,game,g);
+        this.hud.render(container, game, g);
     }
 
     @Override

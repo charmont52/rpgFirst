@@ -12,6 +12,9 @@ import org.newdawn.slick.gui.MouseOverArea;
 import org.newdawn.slick.state.StateBasedGame;
 import sound.SoundEffect;
 
+/**
+ * Hud about the game page
+ */
 public class GameHud implements ComponentListener {
 
     private GameController controller;
@@ -20,10 +23,22 @@ public class GameHud implements ComponentListener {
     private MouseOverArea statsPlayerButton;
     private boolean statsPlayerDisplay;
 
+    /**
+     * The unique Constructor
+     *
+     * @param controller Controller for the game page
+     */
     public GameHud(GameController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Init the hud
+     *
+     * @param container Container
+     * @param game      Game
+     * @throws SlickException
+     */
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         Image buttonImage = new Image("src/ressources/hud/littleButton.png");
         startPageButton = new MouseOverArea(container, buttonImage, container.getWidth() - 5 - buttonImage.getWidth(), container.getHeight() - buttonImage.getHeight() - 5, this);
@@ -32,6 +47,13 @@ public class GameHud implements ComponentListener {
         statsPlayerDisplay = false;
     }
 
+    /**
+     * Render the hud
+     *
+     * @param container Container
+     * @param g         Graphics
+     * @throws SlickException
+     */
     public void render(GameContainer container, Graphics g) throws SlickException {
         Image backgroundUI = new Image("src/ressources/hud/background.png");
         g.fillRect(0, container.getHeight() - 70, container.getWidth(), 70, backgroundUI, 0, 0);
@@ -49,7 +71,7 @@ public class GameHud implements ComponentListener {
             int width = 200;
             int height = 300;
             g.fillRect(container.getWidth() / 2 - width / 2, container.getHeight() / 2 - height / 2, width, height, backgroundUI, 0, 0);
-            Area.drawOutline(g,container,container.getWidth() / 2 - width / 2,container.getHeight() / 2 - height / 2, width, height);
+            Area.drawOutline(g, container, container.getWidth() / 2 - width / 2, container.getHeight() / 2 - height / 2, width, height);
         }
     }
 

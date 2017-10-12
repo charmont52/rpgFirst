@@ -1,8 +1,16 @@
 package state;
 
+/**
+ * Class containing the stateID with explicit name
+ */
 public enum StateID {
     GAME, OPTIONS, STARTPAGE;
 
+    /**
+     * Convert the stateID name to a stateID number
+     * @param stateID The stateID name
+     * @return The stateID number
+     */
     public static int getStateIDNumber(StateID stateID) {
         switch (stateID) {
             case GAME:

@@ -10,6 +10,13 @@ import org.newdawn.slick.SlickException;
 
 public class Bar {
 
+    /**
+     * Draw the life bar for a character
+     *
+     * @param g         Graphics
+     * @param character The selected character
+     * @throws SlickException
+     */
     public static void drawLifeBar(Graphics g, Character character) throws SlickException {
         float x = character.getX();
         float y = character.getY();
@@ -26,10 +33,24 @@ public class Bar {
         g.fillRect(x + 2, y + 2, width, 4);
     }
 
+    /**
+     * Draw the life player bar in the menu
+     *
+     * @param container Container
+     * @param g         Graphics
+     * @throws SlickException
+     */
     public static void drawLifeBarPlayer(GameContainer container, Graphics g) throws SlickException {
         drawBarPlayer(container, g, new Color(240, 0, 0, 200), container.getHeight() - 60, Player.getInstance().getCurrentLife(), Player.getInstance().getLifeMax());
     }
 
+    /**
+     * Draw the mana player bar in the menu
+     *
+     * @param container Container
+     * @param g         Graphics
+     * @throws SlickException
+     */
     public static void drawManaBarPlayer(GameContainer container, Graphics g) throws SlickException {
         drawBarPlayer(container, g, new Color(0, 0, 240, 200), container.getHeight() - 30, Player.getInstance().getCurrentMana(), Player.getInstance().getManaMax());
     }
@@ -45,7 +66,7 @@ public class Bar {
         g.fillRect(x + 1, y + 1, width - 2, height - 2);
         g.setColor(color);
         g.fillRect(x + 2, y + 2, (width - 4) * current / max, height - 4);
-        Text.drawCenterString(current + "/" + max,g,x,y,width,height);
+        Text.drawCenterString(current + "/" + max, g, x, y, width, height);
     }
 
 }

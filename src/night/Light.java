@@ -15,7 +15,7 @@ public class Light {
         this.y = y;
         this.intensity = intensity;
         this.color = Color.white;
-        this.tremble = intensity/10;
+        this.tremble = intensity / 10;
     }
 
     public Light(float x, float y) {
@@ -69,9 +69,9 @@ public class Light {
     public int getEffect(int xPos, int yPos) {
         float dx = (this.x - xPos);
         float dy = (this.y - yPos);
-        double distance = Math.sqrt(dx*dx + dy*dy);
+        double distance = Math.sqrt(dx * dx + dy * dy);
         double newIntensity = this.tremble * Math.random();
-        int effect = (int) (1 - (distance/newIntensity));
+        int effect = (int) (1 - (distance / newIntensity));
         if (effect < 0) {
             effect = 0;
         }

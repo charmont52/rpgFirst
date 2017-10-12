@@ -6,6 +6,15 @@ import org.newdawn.slick.Graphics;
 
 public class Area {
 
+    /**
+     * Draw an outline around a rectangle
+     * @param g Graphics
+     * @param container Container
+     * @param x The abscissa
+     * @param y The ordered
+     * @param width The width
+     * @param height the Height
+     */
     public static void drawOutline(Graphics g, GameContainer container, int x, int y, int width, int height) {
         g.setColor(Color.black);
         g.drawLine(x, y, x + width, y);

@@ -1,8 +1,17 @@
 package map;
 
+/**
+ * Class containing the direction ID with explicit name
+ */
 public enum Direction {
     NORTH, SOUTH, EAST, WEST;
 
+    /**
+     * Convert the direction name to a direction number
+     *
+     * @param direction The direction name
+     * @return The direction number
+     */
     public static int getDirectionNumber(Direction direction) {
         switch (direction) {
             case NORTH:

@@ -26,10 +26,20 @@ public class GameState extends BasicGameState {
     private GameHud hud;
     private boolean pause;
 
-    public boolean getPause() {
+    /**
+     * Check if the game is in pause
+     *
+     * @return True if the game is in pause
+     */
+    public boolean isPause() {
         return pause;
     }
 
+    /**
+     * Set the value of the pause parameter
+     *
+     * @param value The value of the pause parameter
+     */
     public void setPause(boolean value) {
         pause = value;
     }
@@ -90,8 +100,8 @@ public class GameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-        music.loop(1*Options.getSoundLevel(), 0);
-        music.fade(1500, 1*Options.getSoundLevel(), false);
+        music.loop(1 * Options.getSoundLevel(), 0);
+        music.fade(1500, 1 * Options.getSoundLevel(), false);
         HistoryState.addState(StateID.GAME);
     }
 
