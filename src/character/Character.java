@@ -7,6 +7,9 @@ import sound.SoundEffect;
 
 import java.util.Iterator;
 
+/**
+ * Father class for any character
+ */
 public class Character {
 
     protected float x = 500, y = 500;
@@ -27,6 +30,14 @@ public class Character {
     protected int currentMana = 3;
     protected boolean lifeVisible = true;
 
+    /**
+     * Constructor for Character
+     *
+     * @param map    Map where character is instanced
+     * @param x      Abscissa where character is instanced
+     * @param y      Ordered where character is instanced
+     * @param sprite File containing the sprite character
+     */
     public Character(Map map, float x, float y, String sprite) {
         this.map = map;
         this.x = x;
@@ -34,57 +45,123 @@ public class Character {
         this.sprite = sprite;
     }
 
+    /**
+     * Get the character map
+     *
+     * @return The character map
+     */
     public Map getMap() {
         return this.map;
     }
 
+    /**
+     * Get the character abscissa
+     *
+     * @return The character abscissa
+     */
     public float getX() {
         return x;
     }
 
+    /**
+     * Set the character abscissa
+     *
+     * @param x The new abscissa
+     */
     public void setX(float x) {
         this.x = x;
     }
 
+    /**
+     * Get the character ordered
+     *
+     * @return The character ordered
+     */
     public float getY() {
         return y;
     }
 
+    /**
+     * Set the character ordered
+     *
+     * @param y The new ordered
+     */
     public void setY(float y) {
         this.y = y;
     }
 
+    /**
+     * Get the character explicit direction
+     *
+     * @return The character explicit direction
+     */
     public Direction getDirection() {
         return direction;
     }
 
+    /**
+     * Set the character explicit direction
+     *
+     * @param direction The new character explicit direction
+     */
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
+    /**
+     * Check if the character is moving
+     *
+     * @return True if the character is moving
+     */
     public boolean isMoving() {
         return moving;
     }
 
+    /**
+     * Set if the character is moving
+     *
+     * @param moving True if the character needs to move
+     */
     public void setMoving(boolean moving) {
         this.moving = moving;
     }
 
+    /**
+     * Check if the character is on stair
+     *
+     * @return True if the character is on stair
+     */
     public boolean isOnStair() {
         return onStair;
     }
 
+    /**
+     * Set if the character is on stair
+     *
+     * @param onStair True if the character is on stair
+     */
     public void setOnStair(boolean onStair) {
         this.onStair = onStair;
     }
 
+    /**
+     * Get the character speed
+     *
+     * @return The character speed
+     */
     public float getSpeed() {
         return speed;
     }
 
+    /**
+     * Set the character speed
+     *
+     * @param speed The new character speed
+     */
     public void setSpeed(float speed) {
         this.speed = speed;
     }
+
 
     public String getNameMap() {
         return nameMap;
