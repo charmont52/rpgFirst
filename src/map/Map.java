@@ -197,7 +197,7 @@ public class Map {
      */
     public void changeMap(String file) throws SlickException {
         this.nameMap = file;
-        Player.getInstance().setNameMap(file);
+        Player.getInstance().setMapName(file);
         this.tiledMap = new TiledMap(file);
     }
 

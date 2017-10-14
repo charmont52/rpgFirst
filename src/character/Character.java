@@ -21,7 +21,7 @@ public class Character {
     private boolean onStair;
     protected float speed = 0.2f;
     protected String sprite;
-    protected String nameMap;
+    protected String mapName;
     protected boolean atkable = false;
     protected boolean infligeableDamage = false;
     protected int lifeMax = 4;
@@ -162,43 +162,92 @@ public class Character {
         this.speed = speed;
     }
 
-
-    public String getNameMap() {
-        return nameMap;
+    /**
+     * Get the map name
+     *
+     * @return The map name
+     */
+    public String getMapName() {
+        return mapName;
     }
 
-    public void setNameMap(String nameMap) {
-        this.nameMap = nameMap;
+    /**
+     * Set the map name
+     *
+     * @param mapName The map name
+     */
+    public void setMapName(String mapName) {
+        this.mapName = mapName;
     }
 
+    /**
+     * Get the character sprite
+     *
+     * @return The character sprite
+     */
     public String getSprite() {
         return this.sprite;
     }
 
+    /**
+     * Set if the character can attack
+     *
+     * @param atkable True if the character can attack
+     */
     public void setAtkable(boolean atkable) {
         this.atkable = atkable;
     }
 
+    /**
+     * Check if the character can attack
+     *
+     * @return True if the character can attack
+     */
     public boolean isAtkable() {
         return this.atkable;
     }
 
+    /**
+     * Set if the character can inflict damage
+     *
+     * @param infligeableDamage True if the character can inflict damage
+     */
     public void setInfligeableDamage(boolean infligeableDamage) {
         this.infligeableDamage = infligeableDamage;
     }
 
+    /**
+     * Get if the character can inflict damage
+     *
+     * @return True if the character can inflict damage
+     */
     public boolean isInfligeableDamage() {
         return infligeableDamage;
     }
 
+    /**
+     * Set the maximum character life
+     *
+     * @param lifeMax The new maximum of life
+     */
     public void setLifeMax(int lifeMax) {
         this.lifeMax = lifeMax;
     }
 
+    /**
+     * Get the maximum character life
+     *
+     * @return The maximum of life
+     */
     public int getLifeMax() {
         return this.lifeMax;
     }
 
+    /**
+     * Set the current life character
+     *
+     * @param currentLife The new current life
+     */
     public void setCurrentLife(int currentLife) {
         if (currentLife > this.getLifeMax()) {
             this.currentLife = this.getLifeMax();
@@ -240,7 +289,7 @@ public class Character {
     }
 
     public void init() throws SlickException {
-        this.nameMap = map.getNameMap();
+        this.mapName = map.getNameMap();
         SpriteSheet spriteSheet = new SpriteSheet(sprite, 64, 64);
         this.animationsWalk[0] = loadAnimation(spriteSheet, 0, 1, 0);
         this.animationsWalk[1] = loadAnimation(spriteSheet, 0, 1, 1);
@@ -261,7 +310,7 @@ public class Character {
     }
 
     public void render(Graphics g, boolean pause) throws SlickException {
-        if (this.nameMap.equals(Map.getInstance().getNameMap())) {
+        if (this.mapName.equals(Map.getInstance().getNameMap())) {
             g.setColor(new Color(0, 0, 0, .5f));
             g.fillOval(x - 16, y - 8, 32, 16);
             if (!pause) {
@@ -275,7 +324,7 @@ public class Character {
         if (this.moving) {
             float futurX = getFuturX(delta);
             float futurY = getFuturY(delta);
-            if (this.nameMap.equals(Map.getInstance().getNameMap())) {
+            if (this.mapName.equals(Map.getInstance().getNameMap())) {
                 boolean collision = this.map.isCollision(futurX, futurY);
                 Iterator<Character> iterator = CharacterList.getInstance().iterator();
                 while (iterator.hasNext()) {

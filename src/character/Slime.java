@@ -1,8 +1,6 @@
 package character;
 
 import map.Map;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
@@ -18,7 +16,7 @@ public class Slime extends Bot{
 
     @Override
     public void init() throws SlickException {
-        this.nameMap = map.getNameMap();
+        this.mapName = map.getNameMap();
         SpriteSheet spriteSheet = new SpriteSheet(sprite, 32, 32);
         this.animationsWalk[0] = loadAnimation(spriteSheet, 0, 1, 0);
         this.animationsWalk[1] = loadAnimation(spriteSheet, 0, 1, 1);

@@ -57,7 +57,7 @@ public class Player extends Character {
 
     @Override
     public void render(Graphics g, boolean pause) throws SlickException {
-        if (this.nameMap.equals(Map.getInstance().getNameMap())) {
+        if (this.mapName.equals(Map.getInstance().getNameMap())) {
             g.setColor(new Color(0, 0, 0, .5f));
             g.fillOval(x - 16, y - 8, 32, 16);
             if (pause) {

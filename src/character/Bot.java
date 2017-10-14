@@ -36,7 +36,7 @@ public class Bot extends Character {
 
     @Override
     public void render(Graphics g, boolean pause) throws SlickException {
-        if (this.getNameMap().equals(Map.getInstance().getNameMap())) {
+        if (this.getMapName().equals(Map.getInstance().getNameMap())) {
             if (pause) {
                 this.setMoving(false);
                 this.setDirection(lastDirection);
