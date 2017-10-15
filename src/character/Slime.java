@@ -4,9 +4,19 @@ import map.Map;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+/**
+ * Class managing slim bot
+ */
 public class Slime extends Bot{
 
-    public Slime(Map map, float x, float y, String sprite, Behaviour behaviour) {
+    /**
+     * The slim constructor
+     * @param map The map where the slim is instanced
+     * @param x The abscissa where the slim is instanced
+     * @param y The ordered where the slim is instanced
+     * @param behaviour
+     */
+    public Slime(Map map, float x, float y, Behaviour behaviour) {
         super(map,x,y,"src/ressources/sprites/slime.png",behaviour);
         this.paramXAnimation = 16;
         this.paramYAnimation = 30;

@@ -17,6 +17,7 @@ public class Bot extends Character {
     protected int paramXLife = 16;
     protected int paramYLife = 56;
 
+
     public Bot(Map map, float x, float y, String sprite, Behaviour behaviour) {
         super(map, x, y, sprite);
         this.behaviour = behaviour;

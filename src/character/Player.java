@@ -10,6 +10,9 @@ import org.newdawn.slick.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+/**
+ * Class using the singleton pattern and managing the player
+ */
 public class Player extends Character {
 
     private LinkedList<Hud> hudList = new LinkedList<>();
@@ -17,19 +20,24 @@ public class Player extends Character {
     private String spriteAtk;
 
     private Player(Map map, float x, float y, String sprite, String spriteAtk) {
-        super(map,x,y,sprite);
+        super(map, x, y, sprite);
         this.spriteAtk = spriteAtk;
-        LightList.add(new Light(0,0));
+        LightList.add(new Light(0, 0));
     }
 
-    private final static Player instance = new Player(Map.getInstance(), 500,500,"src/ressources/sprites/character.png", "src/ressources/sprites/attaque.png");
+    private final static Player instance = new Player(Map.getInstance(), 500, 500, "src/ressources/sprites/character.png", "src/ressources/sprites/attaque.png");
 
+    /**
+     * Get the player instance
+     *
+     * @return The player instance
+     */
     public static Player getInstance() {
         return instance;
     }
 
     @Override
-    public synchronized void init() throws SlickException {
+    public void init() throws SlickException {
         super.init();
 
         SpriteSheet spriteSheet = new SpriteSheet(this.spriteAtk, 64, 64);
@@ -38,16 +46,22 @@ public class Player extends Character {
         this.animationsAtk[2] = loadAnimation(spriteSheet, 0, 5, 2);
         this.animationsAtk[3] = loadAnimation(spriteSheet, 0, 5, 3);
 
-        Hud barreDeVie = new Hud("barreDeVie", new Image("src/ressources/hud/barreDeVie.png"),10,10);
+        Hud barreDeVie = new Hud("barreDeVie", new Image("src/ressources/hud/barreDeVie.png"), 10, 10);
         barreDeVie.setVisible(false);
         hudList.add(barreDeVie);
 
         Image sacImage = new Image("src/ressources/hud/sac.png");
-        Hud sac = new Hud("sac", sacImage, 640 - sacImage.getWidth() - 10,10);
+        Hud sac = new Hud("sac", sacImage, 640 - sacImage.getWidth() - 10, 10);
         sac.setVisible(false);
         hudList.add(sac);
     }
 
+    /**
+     * Render the hud player list
+     *
+     * @param g The current graphics context
+     * @throws SlickException The slick exception
+     */
     public void renderHudList(Graphics g) throws SlickException {
         Iterator<Hud> iterator = hudList.iterator();
         while (iterator.hasNext()) {
@@ -69,7 +83,7 @@ public class Player extends Character {
                 g.drawAnimation(animationsWalk[Direction.getDirectionNumber(direction) + (moving ? 4 : 0)], x - 32, y - 60);
             } else {
                 g.drawAnimation(animationsAtk[Direction.getDirectionNumber(direction)], x - 32, y - 60);
-                if (animationsAtk[Direction.getDirectionNumber(direction)].getFrame() == animationsAtk[Direction.getDirectionNumber(direction)].getFrameCount()-1) {
+                if (animationsAtk[Direction.getDirectionNumber(direction)].getFrame() == animationsAtk[Direction.getDirectionNumber(direction)].getFrameCount() - 1) {
                     this.atkable = false;
                     animationsAtk[Direction.getDirectionNumber(direction)].restart();
                 }

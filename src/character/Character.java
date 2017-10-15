@@ -226,16 +226,20 @@ public class Character {
     }
 
     /**
-     * Set the maximum character life
+     * Set the maximum of life
      *
      * @param lifeMax The new maximum of life
      */
     public void setLifeMax(int lifeMax) {
-        this.lifeMax = lifeMax;
+        if (lifeMax < 0) {
+            this.lifeMax = 0;
+        } else {
+            this.lifeMax = lifeMax;
+        }
     }
 
     /**
-     * Get the maximum character life
+     * Get the maximum of life
      *
      * @return The maximum of life
      */
@@ -244,7 +248,7 @@ public class Character {
     }
 
     /**
-     * Set the current life character
+     * Set the current life
      *
      * @param currentLife The new current life
      */
@@ -256,10 +260,20 @@ public class Character {
         }
     }
 
+    /**
+     * Get the current life
+     *
+     * @return The current life
+     */
     public int getCurrentLife() {
         return this.currentLife;
     }
 
+    /**
+     * Set the current mana
+     *
+     * @param currentMana The new current mana
+     */
     public void setCurrentMana(int currentMana) {
         if (currentMana > this.manaMax) {
             this.currentMana = this.manaMax;
@@ -268,26 +282,60 @@ public class Character {
         }
     }
 
+    /**
+     * Get the current mana
+     *
+     * @return The current mana
+     */
     public int getCurrentMana() {
         return this.currentMana;
     }
 
+    /**
+     * Set the maximum of mana
+     *
+     * @param manaMax The new maximum of mana
+     */
     public void setManaMax(int manaMax) {
-        this.manaMax = manaMax;
+        if (manaMax < 0) {
+            this.manaMax = 0;
+        } else {
+            this.manaMax = manaMax;
+        }
     }
 
+    /**
+     * Get the maximum of mana
+     *
+     * @return The maximum of mana
+     */
     public int getManaMax() {
         return this.manaMax;
     }
 
+    /**
+     * Set if the life is visible
+     *
+     * @param lifeVisible True if the life is visible
+     */
     public void setLifeVisible(boolean lifeVisible) {
         this.lifeVisible = lifeVisible;
     }
 
+    /**
+     * Check if the life is visible
+     *
+     * @return True if the life is visible
+     */
     public boolean isLifeVisible() {
         return this.lifeVisible;
     }
 
+    /**
+     * Init the character
+     *
+     * @throws SlickException The slick exception
+     */
     public void init() throws SlickException {
         this.mapName = map.getNameMap();
         SpriteSheet spriteSheet = new SpriteSheet(sprite, 64, 64);
@@ -301,6 +349,15 @@ public class Character {
         this.animationsWalk[7] = loadAnimation(spriteSheet, 1, 9, 3);
     }
 
+    /**
+     * Load the character animation
+     *
+     * @param spriteSheet The character sprite sheet
+     * @param startX      The X start
+     * @param endX        The X end
+     * @param y           The Y
+     * @return The animation
+     */
     protected Animation loadAnimation(SpriteSheet spriteSheet, int startX, int endX, int y) {
         Animation animation = new Animation();
         for (int x = startX; x < endX; x++) {
@@ -309,6 +366,13 @@ public class Character {
         return animation;
     }
 
+    /**
+     * Render the character
+     *
+     * @param g     The current graphics context
+     * @param pause True if the game is in pause
+     * @throws SlickException The slick exception
+     */
     public void render(Graphics g, boolean pause) throws SlickException {
         if (this.mapName.equals(Map.getInstance().getNameMap())) {
             g.setColor(new Color(0, 0, 0, .5f));
@@ -320,6 +384,11 @@ public class Character {
         }
     }
 
+    /**
+     * Update the character
+     *
+     * @param delta The delta of time
+     */
     public void update(int delta) {
         if (this.moving) {
             float futurX = getFuturX(delta);
@@ -329,17 +398,23 @@ public class Character {
                 Iterator<Character> iterator = CharacterList.getInstance().iterator();
                 while (iterator.hasNext()) {
                     Character other = iterator.next();
-                    if (Math.sqrt(Math.pow(other.getX() - futurX, 2) + Math.pow(other.getY() - futurY, 2)) < 30 && !other.equals(this))
+                    if (Math.sqrt(Math.pow(other.getX() - futurX, 2) + Math.pow(other.getY() - futurY, 2)) < 30 && !other.equals(this)) {
                         collision = true;
-                    if (collision) {
-                        //this.moving = false;
-                    } else {
+                    }
+                    if (!collision) {
                         this.x = futurX;
                         this.y = futurY;
                     }
                 }
             }
         }
+        updateAttack();
+    }
+
+    /**
+     * Update the character attack
+     */
+    protected void updateAttack() {
         if (this.isInfligeableDamage()) {
             SoundEffect.dagger();
             Iterator<Character> iterator = CharacterList.getInstance().iterator();
@@ -373,7 +448,12 @@ public class Character {
         }
     }
 
-
+    /**
+     * Get the future X
+     *
+     * @param delta The delta of time
+     * @return The new X
+     */
     private float getFuturX(int delta) {
         float futurX = this.x;
         switch (this.direction) {
@@ -387,6 +467,12 @@ public class Character {
         return futurX;
     }
 
+    /**
+     * Get the future Y
+     *
+     * @param delta The delta of time
+     * @return The new Y
+     */
     private float getFuturY(int delta) {
         float futurY = this.y;
         switch (this.direction) {

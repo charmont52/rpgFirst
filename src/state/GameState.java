@@ -20,7 +20,7 @@ public class GameState extends BasicGameState {
     private Map map = Map.getInstance();
     private Player player = Player.getInstance();
     private CharacterList characterList = CharacterList.getInstance();
-    private Camera camera = new Camera(player);
+    private Camera camera = new Camera();
     private TriggerController triggers = new TriggerController(map, player);
     private Music music;
     private GameHud hud;
@@ -50,7 +50,7 @@ public class GameState extends BasicGameState {
         for (int j = 0; j < 10; j++) {
             Bot bot = new Bot(map, (float) Math.random() * 1920, (float) Math.random() * 1080, "src/ressources/sprites/sprite1.png", Behaviour.AGRESSIVE);
             characterList.add(bot);
-            Slime slime = new Slime(map, (float) Math.random() * 1920, (float) Math.random() * 1080, "", Behaviour.AGRESSIVE);
+            Slime slime = new Slime(map, (float) Math.random() * 1920, (float) Math.random() * 1080, Behaviour.AGRESSIVE);
             characterList.add(slime);
         }
         this.container = container;
