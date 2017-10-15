@@ -21,7 +21,9 @@ public class GameHud implements ComponentListener {
     private MouseOverArea startPageButton;
     private MouseOverArea inventoryButton;
     private MouseOverArea statsPlayerButton;
-    private boolean statsPlayerDisplay;
+    private Image backgroundUI;
+    private boolean statsDisplay;
+    private boolean inventoryDisplay;
 
     /**
      * The unique Constructor
@@ -30,6 +32,8 @@ public class GameHud implements ComponentListener {
      */
     public GameHud(GameController controller) {
         this.controller = controller;
+        statsDisplay = false;
+        inventoryDisplay = false;
     }
 
     /**
@@ -40,11 +44,11 @@ public class GameHud implements ComponentListener {
      * @throws SlickException
      */
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        backgroundUI = new Image("src/ressources/hud/background.png");
         Image buttonImage = new Image("src/ressources/hud/littleButton.png");
         startPageButton = new MouseOverArea(container, buttonImage, container.getWidth() - 5 - buttonImage.getWidth(), container.getHeight() - buttonImage.getHeight() - 5, this);
         inventoryButton = new MouseOverArea(container, buttonImage, container.getWidth() - 10 - 2 * buttonImage.getWidth(), container.getHeight() - buttonImage.getHeight() - 5, this);
         statsPlayerButton = new MouseOverArea(container, buttonImage, container.getWidth() - 15 - 3 * buttonImage.getWidth(), container.getHeight() - buttonImage.getHeight() - 5, this);
-        statsPlayerDisplay = false;
     }
 
     /**
@@ -55,7 +59,6 @@ public class GameHud implements ComponentListener {
      * @throws SlickException
      */
     public void render(GameContainer container, Graphics g) throws SlickException {
-        Image backgroundUI = new Image("src/ressources/hud/background.png");
         g.fillRect(0, container.getHeight() - 70, container.getWidth(), 70, backgroundUI, 0, 0);
         g.setColor(Color.black);
         g.drawLine(0, container.getHeight() - 70, container.getWidth(), container.getHeight() - 70);
@@ -67,12 +70,30 @@ public class GameHud implements ComponentListener {
         Text.drawCenterString(statsPlayerButton, "Stats", g);
         Bar.drawLifeBarPlayer(container, g);
         Bar.drawManaBarPlayer(container, g);
-        if (statsPlayerDisplay) {
-            int width = 200;
-            int height = 300;
-            g.fillRect(container.getWidth() / 2 - width / 2, container.getHeight() / 2 - height / 2, width, height, backgroundUI, 0, 0);
-            Area.drawOutline(g, container, container.getWidth() / 2 - width / 2, container.getHeight() / 2 - height / 2, width, height);
+        drawStats(container, g);
+        drawInventory(container, g);
+    }
+
+    private void drawStats(GameContainer container, Graphics g) throws SlickException {
+        if (statsDisplay) {
+            drawWindow(container,g,"Stats");
         }
+    }
+
+    private void drawInventory(GameContainer container, Graphics g) throws SlickException {
+        if (inventoryDisplay) {
+            drawWindow(container,g,"Sac");
+        }
+    }
+
+    private void drawWindow(GameContainer container, Graphics g, String title) throws SlickException {
+        int width = 200;
+        int height = 300;
+        int x = container.getWidth() / 2 - width / 2;
+        int y = container.getHeight() / 2 - height / 2;
+        g.fillRect(x, y, width, height, backgroundUI, 0, 0);
+        Area.drawOutline(g, container, x, y, width, height);
+        Text.drawCenterString(title, g, x, y, width, 100);
     }
 
     @Override
@@ -81,10 +102,19 @@ public class GameHud implements ComponentListener {
         if (source == startPageButton) {
             controller.controlPressed(GameCommand.STARTPAGE);
         } else if (source == inventoryButton) {
-            controller.controlPressed(GameCommand.INVENTORY);
+            inventoryDisplay = !inventoryDisplay;
+            if (!statsDisplay) {
+                controller.controlPressed(GameCommand.INVENTORY);
+            } else {
+                statsDisplay = false;
+            }
         } else if (source == statsPlayerButton) {
-            statsPlayerDisplay = !statsPlayerDisplay;
-            controller.controlPressed(GameCommand.STATSPLAYER);
+            statsDisplay = !statsDisplay;
+            if (!inventoryDisplay) {
+                controller.controlPressed(GameCommand.STATSPLAYER);
+            } else {
+                inventoryDisplay = false;
+            }
         }
     }
 
