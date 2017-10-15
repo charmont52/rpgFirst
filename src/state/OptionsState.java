@@ -22,7 +22,7 @@ public class OptionsState extends BasicGameState {
         this.music = new Music("src/ressources/sound/OveMelaaDarkBlue.ogg");
 
         InputProvider provider = new InputProvider(container.getInput());
-        OptionsController controller = new OptionsController(game, container);
+        OptionsController controller = new OptionsController(game);
         provider.addListener(controller);
         this.hud = new OptionsHud(controller);
         this.hud.init(container, game);

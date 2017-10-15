@@ -4,6 +4,9 @@ import character.Bot;
 import character.Player;
 import map.Direction;
 
+/**
+ * Class for the bot control
+ */
 public class BotController {
 
     private Bot bot;
@@ -12,6 +15,9 @@ public class BotController {
         this.bot = bot;
     }
 
+    /**
+     * Move the bot
+     */
     public void move() {
         bot.setMoving(true);
         double random = 4 * Math.random();

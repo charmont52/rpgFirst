@@ -5,12 +5,15 @@ import map.Direction;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 
+/**
+ * Class for the player control
+ */
 public class PlayerController implements KeyListener {
 
     private Player player;
 
-    public PlayerController(Player player) {
-        this.player = player;
+    public PlayerController() {
+        this.player = Player.getInstance();
     }
 
     @Override

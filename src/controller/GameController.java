@@ -8,16 +8,22 @@ import org.newdawn.slick.state.StateBasedGame;
 import state.GameState;
 import state.StartPageState;
 
+/**
+ * Class for the game control
+ */
 public class GameController implements InputProviderListener {
 
     private StateBasedGame game;
-    private GameContainer container;
     private GameState gameState;
     private GameCommand mode = GameCommand.NONE;
 
-    public GameController(StateBasedGame game, GameContainer container, GameState gameState) {
+    /**
+     * Constructor
+     * @param game The state based game
+     * @param gameState The game state
+     */
+    public GameController(StateBasedGame game, GameState gameState) {
         this.game = game;
-        this.container = container;
         this.gameState = gameState;
     }
 

@@ -7,15 +7,16 @@ import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.state.StateBasedGame;
 import state.StartPageState;
 
+/**
+ * Class for the options control
+ */
 public class OptionsController implements InputProviderListener {
 
     private StateBasedGame game;
-    private GameContainer container;
     private GameCommand mode = GameCommand.NONE;
 
-    public OptionsController(StateBasedGame game, GameContainer container) {
+    public OptionsController(StateBasedGame game) {
         this.game = game;
-        this.container = container;
     }
 
     @Override

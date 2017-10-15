@@ -8,6 +8,9 @@ import command.*;
 import state.GameState;
 import state.OptionsState;
 
+/**
+ * Class for the start page control
+ */
 public class StartPageController implements InputProviderListener {
 
     private StateBasedGame game;

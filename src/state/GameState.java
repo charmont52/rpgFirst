@@ -21,7 +21,7 @@ public class GameState extends BasicGameState {
     private Player player = Player.getInstance();
     private CharacterList characterList = CharacterList.getInstance();
     private Camera camera = new Camera();
-    private TriggerController triggers = new TriggerController(map, player);
+    private TriggerController triggers = new TriggerController(map);
     private Music music;
     private GameHud hud;
     private boolean pause;
@@ -47,7 +47,7 @@ public class GameState extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.map.init();
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < 8; j++) {
             Bot bot = new Bot(map, (float) Math.random() * 1920, (float) Math.random() * 1080, "src/ressources/sprites/sprite1.png", Behaviour.AGRESSIVE);
             characterList.add(bot);
             Slime slime = new Slime(map, (float) Math.random() * 1920, (float) Math.random() * 1080, Behaviour.AGRESSIVE);
@@ -55,13 +55,13 @@ public class GameState extends BasicGameState {
         }
         this.container = container;
         this.characterList.init();
-        PlayerController playerController = new PlayerController(this.player);
+        PlayerController playerController = new PlayerController();
         container.getInput().addKeyListener(playerController);
         music = new Music("src/ressources/sound/OveMelaaApproachingTheGreenGrass.ogg");
         //music = new Music("src/ressources/sound/littleTown.ogg");
 
         InputProvider provider = new InputProvider(container.getInput());
-        GameController gameController = new GameController(game, container, this);
+        GameController gameController = new GameController(game, this);
         provider.addListener(gameController);
         this.hud = new GameHud(gameController);
         this.hud.init(container, game);
@@ -75,8 +75,8 @@ public class GameState extends BasicGameState {
         this.characterList.render(g, pause);
         this.map.renderForeground(g);
         this.player.renderHudList(g);
-        this.hud.render(container, g);
         Night.render(container, g, this.camera.getX(), this.camera.getY());
+        this.hud.render(container, g);
     }
 
     @Override

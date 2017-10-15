@@ -4,14 +4,17 @@ import character.Player;
 import map.Map;
 import org.newdawn.slick.SlickException;
 
+/**
+ * Class for the trigger control
+ */
 public class TriggerController {
 
     private Map map;
     private Player player;
 
-    public TriggerController(Map map, Player player) {
+    public TriggerController(Map map) {
         this.map = map;
-        this.player = player;
+        this.player = Player.getInstance();
     }
 
     public void update() throws SlickException {
