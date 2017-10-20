@@ -48,7 +48,7 @@ public class GameState extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.map.init();
         for (int j = 0; j < 8; j++) {
-            Bot bot = new Bot(map, (float) Math.random() * 1920, (float) Math.random() * 1080, "src/ressources/sprites/sprite1.png", Behaviour.AGRESSIVE);
+            Bot bot = new Bot(map, (float) Math.random() * 1920, (float) Math.random() * 1080, "src/ressources/sprites/monk.png", Behaviour.AGRESSIVE);
             characterList.add(bot);
             Slime slime = new Slime(map, (float) Math.random() * 1920, (float) Math.random() * 1080, Behaviour.AGRESSIVE);
             characterList.add(slime);
