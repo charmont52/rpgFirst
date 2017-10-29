@@ -46,7 +46,7 @@ public class BotController {
     private void moveAgressive() {
         float xPlayer = Player.getInstance().getX();
         float yPlayer = Player.getInstance().getY();
-        float marge = 1;
+        float marge = 2;
         bot.setMoving(false);
         double distanceWithPlayer = Math.sqrt(Math.pow(xPlayer - bot.getX(), 2) + Math.pow(yPlayer - bot.getY(), 2));
         if (distanceWithPlayer < 140 && distanceWithPlayer > 32) {

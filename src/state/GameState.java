@@ -23,7 +23,6 @@ public class GameState extends BasicGameState {
     private CharacterList characterList = CharacterList.getInstance();
     private Camera camera = new Camera();
     private TriggerController triggers = new TriggerController(map);
-    private Music music;
     private GameHud hud;
     private boolean pause;
 
@@ -47,7 +46,7 @@ public class GameState extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        container.setMouseCursor("src/ressources/hud/dwarven_gauntlet.png", 0, 0);
+        // container.setMouseCursor("src/ressources/hud/dwarven_gauntlet.png", 0, 0);
         this.map.init();
         for (int j = 0; j < 8; j++) {
             Bot bot = new Bot(map, (float) Math.random() * 1920, (float) Math.random() * 1080, "src/ressources/sprites/monk.png", Behaviour.AGRESSIVE);
@@ -59,8 +58,6 @@ public class GameState extends BasicGameState {
         this.characterList.init();
         PlayerController playerController = new PlayerController();
         container.getInput().addKeyListener(playerController);
-        music = new Music("src/ressources/sound/OveMelaaApproachingTheGreenGrass.ogg");
-        //music = new Music("src/ressources/sound/littleTown.ogg");
 
         InputProvider provider = new InputProvider(container.getInput());
         GameController gameController = new GameController(game, this);
@@ -102,8 +99,6 @@ public class GameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-        //music.loop(1 * Options.getSoundLevel(), 0);
-        //music.fade(1500, 1 * Options.getSoundLevel(), false);
         SoundTrack.loop(StateID.GAME, SoundTrack.Type.RANDOM);
         HistoryState.addState(StateID.GAME);
     }

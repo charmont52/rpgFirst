@@ -6,20 +6,19 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import sound.SoundTrack;
 
 public class StartPageState extends BasicGameState {
 
     public static final int ID = StateID.getStateIDNumber(StateID.STARTPAGE);
     private Image background;
     private StateBasedGame game;
-    private Music music;
     private StartPageHud hud;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.game = game;
         this.background = new Image("src/ressources/background/background29.jpg");
-        this.music = new Music("src/ressources/sound/OveMelaaDarkBlue.ogg");
 
         InputProvider provider = new InputProvider(container.getInput());
         StartPageController controller = new StartPageController(game, container);
@@ -51,8 +50,7 @@ public class StartPageState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
         if (HistoryState.getLastState() != StateID.OPTIONS) {
-            music.loop(1 * Options.getSoundLevel(), 0);
-            music.fade(1500, 0.8f * Options.getSoundLevel(), false);
+            SoundTrack.loop(StateID.STARTPAGE);
         }
         HistoryState.addState(StateID.STARTPAGE);
     }
