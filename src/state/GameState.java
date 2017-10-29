@@ -99,7 +99,7 @@ public class GameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-        SoundTrack.loop(StateID.GAME, SoundTrack.Type.RANDOM);
+        SoundTrack.loop(StateID.GAME);
         HistoryState.addState(StateID.GAME);
     }
 
