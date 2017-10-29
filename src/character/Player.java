@@ -22,6 +22,8 @@ public class Player extends Character {
     private Player(Map map, float x, float y, String sprite, String spriteAtk) {
         super(map, x, y, sprite);
         this.spriteAtk = spriteAtk;
+        setLifeMax(10);
+        setCurrentLife(10);
         LightList.add(new Light(0, 0));
     }
 

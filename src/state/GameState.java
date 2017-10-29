@@ -12,6 +12,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import sound.SoundTrack;
 
 public class GameState extends BasicGameState {
 
@@ -46,9 +47,14 @@ public class GameState extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        container.setMouseCursor("src/ressources/hud/dwarven_gauntlet.png", 0, 0);
         this.map.init();
         for (int j = 0; j < 8; j++) {
+<<<<<<< HEAD
             Bot bot = new Bot(map, (float) Math.random() * 1920, (float) Math.random() * 1080, "src/ressources/sprites/bot.png", Behaviour.AGRESSIVE);
+=======
+            Bot bot = new Bot(map, (float) Math.random() * 1920, (float) Math.random() * 1080, "src/ressources/sprites/monk.png", Behaviour.AGRESSIVE);
+>>>>>>> eddda6bc2443411863c5e7fe8ba3ecac2ea3c37c
             characterList.add(bot);
             Slime slime = new Slime(map, (float) Math.random() * 1920, (float) Math.random() * 1080, Behaviour.AGRESSIVE);
             characterList.add(slime);
@@ -100,8 +106,9 @@ public class GameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-        music.loop(1 * Options.getSoundLevel(), 0);
-        music.fade(1500, 1 * Options.getSoundLevel(), false);
+        //music.loop(1 * Options.getSoundLevel(), 0);
+        //music.fade(1500, 1 * Options.getSoundLevel(), false);
+        SoundTrack.loop(StateID.GAME, SoundTrack.Type.RANDOM);
         HistoryState.addState(StateID.GAME);
     }
 

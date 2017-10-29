@@ -24,6 +24,7 @@ public class Character {
     protected String mapName;
     protected boolean atkable = false;
     protected boolean infligeableDamage = false;
+    protected int atkCount = 0;
     protected int lifeMax = 4;
     protected int currentLife = 4;
     protected int manaMax = 4;
@@ -223,6 +224,33 @@ public class Character {
      */
     public boolean isInfligeableDamage() {
         return infligeableDamage;
+    }
+
+    /**
+     * Set the attack counter
+     *
+     * @param atkCount The new attck counter
+     * @return
+     */
+    public void setAtkCount(int atkCount) {
+        this.atkCount = atkCount;
+    }
+
+    /**
+     * Get the attack counter
+     *
+     * @return The attack counter
+     */
+    public int getAtkCount() {
+        return atkCount;
+    }
+
+    /**
+     * Add i to the attack counter
+     * @param i The number i to add
+     */
+    public void addAtkCount(int i) {
+        this.atkCount += i;
     }
 
     /**
