@@ -75,8 +75,7 @@ public class Bar {
         int y = container.getHeight() - 73;
         int width = container.getWidth();
         LevelProgression levelProgression = Player.getInstance().getLevelProgression();
-        int widthXp = (int)(((float)levelProgression.getCurrentXp()/levelProgression.xpForNextLevel())*width);
-        System.out.println(levelProgression.getCurrentXp());
+        int widthXp = (int) (((float) levelProgression.getCurrentXp() / levelProgression.xpForNextLevel()) * width);
         int height = 5;
         g.setColor(Color.lightGray);
         g.fillRect(x, y, width, height);

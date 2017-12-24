@@ -248,6 +248,7 @@ public class Character {
 
     /**
      * Add i to the attack counter
+     *
      * @param i The number i to add
      */
     public void addAtkCount(int i) {
@@ -362,6 +363,7 @@ public class Character {
 
     /**
      * Get XP won when the bot is killed
+     *
      * @return The XP won
      */
     public int getXpOnKill() {
@@ -370,6 +372,7 @@ public class Character {
 
     /**
      * Set XP won when the bot is killed
+     *
      * @param xpOnKill The new XP won
      */
     public void setXpOnKill(int xpOnKill) {

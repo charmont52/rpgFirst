@@ -20,8 +20,9 @@ public class LevelProgression {
 
     /**
      * An other constructor
+     *
      * @param currentLevel The current level
-     * @param currentXp The current XP
+     * @param currentXp    The current XP
      */
     public LevelProgression(int currentLevel, int currentXp) {
         this.currentLevel = currentLevel;
@@ -30,6 +31,7 @@ public class LevelProgression {
 
     /**
      * Get the current XP
+     *
      * @return The current XP
      */
     public int getCurrentXp() {
@@ -38,6 +40,7 @@ public class LevelProgression {
 
     /**
      * Set the current XP
+     *
      * @param currentXp The new current XP
      */
     public void setCurrentXp(int currentXp) {
@@ -46,6 +49,7 @@ public class LevelProgression {
 
     /**
      * Get the current level
+     *
      * @return The current level
      */
     public int getCurrentLevel() {
@@ -54,6 +58,7 @@ public class LevelProgression {
 
     /**
      * Set the current level
+     *
      * @param currentLevel The new current level
      */
     public void setCurrentLevel(int currentLevel) {
@@ -62,6 +67,7 @@ public class LevelProgression {
 
     /**
      * Add XP to the progression
+     *
      * @param xp The new quantity of XP
      */
     public void addXp(int xp) {
@@ -75,17 +81,18 @@ public class LevelProgression {
 
     /**
      * Get the XP needed to reach the next level. The XP progression follows an exponential law.
+     *
      * @return The XP needed to reach the next level
      */
     public int xpForNextLevel() {
-        return (int)(10 * Math.exp(currentLevel / 8.));
+        return (int) (10 * Math.exp(currentLevel / 8.));
     }
 
     /**
      * Upgrade the level
      */
     public void levelUp() {
-        currentLevel ++;
+        currentLevel++;
         SoundEffect.levelUp();
     }
 
