@@ -24,6 +24,10 @@ public class Player extends Character {
         return this.levelProgression;
     }
 
+    public int getLevel() {
+        return this.levelProgression.getCurrentLevel();
+    }
+
     private Player(Map map, float x, float y, String sprite, String spriteAtk) {
         super(map, x, y, sprite);
         this.spriteAtk = spriteAtk;

@@ -66,7 +66,7 @@ public class LevelProgression {
      */
     public void addXp(int xp) {
         if (currentXp + xp > xpForNextLevel()) {
-            currentXp = currentXp + xp % xpForNextLevel();
+            currentXp = (currentXp + xp) % xpForNextLevel();
             levelUp();
         } else {
             currentXp += xp;
@@ -78,7 +78,7 @@ public class LevelProgression {
      * @return The XP needed to reach the next level
      */
     public int xpForNextLevel() {
-        return (int)(10 * Math.exp(currentLevel / 10.));
+        return (int)(10 * Math.exp(currentLevel / 8.));
     }
 
     /**

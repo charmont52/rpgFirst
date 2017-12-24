@@ -2,6 +2,7 @@ package graphics;
 
 import character.Bot;
 import character.Character;
+import character.LevelProgression;
 import character.Player;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -67,6 +68,20 @@ public class Bar {
         g.setColor(color);
         g.fillRect(x + 2, y + 2, (width - 4) * current / max, height - 4);
         Text.drawCenterString(current + "/" + max, g, x, y, width, height);
+    }
+
+    public static void drawXpBarPlayer(GameContainer container, Graphics g) throws SlickException {
+        int x = 0;
+        int y = container.getHeight() - 73;
+        int width = container.getWidth();
+        LevelProgression levelProgression = Player.getInstance().getLevelProgression();
+        int widthXp = (int)(((float)levelProgression.getCurrentXp()/levelProgression.xpForNextLevel())*width);
+        System.out.println(levelProgression.getCurrentXp());
+        int height = 5;
+        g.setColor(Color.lightGray);
+        g.fillRect(x, y, width, height);
+        g.setColor(Color.yellow);
+        g.fillRect(x, y, widthXp, height);
     }
 
 }

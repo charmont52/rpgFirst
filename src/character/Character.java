@@ -30,7 +30,7 @@ public class Character {
     protected int manaMax = 4;
     protected int currentMana = 3;
     protected boolean lifeVisible = true;
-    private int xpOnKill = 10;
+    private int xpOnKill = 5;
 
     /**
      * Constructor for Character

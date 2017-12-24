@@ -1,5 +1,6 @@
 package hud;
 
+import character.Player;
 import command.GameCommand;
 import controller.GameController;
 import graphics.Area;
@@ -70,19 +71,25 @@ public class GameHud implements ComponentListener {
         Text.drawCenterString(statsPlayerButton, "Stats", g);
         Bar.drawLifeBarPlayer(container, g);
         Bar.drawManaBarPlayer(container, g);
+        Bar.drawXpBarPlayer(container,g);
         drawStats(container, g);
         drawInventory(container, g);
     }
 
     private void drawStats(GameContainer container, Graphics g) throws SlickException {
         if (statsDisplay) {
-            drawWindow(container,g,"Stats");
+            int width = 200;
+            int height = 300;
+            int x = container.getWidth() / 2 - width / 2;
+            int y = container.getHeight() / 2 - height / 2;
+            drawWindow(container, g, "Stats");
+            Text.drawCenterString("Level : " + Player.getInstance().getLevel(), g, x, y - 10, width, height);
         }
     }
 
     private void drawInventory(GameContainer container, Graphics g) throws SlickException {
         if (inventoryDisplay) {
-            drawWindow(container,g,"Sac");
+            drawWindow(container, g, "Sac");
         }
     }
 
