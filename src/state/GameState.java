@@ -29,7 +29,7 @@ public class GameState extends BasicGameState {
     /**
      * Check if the game is in pause
      *
-     * @return True if the game is in pause
+     * @return True if the game is in pauset
      */
     public boolean isPause() {
         return pause;
