@@ -52,8 +52,8 @@ public class CharacterList {
         while (iterator.hasNext()) {
             Character character = iterator.next();
             character.update(delta);
-            if (character.getCurrentLife() <= 0) {
-                int xp = character.getXpOnKill();
+            if (character.getStats().getCurrentLife() <= 0) {
+                int xp = character.getStats().getXpOnKill();
                 Player.getInstance().getLevelProgression().addXp(xp);
                 iterator.remove();
             }

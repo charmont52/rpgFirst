@@ -31,16 +31,24 @@ public class Stats {
     private int infligeableDamage;
     private int damageReduction;
 
+    /**
+     * Skill and Characteristic points
+     */
+    private int skillPoint;
+    private int characteristicPoint;
+
     public Stats() {
         this.lifeMax = 5;
         this.currentLife = 5;
         this.manaMax = 5;
         this.currentMana = 5;
-        this.speedMax = 1.0f;
-        this.currentSpeed = 1.0f;
+        this.speedMax = 0.2f;
+        this.currentSpeed = 0.2f;
         this.xpOnKill = 5;
         this.infligeableDamage = 1;
         this.damageReduction = 0;
+        this.skillPoint = 0;
+        this.characteristicPoint = 0;
     }
 
     /**
@@ -219,6 +227,42 @@ public class Stats {
      */
     public void setDamageReduction(int damageReduction) {
         this.damageReduction = damageReduction;
+    }
+
+    /**
+     * Get the number of skill point
+     *
+     * @return The number of skill point
+     */
+    public int getSkillPoint() {
+        return this.skillPoint;
+    }
+
+    /**
+     * Set the new number of skill point
+     *
+     * @param skillPoint The new number of skill point
+     */
+    public void setSkillPoint(int skillPoint) {
+        this.skillPoint = skillPoint;
+    }
+
+    /**
+     * Get the number of characteristic point
+     *
+     * @return The number of characteristic point
+     */
+    public int getCharacteristicPoint() {
+        return this.characteristicPoint;
+    }
+
+    /**
+     * Set the nex number of characteristic point
+     *
+     * @param characteristicPoint The new number of characteristic point
+     */
+    public void setCharacteristicPoint(int characteristicPoint) {
+        this.characteristicPoint = characteristicPoint;
     }
 
 }

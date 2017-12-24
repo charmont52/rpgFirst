@@ -84,6 +84,10 @@ public class GameHud implements ComponentListener {
             int y = container.getHeight() / 2 - height / 2;
             drawWindow(container, g, "Stats");
             Text.drawCenterString("Level : " + Player.getInstance().getLevel(), g, x, y - 60, width, height);
+            Text.drawCenterString("Life : " + Player.getInstance().getStats().getLifeMax(), g, x, y - 40, width, height);
+            Text.drawCenterString("Mana : " + Player.getInstance().getStats().getManaMax(), g, x, y - 20, width, height);
+            Text.drawCenterString("Damage : " + Player.getInstance().getStats().getInfligeableDamage(), g, x, y, width, height);
+            Text.drawCenterString("Reduction : " + Player.getInstance().getStats().getDamageReduction(), g, x, y + 20, width, height);
         }
     }
 

@@ -18,7 +18,7 @@ public class Player extends Character {
     private LinkedList<Hud> hudList = new LinkedList<>();
     protected Animation[] animationsAtk = new Animation[4];
     private String spriteAtk;
-    private LevelProgression levelProgression = new LevelProgression();
+    private LevelProgression levelProgression = new LevelProgression(this);
 
     public LevelProgression getLevelProgression() {
         return this.levelProgression;
@@ -31,8 +31,10 @@ public class Player extends Character {
     private Player(Map map, float x, float y, String sprite, String spriteAtk) {
         super(map, x, y, sprite);
         this.spriteAtk = spriteAtk;
-        setLifeMax(10);
-        setCurrentLife(10);
+        stats.setLifeMax(10);
+        stats.setCurrentLife(10);
+        stats.setManaMax(5);
+        stats.setCurrentMana(5);
         LightList.add(new Light(0, 0));
     }
 

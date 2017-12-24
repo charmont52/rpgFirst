@@ -9,13 +9,17 @@ public class LevelProgression {
 
     private int currentLevel;
     private int currentXp;
+    private Character character;
 
     /**
      * Default constructor
+     *
+     * @param character The character
      */
-    public LevelProgression() {
+    public LevelProgression(Character character) {
         this.currentLevel = 1;
         this.currentXp = 0;
+        this.character = character;
     }
 
     /**
@@ -23,10 +27,12 @@ public class LevelProgression {
      *
      * @param currentLevel The current level
      * @param currentXp    The current XP
+     * @param character    The character
      */
-    public LevelProgression(int currentLevel, int currentXp) {
+    public LevelProgression(int currentLevel, int currentXp, Character character) {
         this.currentLevel = currentLevel;
         this.currentXp = currentXp;
+        this.character = character;
     }
 
     /**
@@ -94,6 +100,8 @@ public class LevelProgression {
     public void levelUp() {
         currentLevel++;
         SoundEffect.levelUp();
+        character.getStats().setCurrentLife(character.getStats().getLifeMax());
+        character.getStats().setCurrentMana(character.getStats().getManaMax());
     }
 
 }

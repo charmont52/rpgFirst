@@ -12,25 +12,21 @@ import java.util.Iterator;
  */
 public class Character {
 
-    protected float x = 500, y = 500;
+    protected float x = 500;
+    protected float y = 500;
     protected Animation[] animationsWalk = new Animation[8];
     protected Direction direction = Direction.SOUTH;
     protected Direction lastDirection = Direction.SOUTH;
     protected boolean moving = false;
     protected Map map;
     private boolean onStair;
-    protected float speed = 0.2f;
     protected String sprite;
     protected String mapName;
     protected boolean atkable = false;
     protected boolean infligeableDamage = false;
     protected int atkCount = 0;
-    protected int lifeMax = 4;
-    protected int currentLife = 4;
-    protected int manaMax = 4;
-    protected int currentMana = 3;
     protected boolean lifeVisible = true;
-    private int xpOnKill = 5;
+    protected Stats stats;
 
     /**
      * Constructor for Character
@@ -45,6 +41,7 @@ public class Character {
         this.x = x;
         this.y = y;
         this.sprite = sprite;
+        this.stats = new Stats();
     }
 
     /**
@@ -147,24 +144,6 @@ public class Character {
     }
 
     /**
-     * Get the character speed
-     *
-     * @return The character speed
-     */
-    public float getSpeed() {
-        return speed;
-    }
-
-    /**
-     * Set the character speed
-     *
-     * @param speed The new character speed
-     */
-    public void setSpeed(float speed) {
-        this.speed = speed;
-    }
-
-    /**
      * Get the map name
      *
      * @return The map name
@@ -256,94 +235,6 @@ public class Character {
     }
 
     /**
-     * Set the maximum of life
-     *
-     * @param lifeMax The new maximum of life
-     */
-    public void setLifeMax(int lifeMax) {
-        if (lifeMax < 0) {
-            this.lifeMax = 0;
-        } else {
-            this.lifeMax = lifeMax;
-        }
-    }
-
-    /**
-     * Get the maximum of life
-     *
-     * @return The maximum of life
-     */
-    public int getLifeMax() {
-        return this.lifeMax;
-    }
-
-    /**
-     * Set the current life
-     *
-     * @param currentLife The new current life
-     */
-    public void setCurrentLife(int currentLife) {
-        if (currentLife > this.getLifeMax()) {
-            this.currentLife = this.getLifeMax();
-        } else {
-            this.currentLife = currentLife;
-        }
-    }
-
-    /**
-     * Get the current life
-     *
-     * @return The current life
-     */
-    public int getCurrentLife() {
-        return this.currentLife;
-    }
-
-    /**
-     * Set the current mana
-     *
-     * @param currentMana The new current mana
-     */
-    public void setCurrentMana(int currentMana) {
-        if (currentMana > this.manaMax) {
-            this.currentMana = this.manaMax;
-        } else {
-            this.currentMana = currentMana;
-        }
-    }
-
-    /**
-     * Get the current mana
-     *
-     * @return The current mana
-     */
-    public int getCurrentMana() {
-        return this.currentMana;
-    }
-
-    /**
-     * Set the maximum of mana
-     *
-     * @param manaMax The new maximum of mana
-     */
-    public void setManaMax(int manaMax) {
-        if (manaMax < 0) {
-            this.manaMax = 0;
-        } else {
-            this.manaMax = manaMax;
-        }
-    }
-
-    /**
-     * Get the maximum of mana
-     *
-     * @return The maximum of mana
-     */
-    public int getManaMax() {
-        return this.manaMax;
-    }
-
-    /**
      * Set if the life is visible
      *
      * @param lifeVisible True if the life is visible
@@ -361,22 +252,8 @@ public class Character {
         return this.lifeVisible;
     }
 
-    /**
-     * Get XP won when the bot is killed
-     *
-     * @return The XP won
-     */
-    public int getXpOnKill() {
-        return xpOnKill;
-    }
-
-    /**
-     * Set XP won when the bot is killed
-     *
-     * @param xpOnKill The new XP won
-     */
-    public void setXpOnKill(int xpOnKill) {
-        this.xpOnKill = xpOnKill;
+    public Stats getStats() {
+        return this.stats;
     }
 
     /**
@@ -489,7 +366,7 @@ public class Character {
                             break;
                     }
                     if (correctDirection)
-                        c.setCurrentLife(c.getCurrentLife() - 1);
+                        c.getStats().setCurrentLife(c.getStats().getCurrentLife() - this.stats.getInfligeableDamage());
                 }
             }
             this.setInfligeableDamage(false);
@@ -506,10 +383,10 @@ public class Character {
         float futurX = this.x;
         switch (this.direction) {
             case WEST:
-                futurX = this.x - speed * delta;
+                futurX = this.x - stats.getCurrentSpeed() * delta;
                 break;
             case EAST:
-                futurX = this.x + speed * delta;
+                futurX = this.x + stats.getCurrentSpeed() * delta;
                 break;
         }
         return futurX;
@@ -525,10 +402,10 @@ public class Character {
         float futurY = this.y;
         switch (this.direction) {
             case NORTH:
-                futurY = this.y - speed * delta;
+                futurY = this.y - stats.getCurrentSpeed() * delta;
                 break;
             case SOUTH:
-                futurY = this.y + speed * delta;
+                futurY = this.y + stats.getCurrentSpeed() * delta;
                 break;
         }
         return futurY;
@@ -541,7 +418,7 @@ public class Character {
 
     @Override
     public String toString() {
-        return "position : (" + x + "," + y + "), current life : " + currentLife + "/" + lifeMax;
+        return "position : (" + x + "," + y + "), current life : " + stats.getCurrentLife() + "/" + stats.getLifeMax();
     }
 
 }
