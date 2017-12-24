@@ -8,6 +8,9 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+/**
+ * Class managing the different bots
+ */
 public class Bot extends Character {
 
     protected BotController botController = new BotController(this);
@@ -16,7 +19,6 @@ public class Bot extends Character {
     protected int paramYAnimation = 60;
     protected int paramXLife = 16;
     protected int paramYLife = 56;
-
 
     public Bot(Map map, float x, float y, String sprite, Behaviour behaviour) {
         super(map, x, y, sprite);
@@ -31,6 +33,10 @@ public class Bot extends Character {
         return this.paramYLife;
     }
 
+    /**
+     * Get the bot behaviour (PASSIVE, AGRESSIVE, RANDOM)
+     * @return The bot behaviour
+     */
     public Behaviour getBehaviour() {
         return this.behaviour;
     }

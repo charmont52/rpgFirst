@@ -18,6 +18,11 @@ public class Player extends Character {
     private LinkedList<Hud> hudList = new LinkedList<>();
     protected Animation[] animationsAtk = new Animation[4];
     private String spriteAtk;
+    private LevelProgression levelProgression = new LevelProgression();
+
+    public LevelProgression getLevelProgression() {
+        return this.levelProgression;
+    }
 
     private Player(Map map, float x, float y, String sprite, String spriteAtk) {
         super(map, x, y, sprite);

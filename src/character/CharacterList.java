@@ -53,6 +53,8 @@ public class CharacterList {
             Character character = iterator.next();
             character.update(delta);
             if (character.getCurrentLife() <= 0) {
+                int xp = character.getXpOnKill();
+                Player.getInstance().getLevelProgression().addXp(xp);
                 iterator.remove();
             }
         }

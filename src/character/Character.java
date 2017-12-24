@@ -30,6 +30,7 @@ public class Character {
     protected int manaMax = 4;
     protected int currentMana = 3;
     protected boolean lifeVisible = true;
+    private int xpOnKill = 10;
 
     /**
      * Constructor for Character
@@ -357,6 +358,22 @@ public class Character {
      */
     public boolean isLifeVisible() {
         return this.lifeVisible;
+    }
+
+    /**
+     * Get XP won when the bot is killed
+     * @return The XP won
+     */
+    public int getXpOnKill() {
+        return xpOnKill;
+    }
+
+    /**
+     * Set XP won when the bot is killed
+     * @param xpOnKill The new XP won
+     */
+    public void setXpOnKill(int xpOnKill) {
+        this.xpOnKill = xpOnKill;
     }
 
     /**
