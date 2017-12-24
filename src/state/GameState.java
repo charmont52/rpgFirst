@@ -48,12 +48,9 @@ public class GameState extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         // container.setMouseCursor("src/ressources/hud/dwarven_gauntlet.png", 0, 0);
         this.map.init();
-        for (int j = 0; j < 8; j++) {
-            Bot bot = new Bot(map, (float) Math.random() * 1920, (float) Math.random() * 1080, "src/ressources/sprites/monk.png", Behaviour.AGRESSIVE);
-            characterList.add(bot);
-            Slime slime = new Slime(map, (float) Math.random() * 1920, (float) Math.random() * 1080, Behaviour.AGRESSIVE);
-            characterList.add(slime);
-        }
+        // Generate the bots
+        CharacterGenerator characterGenerator = new CharacterGenerator(map);
+        characterGenerator.generate(8,8,0,true);
         this.container = container;
         this.characterList.init();
         PlayerController playerController = new PlayerController();

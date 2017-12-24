@@ -9,12 +9,12 @@ import java.util.LinkedList;
 public class Clock {
 
     private double time;
-    private LinkedList eventsList;
+    private LinkedList<Event> eventsList;
     private int hour = 5000;
 
     private Clock() {
         this.time = 0;
-        this.eventsList = new LinkedList();
+        this.eventsList = new LinkedList<Event>();
     }
 
     private final static Clock instance = new Clock();
@@ -50,6 +50,10 @@ public class Clock {
      */
     static public boolean isNight() {
         return (instance.time/instance.hour % 8 > 4);
+    }
+
+    public void addEvent(Event event) {
+        eventsList.add(event);
     }
 
     @Override
