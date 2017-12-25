@@ -51,6 +51,7 @@ public class GameState extends BasicGameState {
         // Generate the bots
         CharacterGenerator characterGenerator = new CharacterGenerator(map);
         characterGenerator.generate(8,8,0,true);
+        characterGenerator.generate(5,5,100,false);
         this.container = container;
         this.characterList.init();
         PlayerController playerController = new PlayerController();

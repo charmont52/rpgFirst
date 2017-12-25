@@ -1,5 +1,9 @@
 package state;
 
+import event.EventGenerator;
+import event.EventList;
+import org.newdawn.slick.SlickException;
+
 import java.util.LinkedList;
 
 /**
@@ -9,12 +13,10 @@ import java.util.LinkedList;
 public class Clock {
 
     private double time;
-    private LinkedList<Event> eventsList;
     private int hour = 5000;
 
     private Clock() {
         this.time = 0;
-        this.eventsList = new LinkedList<Event>();
     }
 
     private final static Clock instance = new Clock();
@@ -30,6 +32,7 @@ public class Clock {
 
     /**
      * Get the current time
+     *
      * @return The current time
      */
     static public double getTime() {
@@ -38,22 +41,21 @@ public class Clock {
 
     /**
      * Add t milliseconds to the current time
+     *
      * @param t The number of milliseconds to add
      */
-    static public void addTime(double t) {
+    static public void addTime(double t) throws SlickException {
         instance.time += t;
+        EventList.run();
     }
 
     /**
      * Check if it is the night
+     *
      * @return True if it is the night
      */
     static public boolean isNight() {
-        return (instance.time/instance.hour % 8 > 4);
-    }
-
-    public void addEvent(Event event) {
-        eventsList.add(event);
+        return (instance.time / instance.hour % 8 > 4);
     }
 
     @Override

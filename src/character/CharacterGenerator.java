@@ -1,5 +1,7 @@
 package character;
 
+import event.EventGenerator;
+import event.EventList;
 import map.Map;
 import org.newdawn.slick.SlickException;
 import state.Clock;
@@ -13,15 +15,12 @@ public class CharacterGenerator {
         this.map = map;
     }
 
-    public void generate(int nbBandit, int nbSlime, int frequency, boolean now) throws SlickException {
+    public void generate(int nbBandit, int nbSlime, int latency, boolean now) throws SlickException {
         if (now) {
             addBandit(nbBandit);
             addSlime(nbSlime);
         } else {
-            if (Clock.getTime() % frequency == 0) {
-                addBandit(nbBandit);
-                addSlime(nbSlime);
-            }
+            EventList.getInstance().add(new EventGenerator(latency, nbBandit, nbSlime));
         }
     }
 
