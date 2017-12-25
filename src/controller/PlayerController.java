@@ -71,6 +71,9 @@ public class PlayerController implements KeyListener {
                 this.player.setInfligeableDamage(true);
                 this.player.setMoving(false);
                 break;
+            case Input.KEY_E:
+                this.player.getSkillSet().getSkill("dash").use();
+                break;
         }
     }
 

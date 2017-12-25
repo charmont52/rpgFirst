@@ -18,10 +18,14 @@ public class Player extends Character {
     private LinkedList<Hud> hudList = new LinkedList<>();
     protected Animation[] animationsAtk = new Animation[4];
     private String spriteAtk;
-    private LevelProgression levelProgression = new LevelProgression(this);
+    private LevelProgression levelProgression;
+    private SkillSet skillSet;
 
     public LevelProgression getLevelProgression() {
         return this.levelProgression;
+    }
+    public SkillSet getSkillSet() {
+        return this.skillSet;
     }
 
     public int getLevel() {
@@ -36,6 +40,9 @@ public class Player extends Character {
         stats.setManaMax(5);
         stats.setCurrentMana(5);
         LightList.add(new Light(0, 0));
+        levelProgression = new LevelProgression(this);
+        skillSet = new SkillSet(this);
+        skillSet.addSkill(new Dash(this));
     }
 
     private final static Player instance = new Player(Map.getInstance(), 500, 500, "src/ressources/sprites/character.png", "src/ressources/sprites/attaque.png");

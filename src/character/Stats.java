@@ -32,7 +32,7 @@ public class Stats {
     private int damageReduction;
 
     /**
-     * Skill and Characteristic points
+     * SkillSet and Characteristic points
      */
     private int skillPoint;
     private int characteristicPoint;
