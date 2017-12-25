@@ -5,6 +5,9 @@ import map.Map;
 import org.newdawn.slick.SlickException;
 import state.Clock;
 
+/**
+ * Class to create an event of character generation
+ */
 public class EventGenerator extends Event {
 
     private int latency;
@@ -12,6 +15,13 @@ public class EventGenerator extends Event {
     private int nbSlime;
     private CharacterGenerator characterGenerator;
 
+    /**
+     * Default constructor
+     *
+     * @param latency  The latency between two instanciations
+     * @param nbBandit The number of bandits
+     * @param nbSlime  The number of slimes
+     */
     public EventGenerator(int latency, int nbBandit, int nbSlime) {
         super();
         this.latency = latency;

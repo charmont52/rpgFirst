@@ -1,10 +1,7 @@
 package state;
 
-import event.EventGenerator;
 import event.EventList;
 import org.newdawn.slick.SlickException;
-
-import java.util.LinkedList;
 
 /**
  * Class using the singleton pattern and managing the time
@@ -15,6 +12,9 @@ public class Clock {
     private double time;
     private int hour = 5000;
 
+    /**
+     * Default constructor and initialize the time to zero
+     */
     private Clock() {
         this.time = 0;
     }
