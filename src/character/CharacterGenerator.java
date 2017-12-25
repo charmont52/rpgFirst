@@ -56,7 +56,7 @@ public class CharacterGenerator {
             addBandit(nbBandit, x, y);
             addSlime(nbSlime, x, y);
         } else {
-            EventList.getInstance().add(new EventGenerator(latency, nbBandit, nbSlime));
+            EventList.getInstance().add(new EventGenerator(latency, nbBandit, nbSlime, x, y));
         }
     }
 
