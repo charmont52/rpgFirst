@@ -1,6 +1,8 @@
 package controller;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.state.StateBasedGame;
@@ -11,7 +13,7 @@ import state.OptionsState;
 /**
  * Class for the start page control
  */
-public class StartPageController implements InputProviderListener {
+public class StartPageController implements InputProviderListener, KeyListener {
 
     private StateBasedGame game;
     private GameContainer container;
@@ -30,7 +32,6 @@ public class StartPageController implements InputProviderListener {
                 game.enterState(GameState.ID);
                 break;
             case OPTIONS:
-
                 game.enterState(OptionsState.ID);
                 break;
             case CREDITS:
@@ -43,7 +44,38 @@ public class StartPageController implements InputProviderListener {
 
     @Override
     public void controlReleased(Command command) {
+    }
 
+    @Override
+    public void setInput(Input input) {
+    }
+
+    @Override
+    public boolean isAcceptingInput() {
+        return true;
+    }
+
+    @Override
+    public void inputEnded() {
+    }
+
+    @Override
+    public void inputStarted() {
+    }
+
+    @Override
+    public void keyPressed(int key, char c) {
+        switch (key) {
+            case Input.KEY_ENTER:
+                game.enterState(GameState.ID);
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(int key, char c) {
+        switch (key) {
+        }
     }
 
 }

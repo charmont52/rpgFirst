@@ -11,7 +11,7 @@ public class Dash extends Skill {
         super(character);
         setManaCost(2);
         setLifeCost(0);
-        this.width = 80;
+        this.width = 100;
     }
 
     @Override
@@ -31,13 +31,13 @@ public class Dash extends Skill {
                     break;
                 case SOUTH:
                     y = y + width;
-                    if (y <= Map.getInstance().getHeight() * Map.getInstance().getTileHeight() && !Map.getInstance().isCollision(x, y)) {
+                    if (y <= Map.getInstance().getHeight() && !Map.getInstance().isCollision(x, y)) {
                         getCharacter().setY(y);
                     }
                     break;
                 case EAST:
                     x = x + width;
-                    if (x <= Map.getInstance().getWidth() * Map.getInstance().getTileWidth() && !Map.getInstance().isCollision(x, y)) {
+                    if (x <= Map.getInstance().getWidth() && !Map.getInstance().isCollision(x, y)) {
                         getCharacter().setX(x);
                     }
                     break;

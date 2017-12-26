@@ -23,6 +23,7 @@ public class StartPageState extends BasicGameState {
         InputProvider provider = new InputProvider(container.getInput());
         StartPageController controller = new StartPageController(game, container);
         provider.addListener(controller);
+        container.getInput().addKeyListener(controller);
         this.hud = new StartPageHud(controller);
         this.hud.init(container, game);
     }

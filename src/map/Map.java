@@ -29,20 +29,38 @@ public class Map {
     }
 
     /**
-     * Get the height of map
+     * Get the height of map in pixel
      *
      * @return The height of map
      */
     public int getHeight() {
-        return tiledMap.getHeight();
+        return tiledMap.getHeight() * tiledMap.getTileHeight();
     }
 
     /**
-     * Get the width of map
+     * Get the width of map in pixel
      *
      * @return The width of map
      */
     public int getWidth() {
+        return tiledMap.getWidth() * tiledMap.getTileWidth();
+    }
+
+    /**
+     * Get the tile number for height of map
+     *
+     * @return The tile number for height of map
+     */
+    public int getHeightNbTile() {
+        return tiledMap.getHeight();
+    }
+
+    /**
+     * Get the tile number for width of map
+     *
+     * @return The tile number for width of map
+     */
+    public int getWidthNbTile() {
         return tiledMap.getWidth();
     }
 

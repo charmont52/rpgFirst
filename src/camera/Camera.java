@@ -75,18 +75,24 @@ public class Camera {
      */
     public void update(GameContainer container) {
         int w = container.getWidth() / 4;
-        if (this.player.getX() > this.x + w && this.x + 2 * w < this.player.getMap().getWidth() * this.player.getMap().getTileWidth()) {
+        if (this.player.getX() > this.x + w && this.x + 2 * w < this.player.getMap().getWidth()) {
             this.x = this.player.getX() - w;
         } else if (this.player.getX() < this.x - w && this.x - 2 * w >= 0) {
             this.x = this.player.getX() + w;
         }
         int h = container.getHeight() / 4;
         int heightMenu = 35;
-        if (this.player.getY() > this.y + h - heightMenu && this.y + 2 * (h - heightMenu) < this.player.getMap().getHeight() * this.player.getMap().getTileHeight()) {
+        if (this.player.getY() > this.y + h - heightMenu && this.y + 2 * (h - heightMenu) < this.player.getMap().getHeight()) {
             this.y = this.player.getY() - (h - heightMenu);
         } else if (this.player.getY() < this.y - h && this.y - 2 * h > 0) {
             this.y = this.player.getY() + h;
         }
+    }
+
+    private double getSpeed(GameContainer container) {
+        double distance = Math.sqrt(Math.pow(player.getX() - (container.getWidth() / 2 - (int) this.x), 2) + Math.pow(player.getY() - y, 2));
+        System.out.println(distance);
+        return distance;
     }
 
 }

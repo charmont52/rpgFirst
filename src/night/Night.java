@@ -17,8 +17,8 @@ public class Night {
             g.setColor(blueNight);
             g.fillRect(container.getWidth() - 900, container.getHeight() - 700, 1800, 1400);
             /*g.setColor(Color.black);
-            float abscisse = - (container.getWidth() / 2 - x);
-            float ordonnee = - (container.getHeight() / 2 - y);
+            float abscisse = - (container.getWidthNbTile() / 2 - x);
+            float ordonnee = - (container.getHeightNbTile() / 2 - y);
             g.drawString("(" + abscisse + "," + ordonnee + ")", 100f, 100f);
             g.fillRect(abscisse, ordonnee,50,50);
             LightList.clear();*/

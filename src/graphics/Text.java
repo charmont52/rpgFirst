@@ -27,7 +27,7 @@ public class Text {
      */
     public static void drawCenterString(MouseOverArea area, String s, Graphics g, Color color) {
         g.setColor(color);
-        //drawCenterString(s, g, area.getX(), area.getY(), area.getWidth(), area.getHeight());
+        //drawCenterString(s, g, area.getX(), area.getY(), area.getWidthNbTile(), area.getHeightNbTile());
         g.drawString(s, area.getX() + area.getWidth() / 2 - g.getFont().getWidth(s) / 2, area.getY() + area.getHeight() / 2 - g.getFont().getHeight(s) / 2);
     }
 

@@ -18,7 +18,6 @@ public class PlayerController implements KeyListener {
 
     @Override
     public void setInput(Input input) {
-
     }
 
     @Override
@@ -28,12 +27,10 @@ public class PlayerController implements KeyListener {
 
     @Override
     public void inputEnded() {
-
     }
 
     @Override
     public void inputStarted() {
-
     }
 
     @Override
@@ -71,7 +68,7 @@ public class PlayerController implements KeyListener {
                 this.player.setInfligeableDamage(true);
                 this.player.setMoving(false);
                 break;
-            case Input.KEY_E:
+            case Input.KEY_NUMPAD7:
                 this.player.getSkillSet().getSkill("dash").use();
                 break;
         }

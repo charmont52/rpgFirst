@@ -50,7 +50,7 @@ public class GameState extends BasicGameState {
         this.map.init();
         // Generate the bots
         CharacterGenerator characterGenerator = new CharacterGenerator(map);
-        characterGenerator.generate(8,8,0,true);
+        //characterGenerator.generate(8,8,0,true);
         //characterGenerator.generate(5,5,10,false, 100, 100);
         this.container = container;
         this.characterList.init();
@@ -60,6 +60,7 @@ public class GameState extends BasicGameState {
         InputProvider provider = new InputProvider(container.getInput());
         GameController gameController = new GameController(game, this);
         provider.addListener(gameController);
+        container.getInput().addKeyListener(gameController);
         this.hud = new GameHud(gameController);
         this.hud.init(container, game);
 

@@ -69,8 +69,8 @@ public class CharacterGenerator {
      * @throws SlickException
      */
     private void addBandit(int nbBandit, int x, int y) throws SlickException {
-        int width = map.getWidth() * map.getTileWidth();
-        int height = map.getHeight() * map.getTileHeight();
+        int width = map.getWidthNbTile() * map.getTileWidth();
+        int height = map.getHeightNbTile() * map.getTileHeight();
         for (int i = 0; i < nbBandit; i++) {
             Bot bot;
             if (x < 0 || y < 0) {
@@ -92,8 +92,8 @@ public class CharacterGenerator {
      * @throws SlickException
      */
     private void addSlime(int nbSlime, int x, int y) throws SlickException {
-        int width = map.getWidth() * map.getTileWidth();
-        int height = map.getHeight() * map.getTileHeight();
+        int width = map.getWidthNbTile() * map.getTileWidth();
+        int height = map.getHeightNbTile() * map.getTileHeight();
         for (int i = 0; i < nbSlime; i++) {
             Slime slime;
             if (x < 0 || y < 0) {

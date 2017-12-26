@@ -1,7 +1,8 @@
 package controller;
 
 import command.GameCommand;
-import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.state.StateBasedGame;
@@ -11,7 +12,7 @@ import state.StartPageState;
 /**
  * Class for the game control
  */
-public class GameController implements InputProviderListener {
+public class GameController implements InputProviderListener, KeyListener {
 
     private StateBasedGame game;
     private GameState gameState;
@@ -19,7 +20,8 @@ public class GameController implements InputProviderListener {
 
     /**
      * Constructor
-     * @param game The state based game
+     *
+     * @param game      The state based game
      * @param gameState The game state
      */
     public GameController(StateBasedGame game, GameState gameState) {
@@ -48,6 +50,38 @@ public class GameController implements InputProviderListener {
 
     @Override
     public void controlReleased(Command command) {
-
     }
+
+    @Override
+    public void setInput(Input input) {
+    }
+
+    @Override
+    public boolean isAcceptingInput() {
+        return true;
+    }
+
+    @Override
+    public void inputEnded() {
+    }
+
+    @Override
+    public void inputStarted() {
+    }
+
+    @Override
+    public void keyPressed(int key, char c) {
+        switch (key) {
+            case Input.KEY_ESCAPE:
+                game.enterState(StartPageState.ID);
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(int key, char c) {
+        switch (key) {
+        }
+    }
+
 }
