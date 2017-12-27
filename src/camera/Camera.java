@@ -5,21 +5,21 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
 /**
- * Class managing the camera
+ * Class managing the camera, the camera position is in the left top corner
  */
 public class Camera {
 
     private Player player;
-    private float x;
-    private float y;
+    private int x;
+    private int y;
 
     /**
      * Default constructor
      */
     public Camera() {
         this.player = Player.getInstance();
-        this.x = player.getX();
-        this.y = player.getY();
+        this.x = (int) player.getX();
+        this.y = (int) player.getY();
     }
 
     /**
@@ -27,7 +27,7 @@ public class Camera {
      *
      * @return The camera abscissa
      */
-    public float getX() {
+    public int getX() {
         return x;
     }
 
@@ -36,7 +36,7 @@ public class Camera {
      *
      * @param x The new camera abscissa
      */
-    public void setX(float x) {
+    public void setX(int x) {
         this.x = x;
     }
 
@@ -45,7 +45,7 @@ public class Camera {
      *
      * @return The camera ordered
      */
-    public float getY() {
+    public int getY() {
         return y;
     }
 
@@ -54,7 +54,7 @@ public class Camera {
      *
      * @param y The new camera ordered
      */
-    public void setY(float y) {
+    public void setY(int y) {
         this.y = y;
     }
 
@@ -65,7 +65,7 @@ public class Camera {
      * @param g         The current graphics context
      */
     public void place(GameContainer container, Graphics g) {
-        g.translate(container.getWidth() / 2 - (int) this.x, container.getHeight() / 2 - (int) this.y);
+        g.translate(-x, -y);
     }
 
     /**
@@ -75,24 +75,35 @@ public class Camera {
      */
     public void update(GameContainer container) {
         int w = container.getWidth() / 4;
-        if (this.player.getX() > this.x + w && this.x + 2 * w < this.player.getMap().getWidth()) {
-            this.x = this.player.getX() - w;
-        } else if (this.player.getX() < this.x - w && this.x - 2 * w >= 0) {
-            this.x = this.player.getX() + w;
+
+        if (x + 3 * w < player.getX()) {
+            x = (int) player.getX() - 3 * w;
+        } else if (player.getX() < x + w) {
+            x = (int) player.getX() - w;
         }
+
         int h = container.getHeight() / 4;
-        int heightMenu = 35;
-        if (this.player.getY() > this.y + h - heightMenu && this.y + 2 * (h - heightMenu) < this.player.getMap().getHeight()) {
-            this.y = this.player.getY() - (h - heightMenu);
-        } else if (this.player.getY() < this.y - h && this.y - 2 * h > 0) {
-            this.y = this.player.getY() + h;
+        int heightMenu = 70;
+
+        if (y + 3 * h - heightMenu < player.getY()) {
+            y = (int) player.getY() - 3 * h + heightMenu;
+        } else if (player.getY() < y + h) {
+            y = (int) player.getY() - h;
         }
+
+        x = Math.max(x, 0);
+        x = Math.min(x, this.player.getMap().getWidth() - container.getWidth());
+        y = Math.max(y, 0);
+        y = Math.min(y, player.getMap().getHeight() - container.getHeight() + heightMenu);
     }
 
-    private double getSpeed(GameContainer container) {
-        double distance = Math.sqrt(Math.pow(player.getX() - (container.getWidth() / 2 - (int) this.x), 2) + Math.pow(player.getY() - y, 2));
-        System.out.println(distance);
-        return distance;
+    private int getDistance() {
+        return (int) Math.sqrt(Math.pow(player.getX() - x, 2) + Math.pow(player.getY() - y, 2));
+    }
+
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ")";
     }
 
 }
