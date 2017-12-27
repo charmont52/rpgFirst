@@ -9,6 +9,7 @@ import night.Light;
 import night.LightList;
 import org.newdawn.slick.*;
 import skill.Dash;
+import skill.FireBall;
 import skill.SkillSet;
 
 import java.util.Iterator;
@@ -37,7 +38,7 @@ public class Player extends Character {
         return this.levelProgression.getCurrentLevel();
     }
 
-    private Player(Map map, float x, float y, String sprite, String spriteAtk) {
+    private Player(Map map, float x, float y, String sprite, String spriteAtk) throws SlickException {
         super(map, x, y, sprite);
         this.spriteAtk = spriteAtk;
         stats.setLifeMax(10);
@@ -48,10 +49,22 @@ public class Player extends Character {
         levelProgression = new LevelProgression(this);
         skillSet = new SkillSet(this);
         skillSet.addSkill(new Dash(this));
+        skillSet.addSkill(new FireBall(this));
         EventList.getInstance().add(new EventRegenerate(2000, this, EventRegenerate.Type.MANA));
     }
 
-    private final static Player instance = new Player(Map.getInstance(), 500, 500, "src/ressources/sprites/character.png", "src/ressources/sprites/attaque.png");
+    /**
+     * Player instance
+     */
+    public static Player instance;
+
+    static {
+        try {
+            instance = new Player(Map.getInstance(), 500, 500, "src/ressources/sprites/character.png", "src/ressources/sprites/attaque.png");
+        } catch (SlickException e) {
+            System.out.println(e);
+        }
+    }
 
     /**
      * Get the player instance
@@ -107,6 +120,7 @@ public class Player extends Character {
             }
             if (!atkable) {
                 g.drawAnimation(animationsWalk[Direction.getDirectionNumber(direction) + (moving ? 4 : 0)], x - 32, y - 60);
+                skillSet.render(g);
             } else {
                 g.drawAnimation(animationsAtk[Direction.getDirectionNumber(direction)], x - 32, y - 60);
                 if (animationsAtk[Direction.getDirectionNumber(direction)].getFrame() == animationsAtk[Direction.getDirectionNumber(direction)].getFrameCount() - 1) {

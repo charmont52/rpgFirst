@@ -3,21 +3,20 @@ package skill;
 import character.Character;
 import map.Direction;
 import map.Map;
+import org.newdawn.slick.*;
 
 public class Dash extends Skill {
-
-    private int width;
 
     public Dash(Character character) {
         super(character);
         setManaCost(1);
         setLifeCost(0);
-        this.width = 100;
+        setRange(100);
     }
 
     @Override
-    public void use() {
-        super.use();
+    public void use(Graphics g) {
+        super.use(g);
         if (isCastable()) {
             boolean casted = false;
             Direction direction = getCharacter().getDirection();
@@ -25,28 +24,28 @@ public class Dash extends Skill {
             float y = getCharacter().getY();
             switch (direction) {
                 case NORTH:
-                    y = y - width;
+                    y = y - getRange();
                     if (y >= 0 && !Map.getInstance().isCollision(x, y)) {
                         getCharacter().setY(y);
                         casted = true;
                     }
                     break;
                 case SOUTH:
-                    y = y + width;
+                    y = y + getRange();
                     if (y <= Map.getInstance().getHeight() && !Map.getInstance().isCollision(x, y)) {
                         getCharacter().setY(y);
                         casted = true;
                     }
                     break;
                 case EAST:
-                    x = x + width;
+                    x = x + getRange();
                     if (x <= Map.getInstance().getWidth() && !Map.getInstance().isCollision(x, y)) {
                         getCharacter().setX(x);
                         casted = true;
                     }
                     break;
                 case WEST:
-                    x = x - width;
+                    x = x - getRange();
                     if (x >= 0 && !Map.getInstance().isCollision(x, y)) {
                         getCharacter().setX(x);
                         casted = true;
@@ -56,6 +55,7 @@ public class Dash extends Skill {
             if (casted) {
                 getCharacter().getStats().addCurrentMana(-getManaCost());
             }
+            setUsed(false);
         }
     }
 

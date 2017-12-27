@@ -15,12 +15,14 @@ public class SoundEffect {
     private Sound levelUp;
     private Sound dagger;
     private Sound fire;
+    private Sound gold;
 
     private SoundEffect() throws SlickException {
         click = new Sound("src/ressources/sound/click.wav");
         levelUp = new Sound("src/ressources/sound/levelUp.wav");
         dagger = new Sound("src/ressources/sound/dagger.wav");
         fire = new Sound("src/ressources/sound/campfire.wav");
+        gold = new Sound("src/ressources/sound/gold.wav");
     }
 
     /**
@@ -77,12 +79,20 @@ public class SoundEffect {
     }
 
     /**
+     * Play a gold sound
+     */
+    public static void gold() {
+        instance.gold.play(1, 0.8f * Options.getSoundLevel());
+    }
+
+    /**
      * Stop all the sounds
      */
-    public static void stopAllSound() {
+    public static void stopAll() {
         fireStop();
         instance.dagger.stop();
         instance.levelUp.stop();
+        instance.gold.stop();
     }
 
 }

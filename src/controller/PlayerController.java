@@ -69,7 +69,10 @@ public class PlayerController implements KeyListener {
                 this.player.setMoving(false);
                 break;
             case Input.KEY_NUMPAD7:
-                this.player.getSkillSet().getSkill("dash").use();
+                this.player.getSkillSet().getSkill("dash").setUsed(true);
+                break;
+            case Input.KEY_NUMPAD8:
+                this.player.getSkillSet().getSkill("fireball").setUsed(true);
                 break;
         }
     }

@@ -1,6 +1,8 @@
 package skill;
 
 import character.Character;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -28,6 +30,14 @@ public class SkillSet {
             }
         }
         return null;
+    }
+
+    public void render(Graphics g) throws SlickException {
+        Iterator<Skill> iterator = skillHashSet.iterator();
+        while (iterator.hasNext()) {
+            Skill skill = iterator.next();
+            skill.use(g);
+        }
     }
 
 }

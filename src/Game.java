@@ -11,7 +11,7 @@ public class Game extends StateBasedGame {
 
     public static void main(String[] args) throws SlickException {
         int maxFPS = 60;
-        AppGameContainer app = new AppGameContainer(new Game(), 800, 600, true);//640,480
+        AppGameContainer app = new AppGameContainer(new Game(), 800, 600, true);
         app.setTargetFrameRate(maxFPS);
         app.setShowFPS(false);
         app.setVSync(true);

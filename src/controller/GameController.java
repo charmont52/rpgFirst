@@ -35,7 +35,7 @@ public class GameController implements InputProviderListener, KeyListener {
         this.mode = (GameCommand) command;
         switch (mode) {
             case STARTPAGE:
-                SoundEffect.stopAllSound();
+                SoundEffect.stopAll();
                 game.enterState(StartPageState.ID);
                 break;
             case INVENTORY:
@@ -75,7 +75,7 @@ public class GameController implements InputProviderListener, KeyListener {
     public void keyPressed(int key, char c) {
         switch (key) {
             case Input.KEY_ESCAPE:
-                SoundEffect.stopAllSound();
+                SoundEffect.stopAll();
                 game.enterState(StartPageState.ID);
                 break;
         }
