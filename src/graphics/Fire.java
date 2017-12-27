@@ -2,6 +2,7 @@ package graphics;
 
 import map.Map;
 import org.newdawn.slick.*;
+import sound.SoundEffect;
 
 public class Fire {
 
@@ -20,15 +21,17 @@ public class Fire {
             animations[0].addFrame(spriteSheet.getSprite(i, 0), 150);
         }
         animations[1] = new Animation();
-        animations[1].addFrame(spriteSheet.getSprite(0,0), 150);
+        animations[1].addFrame(spriteSheet.getSprite(0, 0), 150);
     }
 
     public void render(Graphics g, boolean pause) throws SlickException {
         if (nameMap.equals(Map.getInstance().getNameMap())) {
             if (!pause) {
                 g.drawAnimation(animations[0], x, y);
+                SoundEffect.fireLoop();
             } else {
                 g.drawAnimation(animations[1], x, y);
+                SoundEffect.fireStop();
             }
         }
     }

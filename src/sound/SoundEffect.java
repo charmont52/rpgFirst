@@ -12,11 +12,13 @@ public class SoundEffect {
     private Sound click;
     private Sound levelUp;
     private Sound dagger;
+    private Sound fire;
 
     private SoundEffect() throws SlickException {
         click = new Sound("src/ressources/sound/click.wav");
         levelUp = new Sound("src/ressources/sound/levelUp.wav");
         dagger = new Sound("src/ressources/sound/dagger.wav");
+        fire = new Sound("src/ressources/sound/campfire.wav");
     }
 
     /**
@@ -51,6 +53,31 @@ public class SoundEffect {
      */
     public static void dagger() {
         instance.dagger.play(1, 0.8f * Options.getSoundLevel());
+    }
+
+    /**
+     * Play a fire sound
+     */
+    public static void fireLoop() {
+        if (!instance.fire.playing()) {
+            instance.fire.loop(1, 1f * Options.getSoundLevel());
+        }
+    }
+
+    /**
+     * Stop the fire sound
+     */
+    public static void fireStop() {
+        instance.fire.stop();
+    }
+
+    /**
+     * Stop all the sounds
+     */
+    public static void stopAllSound() {
+        fireStop();
+        instance.dagger.stop();
+        instance.levelUp.stop();
     }
 
 }

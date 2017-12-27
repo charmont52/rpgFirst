@@ -6,6 +6,7 @@ import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.state.StateBasedGame;
+import sound.SoundEffect;
 import state.GameState;
 import state.StartPageState;
 
@@ -34,6 +35,7 @@ public class GameController implements InputProviderListener, KeyListener {
         this.mode = (GameCommand) command;
         switch (mode) {
             case STARTPAGE:
+                SoundEffect.stopAllSound();
                 game.enterState(StartPageState.ID);
                 break;
             case INVENTORY:
@@ -73,6 +75,7 @@ public class GameController implements InputProviderListener, KeyListener {
     public void keyPressed(int key, char c) {
         switch (key) {
             case Input.KEY_ESCAPE:
+                SoundEffect.stopAllSound();
                 game.enterState(StartPageState.ID);
                 break;
         }
