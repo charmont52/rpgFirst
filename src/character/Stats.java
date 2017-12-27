@@ -7,12 +7,14 @@ public class Stats {
      */
     private int lifeMax;
     private int currentLife;
+    private int regenerateRateLife;
 
     /**
      * Mana
      */
     private int manaMax;
     private int currentMana;
+    private int regenerateRateMana;
 
     /**
      * Speed
@@ -37,6 +39,11 @@ public class Stats {
     private int skillPoint;
     private int characteristicPoint;
 
+    /**
+     * Number of gold piece
+     */
+    private int gold;
+
     public Stats() {
         this.lifeMax = 5;
         this.currentLife = 5;
@@ -49,6 +56,9 @@ public class Stats {
         this.damageReduction = 0;
         this.skillPoint = 0;
         this.characteristicPoint = 0;
+        this.gold = 0;
+        this.regenerateRateLife = 1;
+        this.regenerateRateMana = 1;
     }
 
     /**
@@ -117,6 +127,8 @@ public class Stats {
     public void setCurrentLife(int currentLife) {
         if (currentLife > this.getLifeMax()) {
             this.currentLife = this.getLifeMax();
+        } else if (this.currentLife + currentLife < 0) {
+            this.currentLife = 0;
         } else {
             this.currentLife = currentLife;
         }
@@ -131,6 +143,10 @@ public class Stats {
         return this.currentLife;
     }
 
+    public void addCurrentLife(int life) {
+        setCurrentLife(life + getCurrentLife());
+    }
+
     /**
      * Set the current mana
      *
@@ -139,6 +155,8 @@ public class Stats {
     public void setCurrentMana(int currentMana) {
         if (currentMana > this.manaMax) {
             this.currentMana = this.manaMax;
+        } else if (this.currentMana + currentMana < 0) {
+            this.currentMana = 0;
         } else {
             this.currentMana = currentMana;
         }
@@ -151,6 +169,10 @@ public class Stats {
      */
     public int getCurrentMana() {
         return this.currentMana;
+    }
+
+    public void addCurrentMana(int mana) {
+        setCurrentMana(getCurrentMana() + mana);
     }
 
     /**
@@ -173,6 +195,22 @@ public class Stats {
      */
     public int getManaMax() {
         return this.manaMax;
+    }
+
+    public int getRegenerateRateLife() {
+        return regenerateRateLife;
+    }
+
+    public void setRegenerateRateLife(int regenerateRateLife) {
+        this.regenerateRateLife = regenerateRateLife;
+    }
+
+    public int getRegenerateRateMana() {
+        return regenerateRateMana;
+    }
+
+    public void setRegenerateRateMana(int regenerateRateMana) {
+        this.regenerateRateMana = regenerateRateMana;
     }
 
     /**
@@ -247,6 +285,10 @@ public class Stats {
         this.skillPoint = skillPoint;
     }
 
+    public void addSkillPoint(int skillPoint) {
+        this.skillPoint += skillPoint;
+    }
+
     /**
      * Get the number of characteristic point
      *
@@ -263,6 +305,32 @@ public class Stats {
      */
     public void setCharacteristicPoint(int characteristicPoint) {
         this.characteristicPoint = characteristicPoint;
+    }
+
+    public void addCharacteristicPoint(int characteristicPoint) {
+        this.characteristicPoint += characteristicPoint;
+    }
+
+    /**
+     * Get the number of gold piece
+     *
+     * @return The number of gold piece
+     */
+    public int getGold() {
+        return gold;
+    }
+
+    /**
+     * Set a new number of gold piece
+     *
+     * @param gold The new number of gold piece
+     */
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public void addGold(int gold) {
+        this.gold += gold;
     }
 
 }

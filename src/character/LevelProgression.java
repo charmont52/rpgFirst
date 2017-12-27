@@ -95,13 +95,15 @@ public class LevelProgression {
     }
 
     /**
-     * Upgrade the level
+     * Upgrade the level with all implications
      */
     public void levelUp() {
         currentLevel++;
         SoundEffect.levelUp();
         character.getStats().setCurrentLife(character.getStats().getLifeMax());
         character.getStats().setCurrentMana(character.getStats().getManaMax());
+        character.getStats().addSkillPoint(1);
+        character.getStats().addCharacteristicPoint(1);
     }
 
 }

@@ -1,11 +1,15 @@
 package character;
 
+import event.EventList;
+import event.EventRegenerate;
 import hud.Hud;
 import map.Direction;
 import map.Map;
 import night.Light;
 import night.LightList;
 import org.newdawn.slick.*;
+import skill.Dash;
+import skill.SkillSet;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -24,6 +28,7 @@ public class Player extends Character {
     public LevelProgression getLevelProgression() {
         return this.levelProgression;
     }
+
     public SkillSet getSkillSet() {
         return this.skillSet;
     }
@@ -43,6 +48,7 @@ public class Player extends Character {
         levelProgression = new LevelProgression(this);
         skillSet = new SkillSet(this);
         skillSet.addSkill(new Dash(this));
+        EventList.getInstance().add(new EventRegenerate(2000, this, EventRegenerate.Type.MANA));
     }
 
     private final static Player instance = new Player(Map.getInstance(), 500, 500, "src/ressources/sprites/character.png", "src/ressources/sprites/attaque.png");

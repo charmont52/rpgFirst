@@ -40,7 +40,7 @@ public class Clock {
     }
 
     /**
-     * Add t milliseconds to the current time
+     * Add t milliseconds to the current time and run the events
      *
      * @param t The number of milliseconds to add
      */
@@ -60,7 +60,7 @@ public class Clock {
 
     @Override
     public String toString() {
-        return "" + instance.time;
+        return "time: " + instance.time;
     }
 
 }

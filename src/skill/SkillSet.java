@@ -1,4 +1,6 @@
-package character;
+package skill;
+
+import character.Character;
 
 import java.util.HashSet;
 import java.util.Iterator;

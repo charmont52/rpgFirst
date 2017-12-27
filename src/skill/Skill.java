@@ -1,4 +1,6 @@
-package character;
+package skill;
+
+import character.Character;
 
 public class Skill {
 
@@ -45,7 +47,7 @@ public class Skill {
     public void use() {
         int currentMana = character.getStats().getCurrentMana();
         int currentLife = character.getStats().getCurrentLife();
-        if (currentLife > lifeCost && currentMana > manaCost) {
+        if (currentLife >= lifeCost && currentMana >= manaCost) {
             castable = true;
         } else {
             castable = false;

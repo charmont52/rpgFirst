@@ -3,14 +3,12 @@ package event;
 import character.CharacterGenerator;
 import map.Map;
 import org.newdawn.slick.SlickException;
-import state.Clock;
 
 /**
  * Class to create an event of character generation
  */
-public class EventGenerator extends Event {
+public class EventGeneratorCharacter extends Event {
 
-    private int latency;
     private int nbBandit;
     private int nbSlime;
     private int x;
@@ -24,9 +22,8 @@ public class EventGenerator extends Event {
      * @param nbBandit The number of bandits
      * @param nbSlime  The number of slimes
      */
-    public EventGenerator(int latency, int nbBandit, int nbSlime) {
-        super();
-        this.latency = latency;
+    public EventGeneratorCharacter(int latency, int nbBandit, int nbSlime) {
+        super(latency);
         this.nbBandit = nbBandit;
         this.nbSlime = nbSlime;
         this.x = -1;
@@ -42,9 +39,8 @@ public class EventGenerator extends Event {
      * @param x The abscissa
      * @param y The ordered
      */
-    public EventGenerator(int latency, int nbBandit, int nbSlime, int x, int y) {
-        super();
-        this.latency = latency;
+    public EventGeneratorCharacter(int latency, int nbBandit, int nbSlime, int x, int y) {
+        super(latency);
         this.nbBandit = nbBandit;
         this.nbSlime = nbSlime;
         this.x = x;
@@ -54,9 +50,16 @@ public class EventGenerator extends Event {
 
     @Override
     public void run() throws SlickException {
-        if (Clock.getTime() % latency < 5) {
-            characterGenerator.generate(nbBandit, nbSlime, latency, true, x, y);
+        super.run();
+        if (isRunable()) {
+            characterGenerator.generate(nbBandit, nbSlime, getLatency(), true, x, y);
+            resetLastInstanciation();
         }
+    }
+
+    @Override
+    public String toString() {
+        return "(EventGeneratorCharacter) status: " + isRunable();
     }
 
 }
