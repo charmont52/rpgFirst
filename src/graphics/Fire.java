@@ -7,9 +7,18 @@ import sound.SoundEffect;
 public class Fire {
 
     private Animation[] animations = new Animation[2];
+
     private int x;
     private int y;
     private String nameMap;
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 
     public Fire(int x, int y, String nameMap) throws SlickException {
         this.x = x;
@@ -28,7 +37,7 @@ public class Fire {
         if (nameMap.equals(Map.getInstance().getNameMap())) {
             if (!pause) {
                 g.drawAnimation(animations[0], x, y);
-                SoundEffect.fireLoop();
+                SoundEffect.fireLoop(this);
             } else {
                 g.drawAnimation(animations[1], x, y);
                 SoundEffect.fireStop();

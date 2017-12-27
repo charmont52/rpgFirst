@@ -1,5 +1,7 @@
 package sound;
 
+import character.Player;
+import graphics.Fire;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import state.Options;
@@ -58,9 +60,12 @@ public class SoundEffect {
     /**
      * Play a fire sound
      */
-    public static void fireLoop() {
+    public static void fireLoop(Fire fire) {
+        double distance = Math.sqrt(Math.pow(fire.getX() - Player.getInstance().getX(), 2) + Math.pow(fire.getY() - Player.getInstance().getY(), 2));
+        double distanceMax = 200;
+        float distanceMultiplier = (float) Math.min(0, distanceMax - distance);
         if (!instance.fire.playing()) {
-            instance.fire.loop(1, 1f * Options.getSoundLevel());
+            instance.fire.play(1, 1f * Options.getSoundLevel() * distanceMultiplier);
         }
     }
 
