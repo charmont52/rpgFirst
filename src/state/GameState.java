@@ -71,7 +71,7 @@ public class GameState extends BasicGameState {
         this.camera.place(container, g);
         this.map.renderBackground();
         this.characterList.render(g, pause);
-        this.map.renderForeground(g);
+        this.map.renderForeground(g, pause);
         this.player.renderHudList(g);
         Night.render(container, g, this.camera.getX(), this.camera.getY());
         this.hud.render(container, g);

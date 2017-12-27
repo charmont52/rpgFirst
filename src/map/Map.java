@@ -1,10 +1,14 @@
 package map;
 
 import character.Player;
+import graphics.Fire;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
+
+import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * Class using the singleton pattern and managing the map
@@ -13,8 +17,10 @@ public class Map {
 
     private TiledMap tiledMap;
     private String nameMap;
+    private LinkedList<Fire> fireLinkedList;
 
     private Map() {
+        this.fireLinkedList = new LinkedList<>();
     }
 
     private final static Map instance = new Map();
@@ -99,6 +105,7 @@ public class Map {
     public void init() throws SlickException {
         this.nameMap = "src/ressources/map/fullscreenMap.tmx";
         this.tiledMap = new TiledMap(nameMap);
+        fireLinkedList.add(new Fire(200, 200, nameMap));
     }
 
     /**
@@ -116,9 +123,12 @@ public class Map {
      * @param g
      * @throws SlickException
      */
-    public void renderForeground(Graphics g) throws SlickException {
+    public void renderForeground(Graphics g, boolean pause) throws SlickException {
         this.tiledMap.render(0, 0, 3);
-        //Night.drawNight(g);
+        Iterator<Fire> iterator = fireLinkedList.iterator();
+        while (iterator.hasNext()) {
+            iterator.next().render(g, pause);
+        }
     }
 
     /**
