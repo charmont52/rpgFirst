@@ -12,14 +12,12 @@ public class OptionsState extends BasicGameState {
     public static final int ID = StateID.getStateIDNumber(StateID.OPTIONS);
     private Image background;
     private StateBasedGame game;
-    private Music music;
     private OptionsHud hud;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.game = game;
         this.background = new Image("src/ressources/background/background29.jpg");
-        this.music = new Music("src/ressources/sound/OveMelaaDarkBlue.ogg");
 
         InputProvider provider = new InputProvider(container.getInput());
         OptionsController controller = new OptionsController(game);
@@ -35,7 +33,7 @@ public class OptionsState extends BasicGameState {
     }
 
     @Override
-    public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+    public void update(GameContainer container, StateBasedGame game, int delta) {
     }
 
     @Override
@@ -48,13 +46,12 @@ public class OptionsState extends BasicGameState {
     }
 
     @Override
-    public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+    public void enter(GameContainer container, StateBasedGame game) {
         HistoryState.addState(StateID.OPTIONS);
     }
 
     @Override
-    public void leave(GameContainer container, StateBasedGame game) throws SlickException {
-
+    public void leave(GameContainer container, StateBasedGame game) {
     }
 
 }

@@ -18,11 +18,12 @@ public class SoundEffect {
     private Sound gold;
 
     private SoundEffect() throws SlickException {
-        click = new Sound("src/ressources/sound/click.wav");
-        levelUp = new Sound("src/ressources/sound/levelUp.wav");
-        dagger = new Sound("src/ressources/sound/dagger.wav");
-        fire = new Sound("src/ressources/sound/campfire.wav");
-        gold = new Sound("src/ressources/sound/gold.wav");
+        String path = "src/ressources/sound/soundEffect/";
+        click = new Sound(path + "click.wav");
+        levelUp = new Sound(path + "levelUp.wav");
+        dagger = new Sound(path + "dagger.wav");
+        fire = new Sound(path + "campfire.wav");
+        gold = new Sound(path + "gold.wav");
     }
 
     /**

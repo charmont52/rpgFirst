@@ -11,29 +11,27 @@ import java.util.LinkedList;
 /**
  * Class managing the soundtrack
  */
-public class SoundTrack implements MusicListener {
+public class SoundTrack {
 
-    private StateID currentState = StateID.STARTPAGE;
-
-    private Music OveMelaaApproachingTheGreenGrass;
     private Music OveMelaaDarkBlue;
-    private Music littleTown;
-    private Music click;
-    private LinkedList<Music> musicList;
+    private String path = "src/ressources/sound/music/";
+    private static LinkedList<Music> musicList;
 
     private SoundTrack() throws SlickException {
-        OveMelaaApproachingTheGreenGrass = new Music("src/ressources/sound/OveMelaaApproachingTheGreenGrass.ogg");
-        OveMelaaDarkBlue = new Music("src/ressources/sound/OveMelaaDarkBlue.ogg");
-        littleTown = new Music("src/ressources/sound/littleTown.ogg");
-        click = new Music("src/ressources/sound/click.wav");
-
-        click.addListener(this);
-        OveMelaaApproachingTheGreenGrass.addListener(this);
-        littleTown.addListener(this);
-
         musicList = new LinkedList<>();
-        musicList.add(this.OveMelaaApproachingTheGreenGrass);
-        musicList.add(this.littleTown);
+        OveMelaaDarkBlue = new Music(path + "OveMelaaDarkBlue.ogg");
+        //addMusic("OveMelaaApproachingTheGreenGrass.ogg");
+        //addMusic("littleTown.ogg");
+        addMusic("CourtMinstrel.ogg");
+        addMusic("BrownFoxInn.ogg");
+        addMusic("MedievalWaltz.ogg");
+        addMusic("RiverbardTavern.ogg");
+
+    }
+
+    private void addMusic(String name) throws SlickException {
+        Music music = new Music(path + name);
+        musicList.add(music);
     }
 
     public static SoundTrack instance;
@@ -46,20 +44,6 @@ public class SoundTrack implements MusicListener {
         }
     }
 
-    @Override
-    public void musicEnded(Music music) {
-        switch (currentState) {
-            case GAME:
-                int random = (int) (Math.random() * musicList.size());
-                musicList.get(random).play(1 * Options.getSoundLevel(), 1 * Options.getSoundLevel());
-                break;
-        }
-    }
-
-    @Override
-    public void musicSwapped(Music music, Music newMusic) {
-    }
-
     /**
      * Play the soundtrack
      *
@@ -69,11 +53,11 @@ public class SoundTrack implements MusicListener {
         int duration = 1500;
         switch (stateID) {
             case GAME:
-                instance.currentState = StateID.GAME;
-                instance.click.play();
+                SoundEffect.click();
+                int random = (int) (Math.random() * musicList.size());
+                musicList.get(random).play(1 * Options.getSoundLevel(), 1 * Options.getSoundLevel());
                 break;
             case STARTPAGE:
-                instance.currentState = StateID.STARTPAGE;
                 instance.OveMelaaDarkBlue.loop(1 * Options.getSoundLevel(), 0);
                 instance.OveMelaaDarkBlue.fade(duration, 0.8f * Options.getSoundLevel(), false);
                 break;
