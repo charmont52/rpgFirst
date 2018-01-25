@@ -10,7 +10,7 @@ import org.newdawn.slick.SlickException;
 public class Clock {
 
     private double time;
-    private int hour = 5000;
+    private int hour = 3000;
 
     /**
      * Default constructor and initialize the time to zero
@@ -40,6 +40,15 @@ public class Clock {
     }
 
     /**
+     * Get the current hour
+     *
+     * @return The current hour
+     */
+    static public double getHour() {
+        return instance.time / instance.hour % 24;
+    }
+
+    /**
      * Add t milliseconds to the current time and run the events
      *
      * @param t The number of milliseconds to add
@@ -55,7 +64,7 @@ public class Clock {
      * @return True if it is the night
      */
     static public boolean isNight() {
-        return (instance.time / instance.hour % 8 > 4);
+        return (instance.time / instance.hour % 24 < 7) || (instance.time / instance.hour % 24 > 19);
     }
 
     @Override
