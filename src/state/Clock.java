@@ -10,13 +10,13 @@ import org.newdawn.slick.SlickException;
 public class Clock {
 
     private double time;
-    private int hour = 3000;
+    private int hour = 4000;
 
     /**
      * Default constructor and initialize the time to zero
      */
     private Clock() {
-        this.time = 0;
+        this.time = hour * 9;
     }
 
     private final static Clock instance = new Clock();
@@ -44,8 +44,8 @@ public class Clock {
      *
      * @return The current hour
      */
-    static public double getHour() {
-        return instance.time / instance.hour % 24;
+    static public int getHour() {
+        return (int) (instance.time / instance.hour % 24);
     }
 
     /**

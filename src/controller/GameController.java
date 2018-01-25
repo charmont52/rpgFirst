@@ -8,7 +8,9 @@ import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.state.StateBasedGame;
 import sound.SoundEffect;
 import state.GameState;
+import state.HistoryState;
 import state.StartPageState;
+import state.StateID;
 
 /**
  * Class for the game control
@@ -76,6 +78,7 @@ public class GameController implements InputProviderListener, KeyListener {
         switch (key) {
             case Input.KEY_ESCAPE:
                 SoundEffect.stopAll();
+                HistoryState.addState(StateID.STARTPAGE);
                 game.enterState(StartPageState.ID);
                 break;
         }

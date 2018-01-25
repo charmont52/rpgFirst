@@ -66,9 +66,6 @@ public class StartPageController implements InputProviderListener, KeyListener {
     @Override
     public void keyPressed(int key, char c) {
         switch (key) {
-            case Input.KEY_ENTER:
-                game.enterState(GameState.ID);
-                break;
         }
     }
 
