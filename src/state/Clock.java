@@ -16,7 +16,7 @@ public class Clock {
      * Default constructor and initialize the time to zero
      */
     private Clock() {
-        this.time = hour * 9;
+        this.time = hour * 2;
     }
 
     private final static Clock instance = new Clock();

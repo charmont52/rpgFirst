@@ -17,7 +17,6 @@ public class Event {
      */
     public Event(int latency) {
         this.runable = false;
-
         this.latency = latency;
         this.lastInstanciation = (int) Clock.getTime();
     }

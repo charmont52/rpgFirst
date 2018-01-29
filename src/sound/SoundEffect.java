@@ -1,6 +1,8 @@
 package sound;
 
 import character.Player;
+import event.EventList;
+import event.EventIncreaseSound;
 import graphics.Fire;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -50,7 +52,9 @@ public class SoundEffect {
      * Play a level up sound
      */
     public static void levelUp() {
+        SoundTrack.setVolume(0.2f);
         instance.levelUp.play(1, 0.6f * Options.getSoundLevel());
+        EventList.add(new EventIncreaseSound(4000, SoundTrack.getCurrentMusic(), 0.6f));
     }
 
     /**

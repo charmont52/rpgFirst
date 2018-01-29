@@ -28,7 +28,6 @@ public class EventRegenerate extends Event {
                     character.getStats().addCurrentMana(character.getStats().getRegenerateRateMana());
                     break;
             }
-
             resetLastInstanciation();
         }
     }

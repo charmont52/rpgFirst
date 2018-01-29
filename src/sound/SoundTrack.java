@@ -16,6 +16,7 @@ public class SoundTrack {
     private Music OveMelaaDarkBlue;
     private String path = "src/ressources/sound/music/";
     private static LinkedList<Music> musicList;
+    private static Music currentMusic;
 
     private SoundTrack() throws SlickException {
         musicList = new LinkedList<>();
@@ -26,7 +27,6 @@ public class SoundTrack {
         addMusic("BrownFoxInn.ogg");
         addMusic("MedievalWaltz.ogg");
         addMusic("RiverbardTavern.ogg");
-
     }
 
     private void addMusic(String name) throws SlickException {
@@ -44,6 +44,14 @@ public class SoundTrack {
         }
     }
 
+    public static Music getCurrentMusic() {
+        return currentMusic;
+    }
+
+    public static void setVolume(float newVolume) {
+        currentMusic.setVolume(newVolume * Options.getSoundLevel());
+    }
+
     /**
      * Play the soundtrack
      *
@@ -55,7 +63,8 @@ public class SoundTrack {
             case GAME:
                 SoundEffect.click();
                 int random = (int) (Math.random() * musicList.size());
-                musicList.get(random).play(1 * Options.getSoundLevel(), 1 * Options.getSoundLevel());
+                currentMusic = musicList.get(random);
+                currentMusic.play(1 * Options.getSoundLevel(), 0.6f * Options.getSoundLevel());
                 break;
             case STARTPAGE:
                 instance.OveMelaaDarkBlue.loop(1 * Options.getSoundLevel(), 0);

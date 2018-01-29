@@ -10,7 +10,7 @@ import java.util.LinkedList;
  */
 public class EventList {
 
-    private LinkedList<Event> eventList;
+    private static LinkedList<Event> eventList;
 
     private final static EventList instance = new EventList();
 
@@ -31,8 +31,17 @@ public class EventList {
      *
      * @param event The new event
      */
-    public void add(Event event) {
+    public static void add(Event event) {
         eventList.add(event);
+    }
+
+    /**
+     * Remove the event to the list
+     *
+     * @param event The removed event
+     */
+    public static void remove(Event event) {
+        eventList.remove(event);
     }
 
     /**

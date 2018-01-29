@@ -50,7 +50,7 @@ public class Player extends Character {
         skillSet = new SkillSet(this);
         skillSet.addSkill(new Dash(this));
         skillSet.addSkill(new FireBall(this));
-        EventList.getInstance().add(new EventRegenerate(2000, this, EventRegenerate.Type.MANA));
+        EventList.add(new EventRegenerate(2000, this, EventRegenerate.Type.MANA));
     }
 
     /**
