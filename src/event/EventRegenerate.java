@@ -3,6 +3,9 @@ package event;
 import character.Character;
 import org.newdawn.slick.SlickException;
 
+/**
+ * Class managing the mana and life regeneration
+ */
 public class EventRegenerate extends Event {
 
     private Character character;

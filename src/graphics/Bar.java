@@ -67,7 +67,7 @@ public class Bar {
         g.fillRect(x + 1, y + 1, width - 2, height - 2);
         g.setColor(color);
         g.fillRect(x + 2, y + 2, (width - 4) * current / max, height - 4);
-        Text.drawCenterString(current + "/" + max, g, x, y, width, height);
+        Text.drawCenterString(g, current + "/" + max, x, y, width, height);
     }
 
     public static void drawXpBarPlayer(GameContainer container, Graphics g) throws SlickException {

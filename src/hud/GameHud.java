@@ -64,11 +64,11 @@ public class GameHud implements ComponentListener {
         g.setColor(Color.black);
         g.drawLine(0, container.getHeight() - 70, container.getWidth(), container.getHeight() - 70);
         startPageButton.render(container, g);
-        Text.drawCenterString(startPageButton, "Menu", g);
+        Text.drawCenterString(g, startPageButton, "Menu");
         inventoryButton.render(container, g);
-        Text.drawCenterString(inventoryButton, "Sac", g);
+        Text.drawCenterString(g, inventoryButton, "Sac");
         statsPlayerButton.render(container, g);
-        Text.drawCenterString(statsPlayerButton, "Stats", g);
+        Text.drawCenterString(g, statsPlayerButton, "Stats");
         Bar.drawLifeBarPlayer(container, g);
         Bar.drawManaBarPlayer(container, g);
         Bar.drawXpBarPlayer(container, g);
@@ -83,11 +83,13 @@ public class GameHud implements ComponentListener {
             int x = container.getWidth() / 2 - width / 2;
             int y = container.getHeight() / 2 - height / 2;
             drawWindow(container, g, "Stats");
-            Text.drawCenterString("Level : " + Player.getInstance().getLevel(), g, x, y - 60, width, height);
-            Text.drawCenterString("Life : " + Player.getInstance().getStats().getLifeMax(), g, x, y - 40, width, height);
-            Text.drawCenterString("Mana : " + Player.getInstance().getStats().getManaMax(), g, x, y - 20, width, height);
-            Text.drawCenterString("Damage : " + Player.getInstance().getStats().getInfligeableDamage(), g, x, y, width, height);
-            Text.drawCenterString("Reduction : " + Player.getInstance().getStats().getDamageReduction(), g, x, y + 20, width, height);
+
+            int d = 30;
+            Text.drawAlignString(g, "Level :", "" + Player.getInstance().getLevel(), x + d, y + 80, width - 2 * d);
+            Text.drawAlignString(g, "Life :", "" + Player.getInstance().getStats().getLifeMax(), x + d, y + 100, width - 2 * d);
+            Text.drawAlignString(g, "Mana :", "" + Player.getInstance().getStats().getManaMax(), x + d, y + 120, width - 2 * d);
+            Text.drawAlignString(g, "Damage :", "" + Player.getInstance().getStats().getInfligeableDamage(), x + d, y + 140, width - 2 * d);
+            Text.drawAlignString(g, "Reduction :", "" + Player.getInstance().getStats().getDamageReduction(), x + d, y + 160, width - 2 * d);
         }
     }
 
@@ -104,7 +106,7 @@ public class GameHud implements ComponentListener {
         int y = container.getHeight() / 2 - height / 2;
         g.fillRect(x, y, width, height, backgroundUI, 0, 0);
         Area.drawOutline(g, container, x, y, width, height);
-        Text.drawCenterString(title, g, x, y, width, 100);
+        Text.drawCenterString(g, title, x, y, width, 100);
     }
 
     @Override

@@ -3,6 +3,9 @@ package event;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 
+/**
+ * Class managing the increase sound after a dt time
+ */
 public class EventIncreaseSound extends Event {
 
     private Music music;

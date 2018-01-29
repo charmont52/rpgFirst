@@ -50,7 +50,7 @@ public class OptionsHud implements ComponentListener {
      */
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         startPageButton.render(container, g);
-        Text.drawCenterString(startPageButton, "Menu", g);
+        Text.drawCenterString(g, startPageButton, "Menu");
     }
 
     @Override

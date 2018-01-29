@@ -59,13 +59,13 @@ public class StartPageHud implements ComponentListener {
      */
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         startButton.render(container, g);
-        Text.drawCenterString(startButton, "Jouer", g);
+        Text.drawCenterString(g, startButton, "Jouer");
         optionsButton.render(container, g);
-        Text.drawCenterString(optionsButton, "Options", g);
+        Text.drawCenterString(g, optionsButton, "Options");
         creditsButton.render(container, g);
-        Text.drawCenterString(creditsButton, "Crédits", g);
+        Text.drawCenterString(g, creditsButton, "Crédits");
         exitButton.render(container, g);
-        Text.drawCenterString(exitButton, "Quitter", g);
+        Text.drawCenterString(g, exitButton, "Quitter");
     }
 
     @Override
