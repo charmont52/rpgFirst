@@ -7,7 +7,7 @@ import org.newdawn.slick.gui.MouseOverArea;
 public class Text {
 
     /**
-     * Draw a centered black string
+     * Draw a centered black string in a mouse over area
      *
      * @param g    Graphics
      * @param area The area
@@ -18,7 +18,7 @@ public class Text {
     }
 
     /**
-     * Draw a centered colored string
+     * Draw a centered colored string in a mouse over area
      *
      * @param g     Graphics
      * @param area  The area
@@ -27,7 +27,6 @@ public class Text {
      */
     public static void drawCenterString(Graphics g, MouseOverArea area, String s, Color color) {
         g.setColor(color);
-        //drawCenterString(s, g, area.getX(), area.getY(), area.getWidthNbTile(), area.getHeightNbTile());
         g.drawString(s, area.getX() + area.getWidth() / 2 - g.getFont().getWidth(s) / 2, area.getY() + area.getHeight() / 2 - g.getFont().getHeight(s) / 2);
     }
 

@@ -25,6 +25,7 @@ public class GameHud implements ComponentListener {
     private Image backgroundUI;
     private boolean statsDisplay;
     private boolean inventoryDisplay;
+    private StatsHud statsHud;
 
     /**
      * The unique Constructor
@@ -35,6 +36,7 @@ public class GameHud implements ComponentListener {
         this.controller = controller;
         statsDisplay = false;
         inventoryDisplay = false;
+        statsHud = new StatsHud(controller);
     }
 
     /**
@@ -50,6 +52,7 @@ public class GameHud implements ComponentListener {
         startPageButton = new MouseOverArea(container, buttonImage, container.getWidth() - 5 - buttonImage.getWidth(), container.getHeight() - buttonImage.getHeight() - 5, this);
         inventoryButton = new MouseOverArea(container, buttonImage, container.getWidth() - 10 - 2 * buttonImage.getWidth(), container.getHeight() - buttonImage.getHeight() - 5, this);
         statsPlayerButton = new MouseOverArea(container, buttonImage, container.getWidth() - 15 - 3 * buttonImage.getWidth(), container.getHeight() - buttonImage.getHeight() - 5, this);
+        statsHud.init(container);
     }
 
     /**
@@ -72,25 +75,8 @@ public class GameHud implements ComponentListener {
         Bar.drawLifeBarPlayer(container, g);
         Bar.drawManaBarPlayer(container, g);
         Bar.drawXpBarPlayer(container, g);
-        drawStats(container, g);
         drawInventory(container, g);
-    }
-
-    private void drawStats(GameContainer container, Graphics g) throws SlickException {
-        if (statsDisplay) {
-            int width = 200;
-            int height = 300;
-            int x = container.getWidth() / 2 - width / 2;
-            int y = container.getHeight() / 2 - height / 2;
-            drawWindow(container, g, "Stats");
-
-            int d = 30;
-            Text.drawAlignString(g, "Level :", "" + Player.getInstance().getLevel(), x + d, y + 80, width - 2 * d);
-            Text.drawAlignString(g, "Life :", "" + Player.getInstance().getStats().getLifeMax(), x + d, y + 100, width - 2 * d);
-            Text.drawAlignString(g, "Mana :", "" + Player.getInstance().getStats().getManaMax(), x + d, y + 120, width - 2 * d);
-            Text.drawAlignString(g, "Damage :", "" + Player.getInstance().getStats().getInfligeableDamage(), x + d, y + 140, width - 2 * d);
-            Text.drawAlignString(g, "Reduction :", "" + Player.getInstance().getStats().getDamageReduction(), x + d, y + 160, width - 2 * d);
-        }
+        statsHud.render(g,statsDisplay);
     }
 
     private void drawInventory(GameContainer container, Graphics g) throws SlickException {
@@ -99,7 +85,7 @@ public class GameHud implements ComponentListener {
         }
     }
 
-    private void drawWindow(GameContainer container, Graphics g, String title) throws SlickException {
+    private void drawWindow(GameContainer container, Graphics g, String title) {
         int width = 200;
         int height = 300;
         int x = container.getWidth() / 2 - width / 2;

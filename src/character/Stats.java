@@ -119,6 +119,10 @@ public class Stats {
         return this.lifeMax;
     }
 
+    public void addLifeMax(int life) {
+        setLifeMax(life + getLifeMax());
+    }
+
     /**
      * Set the current life
      *
@@ -197,6 +201,10 @@ public class Stats {
         return this.manaMax;
     }
 
+    public void addManaMax(int mana) {
+        setManaMax(mana + getManaMax());
+    }
+
     public int getRegenerateRateLife() {
         return regenerateRateLife;
     }
@@ -249,6 +257,10 @@ public class Stats {
         this.infligeableDamage = infligeableDamage;
     }
 
+    public void addInfligeableDamage(int infligeableDamage) {
+        setInfligeableDamage(infligeableDamage + getInfligeableDamage());
+    }
+
     /**
      * Get the damage reduction
      *
@@ -265,6 +277,10 @@ public class Stats {
      */
     public void setDamageReduction(int damageReduction) {
         this.damageReduction = damageReduction;
+    }
+
+    public void addDamageReduction(int damageReduction) {
+        setDamageReduction(damageReduction + getDamageReduction());
     }
 
     /**

@@ -1,5 +1,6 @@
 package controller;
 
+import character.Player;
 import command.GameCommand;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
@@ -48,6 +49,22 @@ public class GameController implements InputProviderListener, KeyListener {
                 break;
             case PAUSE:
                 gameState.setPause(!gameState.isPause());
+                break;
+            case ADDLIFE:
+                Player.getInstance().getStats().addLifeMax(1);
+                Player.getInstance().getStats().addCharacteristicPoint(-1);
+                break;
+            case ADDMANA:
+                Player.getInstance().getStats().addManaMax(1);
+                Player.getInstance().getStats().addCharacteristicPoint(-1);
+                break;
+            case ADDATK:
+                Player.getInstance().getStats().addInfligeableDamage(1);
+                Player.getInstance().getStats().addCharacteristicPoint(-1);
+                break;
+            case ADDDEF:
+                Player.getInstance().getStats().addDamageReduction(1);
+                Player.getInstance().getStats().addCharacteristicPoint(-1);
                 break;
         }
     }
