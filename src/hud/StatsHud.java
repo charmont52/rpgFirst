@@ -23,6 +23,8 @@ public class StatsHud implements ComponentListener {
     private int y;
     private GameContainer container;
     private Image backgroundUI;
+    private Image addButton;
+    private Image subButton;
     private MouseOverArea addLifeButton;
     private MouseOverArea addManaButton;
     private MouseOverArea addAtkButton;
@@ -39,7 +41,8 @@ public class StatsHud implements ComponentListener {
         this.y = container.getHeight() / 2 - height / 2;
         this.container = container;
         backgroundUI = new Image("src/ressources/hud/background.png");
-        Image addButton = new Image("src/ressources/hud/addButton.png");
+        addButton = new Image("src/ressources/hud/addButton.png");
+        subButton = new Image("src/ressources/hud/subButton.png");
         addLifeButton = new MouseOverArea(container, addButton, x + width - 17, y + 100, this);
         addManaButton = new MouseOverArea(container, addButton, x + width - 17, y + 120, this);
         addAtkButton = new MouseOverArea(container, addButton, x + width - 17, y + 140, this);
