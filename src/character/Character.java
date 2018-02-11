@@ -366,7 +366,7 @@ public class Character {
                             break;
                     }
                     if (correctDirection)
-                        c.getStats().setCurrentLife(c.getStats().getCurrentLife() - this.stats.getInfligeableDamage());
+                        c.getStats().setCurrentLife(c.getStats().getCurrentLife() - this.stats.getInfligeablePhysicalDamage());
                 }
             }
             this.setInfligeableDamage(false);

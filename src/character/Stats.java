@@ -8,6 +8,7 @@ public class Stats {
     private int lifeMax;
     private int currentLife;
     private int regenerateRateLife;
+    private int lifeLeech;
 
     /**
      * Mana
@@ -15,6 +16,7 @@ public class Stats {
     private int manaMax;
     private int currentMana;
     private int regenerateRateMana;
+    private int manaLeech;
 
     /**
      * Speed
@@ -23,15 +25,18 @@ public class Stats {
     private float currentSpeed;
 
     /**
-     * XP on kill
+     * Gain on kill
      */
     private int xpOnKill;
+    private int goldOnKill;
 
     /**
      * Damage
      */
-    private int infligeableDamage;
-    private int damageReduction;
+    private int infligeablePhysicalDamage;
+    private int infligeableMagicDamage;
+    private int physicalDamageReduction;
+    private int magicDamageReduction;
 
     /**
      * SkillSet and Characteristic points
@@ -47,13 +52,18 @@ public class Stats {
     public Stats() {
         this.lifeMax = 5;
         this.currentLife = 5;
+        this.lifeLeech = 0;
         this.manaMax = 5;
         this.currentMana = 5;
+        this.manaLeech = 0;
         this.speedMax = 0.2f;
         this.currentSpeed = 0.2f;
         this.xpOnKill = 5;
-        this.infligeableDamage = 1;
-        this.damageReduction = 0;
+        this.goldOnKill = 2;
+        this.infligeablePhysicalDamage = 1;
+        this.infligeableMagicDamage = 1;
+        this.physicalDamageReduction = 0;
+        this.magicDamageReduction = 0;
         this.skillPoint = 0;
         this.characteristicPoint = 0;
         this.gold = 0;
@@ -103,11 +113,7 @@ public class Stats {
      * @param lifeMax The new maximum of life
      */
     public void setLifeMax(int lifeMax) {
-        if (lifeMax < 0) {
-            this.lifeMax = 0;
-        } else {
-            this.lifeMax = lifeMax;
-        }
+        this.lifeMax = Math.max(lifeMax, 0);
     }
 
     /**
@@ -119,6 +125,11 @@ public class Stats {
         return this.lifeMax;
     }
 
+    /**
+     * Increase the maximum of life
+     *
+     * @param life The quantity of life added
+     */
     public void addLifeMax(int life) {
         setLifeMax(life + getLifeMax());
     }
@@ -147,8 +158,31 @@ public class Stats {
         return this.currentLife;
     }
 
+    /**
+     * Add life to the current life
+     *
+     * @param life The quantity of life added
+     */
     public void addCurrentLife(int life) {
         setCurrentLife(life + getCurrentLife());
+    }
+
+    /**
+     * Get the life leech in percentage
+     *
+     * @return The life leech
+     */
+    public int getLifeLeech() {
+        return lifeLeech;
+    }
+
+    /**
+     * Set the life leech in percentage
+     *
+     * @param lifeLeech The new life leech
+     */
+    public void setLifeLeech(int lifeLeech) {
+        this.lifeLeech = Math.max(lifeLeech, 0);
     }
 
     /**
@@ -175,6 +209,11 @@ public class Stats {
         return this.currentMana;
     }
 
+    /**
+     * Add mana to the current mana
+     *
+     * @param mana The quantity of mana added
+     */
     public void addCurrentMana(int mana) {
         setCurrentMana(getCurrentMana() + mana);
     }
@@ -185,11 +224,7 @@ public class Stats {
      * @param manaMax The new maximum of mana
      */
     public void setManaMax(int manaMax) {
-        if (manaMax < 0) {
-            this.manaMax = 0;
-        } else {
-            this.manaMax = manaMax;
-        }
+        this.manaMax = Math.max(manaMax, 0);
     }
 
     /**
@@ -201,22 +236,65 @@ public class Stats {
         return this.manaMax;
     }
 
+    /**
+     * Increase the maximum of mana
+     *
+     * @param mana The quantity of mana added
+     */
     public void addManaMax(int mana) {
         setManaMax(mana + getManaMax());
     }
 
+    /**
+     * Get the mana leech in percentage
+     *
+     * @return The mana leech
+     */
+    public int getManaLeech() {
+        return manaLeech;
+    }
+
+    /**
+     * Set the mana leech in percentage
+     *
+     * @param manaLeech The new mana leech
+     */
+    public void setManaLeech(int manaLeech) {
+        this.manaLeech = Math.max(manaLeech, 0);
+    }
+
+    /**
+     * Get the life regenerate rate
+     *
+     * @return The life regenerate rate
+     */
     public int getRegenerateRateLife() {
         return regenerateRateLife;
     }
 
+    /**
+     * Set the life regenerate rate
+     *
+     * @param regenerateRateLife The new life regenerate rate
+     */
     public void setRegenerateRateLife(int regenerateRateLife) {
         this.regenerateRateLife = regenerateRateLife;
     }
 
+    /**
+     * Get the mana regenerate rate
+     *
+     * @return The mana regenerate rate
+     */
     public int getRegenerateRateMana() {
         return regenerateRateMana;
     }
 
+    /**
+     * Set the mana regenerate rate
+     *
+     * @param regenerateRateMana The new mana regenerate rate
+     */
     public void setRegenerateRateMana(int regenerateRateMana) {
         this.regenerateRateMana = regenerateRateMana;
     }
@@ -236,51 +314,133 @@ public class Stats {
      * @param xpOnKill The new XP won
      */
     public void setXpOnKill(int xpOnKill) {
-        this.xpOnKill = xpOnKill;
+        this.xpOnKill = Math.max(xpOnKill, 0);
     }
 
     /**
-     * Get the infligeable damage
+     * Get gold won when the bot is killed
      *
-     * @return The infligeable damage
+     * @return The gold won
      */
-    public int getInfligeableDamage() {
-        return this.infligeableDamage;
+    public int getGoldOnKill() {
+        return goldOnKill;
     }
 
     /**
-     * Set the new infligeable damage
+     * Set gold won when the bot is killed
      *
-     * @param infligeableDamage The new infligeable damage
+     * @param goldOnKill The new gold won
      */
-    public void setInfligeableDamage(int infligeableDamage) {
-        this.infligeableDamage = infligeableDamage;
-    }
-
-    public void addInfligeableDamage(int infligeableDamage) {
-        setInfligeableDamage(infligeableDamage + getInfligeableDamage());
+    public void setGoldOnKill(int goldOnKill) {
+        this.goldOnKill = Math.max(goldOnKill, 0);
     }
 
     /**
-     * Get the damage reduction
+     * Get the infligeable physical damage
      *
-     * @return The damage reduction
+     * @return The infligeable physical damage
      */
-    public int getDamageReduction() {
-        return this.damageReduction;
+    public int getInfligeablePhysicalDamage() {
+        return this.infligeablePhysicalDamage;
     }
 
     /**
-     * Set the new damage reduction
+     * Set the new infligeable physical damage
      *
-     * @param damageReduction The new damage reduction
+     * @param infligeablePhysicalDamage The new infligeable physical damage
      */
-    public void setDamageReduction(int damageReduction) {
-        this.damageReduction = damageReduction;
+    public void setInfligeablePhysicalDamage(int infligeablePhysicalDamage) {
+        this.infligeablePhysicalDamage = infligeablePhysicalDamage;
     }
 
-    public void addDamageReduction(int damageReduction) {
-        setDamageReduction(damageReduction + getDamageReduction());
+    /**
+     * Add a number of physical damage to the current physical damage
+     *
+     * @param infligeableDamage The number of physical damage
+     */
+    public void addInfligeablePhysicalDamage(int infligeableDamage) {
+        setInfligeablePhysicalDamage(infligeableDamage + getInfligeablePhysicalDamage());
+    }
+
+    /**
+     * Get the infligeable magic damage
+     *
+     * @return The infligeable magic damage
+     */
+    public int getInfligeableMagicDamage() {
+        return infligeableMagicDamage;
+    }
+
+    /**
+     * Set the new infligeable magic damage
+     *
+     * @param infligeableMagicDamage The new infligeable magic damage
+     */
+    public void setInfligeableMagicDamage(int infligeableMagicDamage) {
+        this.infligeableMagicDamage = infligeableMagicDamage;
+    }
+
+    /**
+     * Add a number of magic damage to the current physical damage
+     *
+     * @param infligeableDamage The number of magic damage
+     */
+    public void addInfligeableMagicDamage(int infligeableDamage) {
+        setInfligeableMagicDamage(infligeableDamage + getInfligeableMagicDamage());
+    }
+
+    /**
+     * Get the physical damage reduction
+     *
+     * @return The physical damage reduction
+     */
+    public int getPhysicalDamageReduction() {
+        return this.physicalDamageReduction;
+    }
+
+    /**
+     * Set the new physical damage reduction
+     *
+     * @param physicalDamageReduction The new physical damage reduction
+     */
+    public void setPhysicalDamageReduction(int physicalDamageReduction) {
+        this.physicalDamageReduction = physicalDamageReduction;
+    }
+
+    /**
+     * Add a number of physical damage reduction to the current physical damage reduction
+     *
+     * @param damageReduction The number of physical damage reduction
+     */
+    public void addPhysicalDamageReduction(int damageReduction) {
+        setPhysicalDamageReduction(damageReduction + getPhysicalDamageReduction());
+    }
+
+    /**
+     * Get the magic damage reduction
+     *
+     * @return The magic damage reduction
+     */
+    public int getMagicDamageReduction() {
+        return magicDamageReduction;
+    }
+
+    /**
+     * Set the new magic damage reduction
+     *
+     * @param magicDamageReduction The new magic damage reduction
+     */
+    public void setMagicDamageReduction(int magicDamageReduction) {
+        this.magicDamageReduction = magicDamageReduction;
+    }
+
+    /**
+     * Add a number of magic damage reduction to the current magic damage reduction
+     *
+     * @param damageReduction The number of magic damage reduction
+     */
+    public void addMagicDamageReduction(int damageReduction) {
+        setMagicDamageReduction(damageReduction + getMagicDamageReduction());
     }
 
     /**
@@ -301,6 +461,11 @@ public class Stats {
         this.skillPoint = skillPoint;
     }
 
+    /**
+     * Add or sub a skill point
+     *
+     * @param skillPoint The number of skill point won or used
+     */
     public void addSkillPoint(int skillPoint) {
         this.skillPoint += skillPoint;
     }
@@ -323,6 +488,11 @@ public class Stats {
         this.characteristicPoint = characteristicPoint;
     }
 
+    /**
+     * Add or sub a characteristic point
+     *
+     * @param characteristicPoint The number of characteristic point won or used
+     */
     public void addCharacteristicPoint(int characteristicPoint) {
         this.characteristicPoint += characteristicPoint;
     }
@@ -345,6 +515,11 @@ public class Stats {
         this.gold = gold;
     }
 
+    /**
+     * Add a quantity of gold to the current gold
+     *
+     * @param gold The quantity of gold
+     */
     public void addGold(int gold) {
         this.gold += gold;
     }

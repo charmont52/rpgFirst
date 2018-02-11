@@ -66,8 +66,8 @@ public class StatsHud implements ComponentListener {
             Text.drawAlignString(graphics, "Level :", "" + Player.getInstance().getLevel(), x + d, y + 80, width - 2 * d);
             Text.drawAlignString(graphics, "Life :", "" + Player.getInstance().getStats().getLifeMax(), x + d, y + 100, width - 2 * d);
             Text.drawAlignString(graphics, "Mana :", "" + Player.getInstance().getStats().getManaMax(), x + d, y + 120, width - 2 * d);
-            Text.drawAlignString(graphics, "Damage :", "" + Player.getInstance().getStats().getInfligeableDamage(), x + d, y + 140, width - 2 * d);
-            Text.drawAlignString(graphics, "Reduction :", "" + Player.getInstance().getStats().getDamageReduction(), x + d, y + 160, width - 2 * d);
+            Text.drawAlignString(graphics, "Damage :", "" + Player.getInstance().getStats().getInfligeablePhysicalDamage(), x + d, y + 140, width - 2 * d);
+            Text.drawAlignString(graphics, "Reduction :", "" + Player.getInstance().getStats().getPhysicalDamageReduction(), x + d, y + 160, width - 2 * d);
         }
     }
 

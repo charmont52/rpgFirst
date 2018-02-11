@@ -59,11 +59,11 @@ public class GameController implements InputProviderListener, KeyListener {
                 Player.getInstance().getStats().addCharacteristicPoint(-1);
                 break;
             case ADDATK:
-                Player.getInstance().getStats().addInfligeableDamage(1);
+                Player.getInstance().getStats().addInfligeablePhysicalDamage(1);
                 Player.getInstance().getStats().addCharacteristicPoint(-1);
                 break;
             case ADDDEF:
-                Player.getInstance().getStats().addDamageReduction(1);
+                Player.getInstance().getStats().addPhysicalDamageReduction(1);
                 Player.getInstance().getStats().addCharacteristicPoint(-1);
                 break;
         }
