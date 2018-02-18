@@ -383,10 +383,10 @@ public class Character {
         float futurX = this.x;
         switch (this.direction) {
             case WEST:
-                futurX = this.x - stats.getCurrentSpeed() * delta;
+                futurX = this.x - stats.getCurrentMoveSpeed() * delta;
                 break;
             case EAST:
-                futurX = this.x + stats.getCurrentSpeed() * delta;
+                futurX = this.x + stats.getCurrentMoveSpeed() * delta;
                 break;
         }
         return futurX;
@@ -402,10 +402,10 @@ public class Character {
         float futurY = this.y;
         switch (this.direction) {
             case NORTH:
-                futurY = this.y - stats.getCurrentSpeed() * delta;
+                futurY = this.y - stats.getCurrentMoveSpeed() * delta;
                 break;
             case SOUTH:
-                futurY = this.y + stats.getCurrentSpeed() * delta;
+                futurY = this.y + stats.getCurrentMoveSpeed() * delta;
                 break;
         }
         return futurY;

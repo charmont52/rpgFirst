@@ -37,7 +37,7 @@ public class PlayerController implements KeyListener {
     public void keyPressed(int key, char c) {
         switch (key) {
             case Input.KEY_SPACE:
-                this.player.getStats().setCurrentSpeed(0.4f);
+                this.player.getStats().setCurrentMoveSpeed(0.4f);
                 break;
             case Input.KEY_Z:
                 if (!player.isAtkable()) {
@@ -81,7 +81,7 @@ public class PlayerController implements KeyListener {
     public void keyReleased(int key, char c) {
         switch (key) {
             case Input.KEY_SPACE:
-                this.player.getStats().setCurrentSpeed(0.2f);
+                this.player.getStats().setCurrentMoveSpeed(0.2f);
                 break;
             case Input.KEY_Z:
                 if (player.getDirection() == Direction.NORTH)

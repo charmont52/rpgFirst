@@ -1,6 +1,7 @@
 package controller;
 
 import character.Player;
+import character.Stats;
 import command.GameCommand;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
@@ -36,6 +37,7 @@ public class GameController implements InputProviderListener, KeyListener {
     @Override
     public void controlPressed(Command command) {
         this.mode = (GameCommand) command;
+        Stats stats = Player.getInstance().getStats();
         switch (mode) {
             case STARTPAGE:
                 SoundEffect.stopAll();
@@ -51,20 +53,28 @@ public class GameController implements InputProviderListener, KeyListener {
                 gameState.setPause(!gameState.isPause());
                 break;
             case ADDLIFE:
-                Player.getInstance().getStats().addLifeMax(1);
-                Player.getInstance().getStats().addCharacteristicPoint(-1);
+                stats.addLifeMax(1);
+                stats.addCharacteristicPoint(-1);
                 break;
             case ADDMANA:
-                Player.getInstance().getStats().addManaMax(1);
-                Player.getInstance().getStats().addCharacteristicPoint(-1);
+                stats.addManaMax(1);
+                stats.addCharacteristicPoint(-1);
                 break;
-            case ADDATK:
-                Player.getInstance().getStats().addInfligeablePhysicalDamage(1);
-                Player.getInstance().getStats().addCharacteristicPoint(-1);
+            case ADDPHYSICALATK:
+                stats.addInfligeablePhysicalDamage(1);
+                stats.addCharacteristicPoint(-1);
                 break;
-            case ADDDEF:
-                Player.getInstance().getStats().addPhysicalDamageReduction(1);
-                Player.getInstance().getStats().addCharacteristicPoint(-1);
+            case ADDMAGICATK:
+                stats.addInfligeableMagicDamage(1);
+                stats.addCharacteristicPoint(-1);
+                break;
+            case ADDPHYSICALDEF:
+                stats.addPhysicalDamageReduction(1);
+                stats.addCharacteristicPoint(-1);
+                break;
+            case ADDMAGICDEF:
+                stats.addMagicDamageReduction(1);
+                stats.addCharacteristicPoint(-1);
                 break;
         }
     }

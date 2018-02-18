@@ -21,8 +21,10 @@ public class Stats {
     /**
      * Speed
      */
-    private float speedMax;
-    private float currentSpeed;
+    private float moveSpeedMax;
+    private float currentMoveSpeed;
+    private float currentAtkSpeed;
+    private float currentCastSpeed;
 
     /**
      * Gain on kill
@@ -56,8 +58,10 @@ public class Stats {
         this.manaMax = 5;
         this.currentMana = 5;
         this.manaLeech = 0;
-        this.speedMax = 0.2f;
-        this.currentSpeed = 0.2f;
+        this.moveSpeedMax = 0.2f;
+        this.currentMoveSpeed = 0.2f;
+        this.currentAtkSpeed = 1.0f;
+        this.currentCastSpeed = 1.0f;
         this.xpOnKill = 5;
         this.goldOnKill = 2;
         this.infligeablePhysicalDamage = 1;
@@ -69,42 +73,6 @@ public class Stats {
         this.gold = 0;
         this.regenerateRateLife = 1;
         this.regenerateRateMana = 1;
-    }
-
-    /**
-     * Get the max speed
-     *
-     * @return The max speed
-     */
-    public float getSpeedMax() {
-        return this.speedMax;
-    }
-
-    /**
-     * Set the max speed
-     *
-     * @param speed The new max speed
-     */
-    public void setSpeedMax(float speed) {
-        this.speedMax = speed;
-    }
-
-    /**
-     * Get the current speed
-     *
-     * @return The current speed
-     */
-    public float getCurrentSpeed() {
-        return this.currentSpeed;
-    }
-
-    /**
-     * Set the current speed
-     *
-     * @param speed The new current speed
-     */
-    public void setCurrentSpeed(float speed) {
-        this.currentSpeed = speed;
     }
 
     /**
@@ -297,6 +265,78 @@ public class Stats {
      */
     public void setRegenerateRateMana(int regenerateRateMana) {
         this.regenerateRateMana = regenerateRateMana;
+    }
+
+    /**
+     * Get the max speed
+     *
+     * @return The max speed
+     */
+    public float getMoveSpeedMax() {
+        return this.moveSpeedMax;
+    }
+
+    /**
+     * Set the max speed
+     *
+     * @param speed The new max speed
+     */
+    public void setMoveSpeedMax(float speed) {
+        this.moveSpeedMax = speed;
+    }
+
+    /**
+     * Get the current speed
+     *
+     * @return The current speed
+     */
+    public float getCurrentMoveSpeed() {
+        return this.currentMoveSpeed;
+    }
+
+    /**
+     * Set the current speed
+     *
+     * @param speed The new current speed
+     */
+    public void setCurrentMoveSpeed(float speed) {
+        this.currentMoveSpeed = speed;
+    }
+
+    /**
+     * Get the current attack speed
+     *
+     * @return The current attack speed
+     */
+    public float getCurrentAtkSpeed() {
+        return currentAtkSpeed;
+    }
+
+    /**
+     * Set the current attack speed
+     *
+     * @param currentAtkSpeed The new current attack speed
+     */
+    public void setCurrentAtkSpeed(float currentAtkSpeed) {
+        this.currentAtkSpeed = currentAtkSpeed;
+    }
+
+    /**
+     * Get the current cast speed
+     *
+     * @return The current cast speed
+     */
+    public float getCurrentCastSpeed() {
+        return currentCastSpeed;
+    }
+
+    /**
+     * Set the current cast speed
+     *
+     * @param currentCastSpeed The new current cast speed
+     */
+    public void setCurrentCastSpeed(float currentCastSpeed) {
+        this.currentCastSpeed = currentCastSpeed;
     }
 
     /**
