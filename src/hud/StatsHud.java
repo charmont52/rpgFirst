@@ -4,26 +4,19 @@ import character.Player;
 import character.Stats;
 import command.GameCommand;
 import controller.GameController;
-import graphics.Area;
+import graphics.BasicWindow;
 import graphics.Text;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.AbstractComponent;
-import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.MouseOverArea;
-import sound.SoundEffect;
 
-public class StatsHud implements ComponentListener {
+public class StatsHud extends BasicWindow {
 
     private GameController controller;
-    private int width;
-    private int height;
-    private int x;
-    private int y;
-    private GameContainer container;
-    private Image backgroundUI;
+
     private Image addButton;
     private Image subButton;
     private MouseOverArea addLifeButton;
@@ -36,17 +29,14 @@ public class StatsHud implements ComponentListener {
     private MouseOverArea addFireResButton;
 
     public StatsHud(GameController controller) {
+        super("Stats");
         this.controller = controller;
-        this.width = 300;
-        this.height = 400;
     }
 
+    @Override
     public void init(GameContainer container) throws SlickException {
-        this.x = container.getWidth() / 2 - width / 2;
-        this.y = container.getHeight() / 2 - height / 2;
-        this.container = container;
+        super.init(container);
         String path = "src/ressources/hud/";
-        backgroundUI = new Image(path + "background.png");
         addButton = new Image(path + "addButton.png");
         subButton = new Image(path + "subButton.png");
         addLifeButton = new MouseOverArea(container, addButton, x + width - 17, y + 100, this);
@@ -59,12 +49,10 @@ public class StatsHud implements ComponentListener {
         addFireResButton = new MouseOverArea(container, addButton, x + width - 17, y + 240, this);
     }
 
-    public void render(Graphics graphics, boolean isDisplayed) {
-        if (isDisplayed) {
-            graphics.fillRect(x, y, width, height, backgroundUI, 0, 0);
-            Area.drawOutline(graphics, container, x, y, width, height);
-            Text.drawCenterString(graphics, "Stats", x, y, width, 100);
-
+    @Override
+    public void render(Graphics graphics) {
+        super.render(graphics);
+        if (displayed) {
             if (Player.getInstance().getStats().getCharacteristicPoint() > 0) {
                 addLifeButton.render(container, graphics);
                 addManaButton.render(container, graphics);
@@ -97,12 +85,12 @@ public class StatsHud implements ComponentListener {
 
     private void printCarac(Graphics graphics, String name, int value, int order) {
         int d = 30;
-        Text.drawAlignString(graphics, name + " :", "" + value, x + d, y + 80 + 20*order, width - 2 * d);
+        Text.drawAlignString(graphics, name + " :", "" + value, x + d, y + 80 + 20 * order, width - 2 * d);
     }
 
     @Override
     public void componentActivated(AbstractComponent source) {
-        SoundEffect.click();
+        super.componentActivated(source);
         if (source == addLifeButton) {
             controller.controlPressed(GameCommand.ADDLIFE);
         } else if (source == addManaButton) {

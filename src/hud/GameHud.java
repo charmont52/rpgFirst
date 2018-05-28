@@ -1,6 +1,5 @@
 package hud;
 
-import character.Player;
 import command.GameCommand;
 import controller.GameController;
 import graphics.Area;
@@ -23,7 +22,6 @@ public class GameHud implements ComponentListener {
     private MouseOverArea inventoryButton;
     private MouseOverArea statsPlayerButton;
     private Image backgroundUI;
-    private boolean statsDisplay;
     private boolean inventoryDisplay;
     private StatsHud statsHud;
 
@@ -34,7 +32,6 @@ public class GameHud implements ComponentListener {
      */
     public GameHud(GameController controller) {
         this.controller = controller;
-        statsDisplay = false;
         inventoryDisplay = false;
         statsHud = new StatsHud(controller);
     }
@@ -76,7 +73,7 @@ public class GameHud implements ComponentListener {
         Bar.drawManaBarPlayer(container, g);
         Bar.drawXpBarPlayer(container, g);
         drawInventory(container, g);
-        statsHud.render(g,statsDisplay);
+        statsHud.render(g);
     }
 
     private void drawInventory(GameContainer container, Graphics g) throws SlickException {
@@ -102,17 +99,17 @@ public class GameHud implements ComponentListener {
             controller.controlPressed(GameCommand.STARTPAGE);
         } else if (source == inventoryButton) {
             inventoryDisplay = !inventoryDisplay;
-            if (!statsDisplay) {
+            if (!statsHud.getDisplayed()) {
                 controller.controlPressed(GameCommand.INVENTORY);
             } else {
-                statsDisplay = false;
+                statsHud.setDisplayed(false);
             }
         } else if (source == statsPlayerButton) {
-            statsDisplay = !statsDisplay;
+            statsHud.setDisplayed(!statsHud.getDisplayed());
             if (!inventoryDisplay) {
                 controller.controlPressed(GameCommand.STATSPLAYER);
             } else {
-                inventoryDisplay = false;
+                statsHud.setDisplayed(false);
             }
         }
     }
