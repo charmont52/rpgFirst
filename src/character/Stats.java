@@ -36,9 +36,13 @@ public class Stats {
      * Damage
      */
     private int infligeablePhysicalDamage;
-    private int infligeableMagicDamage;
-    private int physicalDamageReduction;
-    private int magicDamageReduction;
+    private int infligeableFireDamage;
+    private int infligeableIceDamage;
+    private int infligeableEarthDamage;
+    private int physicalDamageResistance;
+    private int fireDamageResistance;
+    private int iceDamageResistance;
+    private int earthDamageResistance;
 
     /**
      * SkillSet and Characteristic points
@@ -65,9 +69,13 @@ public class Stats {
         this.xpOnKill = 5;
         this.goldOnKill = 2;
         this.infligeablePhysicalDamage = 1;
-        this.infligeableMagicDamage = 1;
-        this.physicalDamageReduction = 0;
-        this.magicDamageReduction = 0;
+        this.infligeableFireDamage = 1;
+        this.infligeableIceDamage = 1;
+        this.infligeableEarthDamage = 1;
+        this.physicalDamageResistance = 0;
+        this.fireDamageResistance = 0;
+        this.iceDamageResistance = 0;
+        this.earthDamageResistance = 0;
         this.skillPoint = 0;
         this.characteristicPoint = 0;
         this.gold = 0;
@@ -396,91 +404,199 @@ public class Stats {
     /**
      * Add a number of physical damage to the current physical damage
      *
-     * @param infligeableDamage The number of physical damage
+     * @param infligeablePhysicalDamage The number of physical damage
      */
-    public void addInfligeablePhysicalDamage(int infligeableDamage) {
-        setInfligeablePhysicalDamage(infligeableDamage + getInfligeablePhysicalDamage());
+    public void addInfligeablePhysicalDamage(int infligeablePhysicalDamage) {
+        setInfligeablePhysicalDamage(infligeablePhysicalDamage + getInfligeablePhysicalDamage());
     }
 
     /**
-     * Get the infligeable magic damage
+     * Get the infligeable fire damage
      *
-     * @return The infligeable magic damage
+     * @return The infligeable fire damage
      */
-    public int getInfligeableMagicDamage() {
-        return infligeableMagicDamage;
+    public int getInfligeableFireDamage() {
+        return infligeableFireDamage;
     }
 
     /**
-     * Set the new infligeable magic damage
+     * Set the new infligeable fire damage
      *
-     * @param infligeableMagicDamage The new infligeable magic damage
+     * @param infligeableFireDamage The new infligeable fire damage
      */
-    public void setInfligeableMagicDamage(int infligeableMagicDamage) {
-        this.infligeableMagicDamage = infligeableMagicDamage;
+    public void setInfligeableFireDamage(int infligeableFireDamage) {
+        this.infligeableFireDamage = infligeableFireDamage;
     }
 
     /**
-     * Add a number of magic damage to the current physical damage
+     * Add a number of fire damage to the current fire damage
      *
-     * @param infligeableDamage The number of magic damage
+     * @param infligeableFireDamage The number of fire damage
      */
-    public void addInfligeableMagicDamage(int infligeableDamage) {
-        setInfligeableMagicDamage(infligeableDamage + getInfligeableMagicDamage());
+    public void addInfligeableFireDamage(int infligeableFireDamage) {
+        setInfligeableFireDamage(infligeableFireDamage + getInfligeableFireDamage());
     }
 
     /**
-     * Get the physical damage reduction
+     * Get the infligeable ice damage
      *
-     * @return The physical damage reduction
+     * @return The infligeable ice damage
      */
-    public int getPhysicalDamageReduction() {
-        return this.physicalDamageReduction;
+    public int getInfligeableIceDamage() {
+        return infligeableIceDamage;
     }
 
     /**
-     * Set the new physical damage reduction
+     * Set the new infligeable ice damage
      *
-     * @param physicalDamageReduction The new physical damage reduction
+     * @param infligeableIceDamage The new infligeable ice damage
      */
-    public void setPhysicalDamageReduction(int physicalDamageReduction) {
-        this.physicalDamageReduction = physicalDamageReduction;
+    public void setInfligeableIceDamage(int infligeableIceDamage) {
+        this.infligeableIceDamage = infligeableIceDamage;
     }
 
     /**
-     * Add a number of physical damage reduction to the current physical damage reduction
+     * Add a number of ice damage to the current ice damage
      *
-     * @param damageReduction The number of physical damage reduction
+     * @param infligeableIceDamage The number of ice damage
      */
-    public void addPhysicalDamageReduction(int damageReduction) {
-        setPhysicalDamageReduction(damageReduction + getPhysicalDamageReduction());
+    public void addInfligeableIceDamage(int infligeableIceDamage) {
+        setInfligeableIceDamage(infligeableIceDamage + getInfligeableIceDamage());
     }
 
     /**
-     * Get the magic damage reduction
+     * Get the infligeable earth damage
      *
-     * @return The magic damage reduction
+     * @return The infligeable earth damage
      */
-    public int getMagicDamageReduction() {
-        return magicDamageReduction;
+    public int getInfligeableEarthDamage() {
+        return infligeableEarthDamage;
     }
 
     /**
-     * Set the new magic damage reduction
+     * Set the new infligeable earth damage
      *
-     * @param magicDamageReduction The new magic damage reduction
+     * @param infligeableEarthDamage The new infligeable earth damage
      */
-    public void setMagicDamageReduction(int magicDamageReduction) {
-        this.magicDamageReduction = magicDamageReduction;
+    public void setInfligeableEarthDamage(int infligeableEarthDamage) {
+        this.infligeableEarthDamage = infligeableEarthDamage;
     }
 
     /**
-     * Add a number of magic damage reduction to the current magic damage reduction
+     * Add a number of earth damage to the current earth damage
      *
-     * @param damageReduction The number of magic damage reduction
+     * @param infligeableEarthDamage The number of earth damage
      */
-    public void addMagicDamageReduction(int damageReduction) {
-        setMagicDamageReduction(damageReduction + getMagicDamageReduction());
+    public void addInfligeableEarthDamage(int infligeableEarthDamage) {
+        setInfligeableEarthDamage(infligeableEarthDamage + getInfligeableEarthDamage());
+    }
+
+    /**
+     * Get the physical damage resistance
+     *
+     * @return The physical damage resistance
+     */
+    public int getPhysicalDamageResistance() {
+        return this.physicalDamageResistance;
+    }
+
+    /**
+     * Set the new physical damage resistance
+     *
+     * @param physicalDamageResistance The new physical damage resistance
+     */
+    public void setPhysicalDamageResistance(int physicalDamageResistance) {
+        this.physicalDamageResistance = physicalDamageResistance;
+    }
+
+    /**
+     * Add a number of physical damage reduction to the current physical damage resistance
+     *
+     * @param damageResistance The number of physical damage resistance
+     */
+    public void addPhysicalDamageResistance(int damageResistance) {
+        setPhysicalDamageResistance(damageResistance + getPhysicalDamageResistance());
+    }
+
+    /**
+     * Get the fire damage resistance
+     *
+     * @return The fire damage resistance
+     */
+    public int getFireDamageResistance() {
+        return fireDamageResistance;
+    }
+
+    /**
+     * Set the new fire damage resistance
+     *
+     * @param fireDamageResistance The new fire damage resistance
+     */
+    public void setFireDamageResistance(int fireDamageResistance) {
+        this.fireDamageResistance = fireDamageResistance;
+    }
+
+    /**
+     * Add a number of fire damage reduction to the current fire damage resistance
+     *
+     * @param damageFireResistance The number of fire damage resistance
+     */
+    public void addFireDamageResistance(int damageFireResistance) {
+        setFireDamageResistance(damageFireResistance + getFireDamageResistance());
+    }
+
+    /**
+     * Get the ice damage resistance
+     *
+     * @return The ice damage resistance
+     */
+    public int getIceDamageResistance() {
+        return iceDamageResistance;
+    }
+
+    /**
+     * Set the new ice damage resistance
+     *
+     * @param iceDamageResistance The new ice damage resistance
+     */
+    public void setIceDamageResistance(int iceDamageResistance) {
+        this.iceDamageResistance = iceDamageResistance;
+    }
+
+    /**
+     * Add a number of ice damage reduction to the current ice damage resistance
+     *
+     * @param damageIceResistance The number of ice damage resistance
+     */
+    public void addIceDamageResistance(int damageIceResistance) {
+        setIceDamageResistance(damageIceResistance + getIceDamageResistance());
+    }
+
+    /**
+     * Get the earth damage resistance
+     *
+     * @return The earth damage resistance
+     */
+    public int getEarthDamageResistance() {
+        return earthDamageResistance;
+    }
+
+    /**
+     * Set the new earth damage resistance
+     *
+     * @param earthDamageResistance The new earth damage resistance
+     */
+    public void setEarthDamageResistance(int earthDamageResistance) {
+        this.earthDamageResistance = earthDamageResistance;
+    }
+
+    /**
+     * Add a number of earth damage reduction to the current earth damage resistance
+     *
+     * @param damageEarthResistance The number of earth damage resistance
+     */
+    public void addEarthDamageResistance(int damageEarthResistance) {
+        setEarthDamageResistance(damageEarthResistance + getEarthDamageResistance());
     }
 
     /**

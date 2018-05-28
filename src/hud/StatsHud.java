@@ -29,9 +29,11 @@ public class StatsHud implements ComponentListener {
     private MouseOverArea addLifeButton;
     private MouseOverArea addManaButton;
     private MouseOverArea addPhysicalAtkButton;
-    private MouseOverArea addMagicAtkButton;
-    private MouseOverArea addPhysicalDefButton;
-    private MouseOverArea addMagicDefButton;
+    private MouseOverArea addFireAtkButton;
+    private MouseOverArea addIceAtkButton;
+    private MouseOverArea addEarthAtkButton;
+    private MouseOverArea addPhysicalResButton;
+    private MouseOverArea addFireResButton;
 
     public StatsHud(GameController controller) {
         this.controller = controller;
@@ -50,9 +52,11 @@ public class StatsHud implements ComponentListener {
         addLifeButton = new MouseOverArea(container, addButton, x + width - 17, y + 100, this);
         addManaButton = new MouseOverArea(container, addButton, x + width - 17, y + 120, this);
         addPhysicalAtkButton = new MouseOverArea(container, addButton, x + width - 17, y + 140, this);
-        addMagicAtkButton = new MouseOverArea(container, addButton, x + width - 17, y + 160, this);
-        addPhysicalDefButton = new MouseOverArea(container, addButton, x + width - 17, y + 180, this);
-        addMagicDefButton = new MouseOverArea(container, addButton, x + width - 17, y + 200, this);
+        addFireAtkButton = new MouseOverArea(container, addButton, x + width - 17, y + 160, this);
+        addIceAtkButton = new MouseOverArea(container, addButton, x + width - 17, y + 180, this);
+        addEarthAtkButton = new MouseOverArea(container, addButton, x + width - 17, y + 200, this);
+        addPhysicalResButton = new MouseOverArea(container, addButton, x + width - 17, y + 220, this);
+        addFireResButton = new MouseOverArea(container, addButton, x + width - 17, y + 240, this);
     }
 
     public void render(Graphics graphics, boolean isDisplayed) {
@@ -60,26 +64,40 @@ public class StatsHud implements ComponentListener {
             graphics.fillRect(x, y, width, height, backgroundUI, 0, 0);
             Area.drawOutline(graphics, container, x, y, width, height);
             Text.drawCenterString(graphics, "Stats", x, y, width, 100);
-            int d = 30;
 
             if (Player.getInstance().getStats().getCharacteristicPoint() > 0) {
                 addLifeButton.render(container, graphics);
                 addManaButton.render(container, graphics);
                 addPhysicalAtkButton.render(container, graphics);
-                addMagicAtkButton.render(container, graphics);
-                addPhysicalDefButton.render(container, graphics);
-                addMagicDefButton.render(container, graphics);
+                addFireAtkButton.render(container, graphics);
+                addIceAtkButton.render(container, graphics);
+                addEarthAtkButton.render(container, graphics);
+                //addPhysicalResButton.render(container, graphics);
+                //addFireResButton.render(container, graphics);
             }
 
             Stats stats = Player.getInstance().getStats();
-            Text.drawAlignString(graphics, "Level :", "" + Player.getInstance().getLevel(), x + d, y + 80, width - 2 * d);
-            Text.drawAlignString(graphics, "Life :", "" + stats.getLifeMax(), x + d, y + 100, width - 2 * d);
-            Text.drawAlignString(graphics, "Mana :", "" + stats.getManaMax(), x + d, y + 120, width - 2 * d);
-            Text.drawAlignString(graphics, "Physical damage :", "" + stats.getInfligeablePhysicalDamage(), x + d, y + 140, width - 2 * d);
-            Text.drawAlignString(graphics, "Magical damage :", "" + stats.getInfligeableMagicDamage(), x + d, y + 160, width - 2 * d);
-            Text.drawAlignString(graphics, "Physical reduction :", "" + stats.getPhysicalDamageReduction(), x + d, y + 180, width - 2 * d);
-            Text.drawAlignString(graphics, "Magical reduction :", "" + stats.getMagicDamageReduction(), x + d, y + 200, width - 2 * d);
+            printCarac(graphics, "Level", Player.getInstance().getLevel(), 0);
+            printCarac(graphics, "Life", stats.getLifeMax(), 1);
+            printCarac(graphics, "Mana", stats.getManaMax(), 2);
+            printCarac(graphics, "Physical damage", stats.getInfligeablePhysicalDamage(), 3);
+            printCarac(graphics, "Fire damage", stats.getInfligeableFireDamage(), 4);
+            printCarac(graphics, "Ice damage", stats.getInfligeableIceDamage(), 5);
+            printCarac(graphics, "Earth damage", stats.getInfligeableEarthDamage(), 6);
+            printCarac(graphics, "Physical resistance", stats.getPhysicalDamageResistance(), 7);
+            printCarac(graphics, "Fire resistance", stats.getFireDamageResistance(), 8);
+            printCarac(graphics, "Ice resistance", stats.getIceDamageResistance(), 9);
+            printCarac(graphics, "Earth resistance", stats.getEarthDamageResistance(), 10);
+            printCarac(graphics, "Life regenerate rate", stats.getRegenerateRateLife(), 11);
+            printCarac(graphics, "Mana regenerate rate", stats.getRegenerateRateMana(), 12);
+            printCarac(graphics, "Life leech", stats.getLifeLeech(), 13);
+            printCarac(graphics, "Mana leech", stats.getManaLeech(), 14);
         }
+    }
+
+    private void printCarac(Graphics graphics, String name, int value, int order) {
+        int d = 30;
+        Text.drawAlignString(graphics, name + " :", "" + value, x + d, y + 80 + 20*order, width - 2 * d);
     }
 
     @Override
@@ -91,12 +109,16 @@ public class StatsHud implements ComponentListener {
             controller.controlPressed(GameCommand.ADDMANA);
         } else if (source == addPhysicalAtkButton) {
             controller.controlPressed(GameCommand.ADDPHYSICALATK);
-        } else if (source == addMagicAtkButton) {
-            controller.controlPressed(GameCommand.ADDMAGICATK);
-        } else if (source == addPhysicalDefButton) {
-            controller.controlPressed(GameCommand.ADDPHYSICALDEF);
-        } else if (source == addMagicDefButton) {
-            controller.controlPressed(GameCommand.ADDMAGICDEF);
+        } else if (source == addFireAtkButton) {
+            controller.controlPressed(GameCommand.ADDFIREATK);
+        } else if (source == addIceAtkButton) {
+            controller.controlPressed(GameCommand.ADDICEATK);
+        } else if (source == addEarthAtkButton) {
+            controller.controlPressed(GameCommand.ADDEARTHATK);
+        } else if (source == addPhysicalResButton) {
+            controller.controlPressed(GameCommand.ADDPHYSICALRES);
+        } else if (source == addFireResButton) {
+            controller.controlPressed(GameCommand.ADDFIRERES);
         }
     }
 

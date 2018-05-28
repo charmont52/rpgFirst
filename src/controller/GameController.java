@@ -64,16 +64,32 @@ public class GameController implements InputProviderListener, KeyListener {
                 stats.addInfligeablePhysicalDamage(1);
                 stats.addCharacteristicPoint(-1);
                 break;
-            case ADDMAGICATK:
-                stats.addInfligeableMagicDamage(1);
+            case ADDFIREATK:
+                stats.addInfligeableFireDamage(1);
                 stats.addCharacteristicPoint(-1);
                 break;
-            case ADDPHYSICALDEF:
-                stats.addPhysicalDamageReduction(1);
+            case ADDICEATK:
+                stats.addInfligeableIceDamage(1);
                 stats.addCharacteristicPoint(-1);
                 break;
-            case ADDMAGICDEF:
-                stats.addMagicDamageReduction(1);
+            case ADDEARTHATK:
+                stats.addInfligeableEarthDamage(1);
+                stats.addCharacteristicPoint(-1);
+                break;
+            case ADDPHYSICALRES:
+                stats.addPhysicalDamageResistance(1);
+                stats.addCharacteristicPoint(-1);
+                break;
+            case ADDFIRERES:
+                stats.addFireDamageResistance(1);
+                stats.addCharacteristicPoint(-1);
+                break;
+            case ADDICERES:
+                stats.addIceDamageResistance(1);
+                stats.addCharacteristicPoint(-1);
+                break;
+            case ADDEARTHRES:
+                stats.addEarthDamageResistance(1);
                 stats.addCharacteristicPoint(-1);
                 break;
         }
