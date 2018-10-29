@@ -1,9 +1,11 @@
 package hud;
 
-public class InventoryHud {
+import graphics.BasicWindow;
+
+public class InventoryHud extends BasicWindow {
 
     public InventoryHud() {
-
+        super("Sac");
     }
 
 }

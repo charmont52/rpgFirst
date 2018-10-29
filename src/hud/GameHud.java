@@ -22,8 +22,8 @@ public class GameHud implements ComponentListener {
     private MouseOverArea inventoryButton;
     private MouseOverArea statsPlayerButton;
     private Image backgroundUI;
-    private boolean inventoryDisplay;
     private StatsHud statsHud;
+    private InventoryHud inventoryHud;
 
     /**
      * The unique Constructor
@@ -32,8 +32,8 @@ public class GameHud implements ComponentListener {
      */
     public GameHud(GameController controller) {
         this.controller = controller;
-        inventoryDisplay = false;
         statsHud = new StatsHud(controller);
+        inventoryHud = new InventoryHud();
     }
 
     /**
@@ -50,6 +50,7 @@ public class GameHud implements ComponentListener {
         inventoryButton = new MouseOverArea(container, buttonImage, container.getWidth() - 10 - 2 * buttonImage.getWidth(), container.getHeight() - buttonImage.getHeight() - 5, this);
         statsPlayerButton = new MouseOverArea(container, buttonImage, container.getWidth() - 15 - 3 * buttonImage.getWidth(), container.getHeight() - buttonImage.getHeight() - 5, this);
         statsHud.init(container);
+        inventoryHud.init(container);
     }
 
     /**
@@ -72,25 +73,12 @@ public class GameHud implements ComponentListener {
         Bar.drawLifeBarPlayer(container, g);
         Bar.drawManaBarPlayer(container, g);
         Bar.drawXpBarPlayer(container, g);
-        drawInventory(container, g);
         statsHud.render(g);
+        inventoryHud.render(g);
     }
 
-    private void drawInventory(GameContainer container, Graphics g) throws SlickException {
-        if (inventoryDisplay) {
-            drawWindow(container, g, "Sac");
-        }
-    }
 
-    private void drawWindow(GameContainer container, Graphics g, String title) {
-        int width = 200;
-        int height = 300;
-        int x = container.getWidth() / 2 - width / 2;
-        int y = container.getHeight() / 2 - height / 2;
-        g.fillRect(x, y, width, height, backgroundUI, 0, 0);
-        Area.drawOutline(g, container, x, y, width, height);
-        Text.drawCenterString(g, title, x, y, width, 100);
-    }
+
 
     @Override
     public void componentActivated(AbstractComponent source) {
@@ -98,19 +86,13 @@ public class GameHud implements ComponentListener {
         if (source == startPageButton) {
             controller.controlPressed(GameCommand.STARTPAGE);
         } else if (source == inventoryButton) {
-            inventoryDisplay = !inventoryDisplay;
-            if (!statsHud.getDisplayed()) {
-                controller.controlPressed(GameCommand.INVENTORY);
-            } else {
-                statsHud.setDisplayed(false);
-            }
+            inventoryHud.setDisplayed(!inventoryHud.getDisplayed());
+            statsHud.setDisplayed(false);
+            controller.controlPressed(GameCommand.INVENTORY);
         } else if (source == statsPlayerButton) {
+            inventoryHud.setDisplayed(false);
             statsHud.setDisplayed(!statsHud.getDisplayed());
-            if (!inventoryDisplay) {
-                controller.controlPressed(GameCommand.STATSPLAYER);
-            } else {
-                statsHud.setDisplayed(false);
-            }
+            controller.controlPressed(GameCommand.STATSPLAYER);
         }
     }
 
