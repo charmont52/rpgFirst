@@ -86,10 +86,6 @@ public class Player extends Character {
         this.animationsAtk[2] = loadAnimation(spriteSheet, 0, 5, 2);
         this.animationsAtk[3] = loadAnimation(spriteSheet, 0, 5, 3);
 
-        Hud barreDeVie = new Hud("barreDeVie", new Image("src/ressources/hud/barreDeVie.png"), 10, 10);
-        barreDeVie.setVisible(false);
-        hudList.add(barreDeVie);
-
         Image sacImage = new Image("src/ressources/hud/sac.png");
         Hud sac = new Hud("sac", sacImage, 640 - sacImage.getWidth() - 10, 10);
         sac.setVisible(false);

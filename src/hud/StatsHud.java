@@ -16,9 +16,6 @@ import org.newdawn.slick.gui.MouseOverArea;
 public class StatsHud extends BasicWindow {
 
     private GameController controller;
-
-    private Image addButton;
-    private Image subButton;
     private MouseOverArea addLifeButton;
     private MouseOverArea addManaButton;
     private MouseOverArea addPhysicalAtkButton;
@@ -36,9 +33,6 @@ public class StatsHud extends BasicWindow {
     @Override
     public void init(GameContainer container) throws SlickException {
         super.init(container);
-        String path = "src/ressources/hud/";
-        addButton = new Image(path + "addButton.png");
-        subButton = new Image(path + "subButton.png");
         addLifeButton = new MouseOverArea(container, addButton, x + width - 17, y + 100, this);
         addManaButton = new MouseOverArea(container, addButton, x + width - 17, y + 120, this);
         addPhysicalAtkButton = new MouseOverArea(container, addButton, x + width - 17, y + 140, this);
@@ -53,7 +47,8 @@ public class StatsHud extends BasicWindow {
     public void render(Graphics graphics) {
         super.render(graphics);
         if (displayed) {
-            if (Player.getInstance().getStats().getCharacteristicPoint() > 0) {
+            Stats stats = Player.getInstance().getStats();
+            if (stats.getCharacteristicPoint() > 0) {
                 addLifeButton.render(container, graphics);
                 addManaButton.render(container, graphics);
                 addPhysicalAtkButton.render(container, graphics);
@@ -64,7 +59,6 @@ public class StatsHud extends BasicWindow {
                 //addFireResButton.render(container, graphics);
             }
 
-            Stats stats = Player.getInstance().getStats();
             printCarac(graphics, "Level", Player.getInstance().getLevel(), 0);
             printCarac(graphics, "Life", stats.getLifeMax(), 1);
             printCarac(graphics, "Mana", stats.getManaMax(), 2);
